@@ -153,8 +153,10 @@ ons-page {
 }
 
 .price-breakup {
-    font-weight: bold;
+    font-weight: 700;
     color: #000;
+    font-family: Futura Bk BT;
+    /* font-weight: normal; */
 }
 
 .text-muted {
@@ -279,10 +281,10 @@ ons-page {
     color: #000;
     text-align: center;
     font-family: Futura Std;
-    font-size: 16px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 650;
-    line-height: 16px;
+    line-height: 14px;
 }
 
 .ons-toolbar.navbar .center .logo-imgs img {
@@ -410,10 +412,11 @@ ons-page {
     color: #FFF;
     margin-bottom: 1.75rem;
     text-align: center;
-    font-family: 'Futura Std', sans-serif;
+    /* font-family: 'Futura Std', sans-serif; old */
+    font-family: Futura Bk BT;
     font-size: 14.866px;
     font-style: normal;
-    font-weight: 650;
+    font-weight: 700;
     line-height: 8.675px;
     /* 67.425% */
     letter-spacing: 4.053px;
@@ -1939,14 +1942,16 @@ p.subheading {
 
 .cart-total-box .total-amount-row {
     display: flex;
-    width: 482px;
+    width: 492px;
     justify-content: space-between;
     align-items: flex-start;
     background: #FFF;
     margin: auto;
     padding-top: 1rem;
+    padding-right: 10px;
     padding-bottom: 28px;
     color: black;
+    padding-left: 10px;
 }
 
 .cart-total-box .cart-buttons {
