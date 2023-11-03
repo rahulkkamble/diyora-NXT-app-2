@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .myCarousel-container {
+            width: 1080px;
+            overflow: hidden;
+        }
+
+        .myCarousel {
+            display: flex;
+            transition: transform 0.5s ease;
+            column-gap: 10px;
+        }
+
+        .myCarousel-item {
+            width: 250px;
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+            font-size: 24px;
+            flex-shrink: 0;
+            background-color: #ccc;
+            /* margin-right: 10px; */
+        }
+
+        .prev-button,
+        .next-button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="myCarousel-container">
+        <div class="myCarousel" id="myCarousel">
+            <div class="myCarousel-item">1</div>
+            <div class="myCarousel-item">2</div>
+            <div class="myCarousel-item">3</div>
+            <div class="myCarousel-item">4</div>
+            <div class="myCarousel-item">5</div>
+        </div>
+        <button class="prev-button" id="prev-button">Previous</button>
+        <button class="next-button" id="next-button">Next</button>
+    </div>
+
+    <!-- script -->
+    <script>
+        const myCarousel = document.getElementById('myCarousel');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const myCarouselContainer = document.querySelector('.myCarousel-container');
+        const itemCount = myCarousel.children.length;
+        let currentIndex = 0;
+
+        prevButton.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateMyCarousel();
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (currentIndex < itemCount - 1) {
+                currentIndex++;
+                updateMyCarousel();
+            }
+        });
+
+        function updateMyCarousel() {
+            const itemWidth = myCarousel.children[currentIndex].offsetWidth ;
+            const offset = -getOffset();
+            myCarousel.style.transform = `translateX(${offset}px`;
+
+            if (currentIndex === itemCount - 4) {
+                nextButton.disabled = true; // Disable "Next" when the last item is reached
+            } else {
+                nextButton.disabled = false;
+            }
+        }
+
+        function getOffset() {
+            let offset = 0;
+            for (let i = 0; i < currentIndex; i++) {
+                offset += myCarousel.children[i].offsetWidth + 10;  /* added column gap */
+            }
+            return offset;
+        }
+
+        // Initialize the myCarousel
+        updateMyCarousel();
+
+    </script>
+
+    <!-- draggable functionality -->
+    <!-- <script>
+        const myCarousel = document.getElementById('myCarousel');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const itemCount = myCarousel.children.length;
+        let currentIndex = 0;
+        let isDragging = false;
+        let startDragX = 0;
+        let dragOffset = 0;
+
+        myCarousel.addEventListener('mousedown', startDrag);
+        myCarousel.addEventListener('touchstart', startDrag);
+
+        document.addEventListener('mousemove', handleDrag);
+        document.addEventListener('touchmove', handleDrag);
+
+        document.addEventListener('mouseup', endDrag);
+        document.addEventListener('touchend', endDrag);
+
+        prevButton.addEventListener('click', () => {
+            currentIndex = Math.max(0, currentIndex - 1);
+            updateMyCarousel();
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentIndex = Math.min(itemCount - 1, currentIndex + 1);
+            updateMyCarousel();
+        });
+
+        function startDrag(event) {
+            isDragging = true;
+            startDragX = event.type === 'mousedown' ? event.clientX : event.touches[0].clientX;
+        }
+
+        function handleDrag(event) {
+            if (!isDragging) return;
+            const currentDragX = event.type === 'mousemove' ? event.clientX : event.touches[0].clientX;
+            dragOffset = currentDragX - startDragX;
+            const currentOffset = -currentIndex * myCarousel.clientWidth + dragOffset;
+            myCarousel.style.transform = `translateX(${currentOffset}px)`;
+        }
+
+        function endDrag() {
+            if (!isDragging) return;
+            isDragging = false;
+            currentIndex -= Math.round(dragOffset / myCarousel.clientWidth);
+            currentIndex = Math.max(0, Math.min(currentIndex, itemCount - 1));
+            dragOffset = 0;
+            updateMyCarousel();
+        }
+
+        function updateMyCarousel() {
+            const offset = -currentIndex * myCarousel.clientWidth;
+            myCarousel.style.transform = `translateX(${offset}px)`;
+
+            prevButton.disabled = currentIndex === 0;
+            nextButton.disabled = currentIndex === itemCount - 1;
+        }
+
+        // Initialize the myCarousel
+        updateMyCarousel();
+
+    </script> -->
+</body>
+
+</html>

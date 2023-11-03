@@ -1,0 +1,2127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Diyora NXT</title>
+
+    <!-- onsen starter css -->
+    <link rel="stylesheet" href="assets/css/onsenui2.min.css">
+    
+    <!-- onsen starter js -->
+    <script src="assets/js/onsenui.min.js"></script>
+
+    <link rel="stylesheet" href="assets/css/style.css?v=1.1">
+
+</head>
+
+<body>
+
+    <ons-navigator swipeable id="myNavigator" page="homepage.html"></ons-navigator>
+
+    <template id="homepage.html">
+        <ons-page id="homePage" class="home-page">
+            <!-- navbar / toolbar / tabbar -->
+            <div class="ons-toolbar navbar">
+                <div class="left"></div>
+                <div class="center">
+                    <div class="logo-imgs logo-left-img">
+                        <img src="assets/img/PTlogoresize.png" alt="pure traces logo text">
+                    </div>
+                    <div class="logo-font">X</div>
+                    <div class="logo-imgs logo-right-img">
+                        <img src="assets/img/rivalogoresized.png" alt="rivalogoresized">
+                    </div>
+                </div>
+                <div class="right">
+                    <ons-button onclick="showCart()" class="header-icon">
+                        <img src="assets/img/cart-trolley-shape.svg" alt="cart-trolley-shape">
+                    </ons-button>
+                    <ons-button class="header-icon">
+                        <img src="assets/img/wishlist-heart-shape.svg" alt="wishlist-heart-shape">
+                    </ons-button>
+                </div>
+            </div>
+
+            <!-- carousel onsen -->
+            <ons-carousel swipeable auto-scroll overscrollable auto-refresh id="carousel" class="home-carousel"
+                style="height: 396px;">
+                <ons-carousel-item style="background-image: url(assets/img/portrait-girl-h396.png);">
+                </ons-carousel-item>
+            </ons-carousel>
+
+            <!-- categories section from Homepage -->
+            <div class="home-categories" style="background: url(assets/img/background-1.jpeg); background-position: center;
+            background-size: cover; background-repeat: no-repeat;">
+                <div class="caption">
+                    <div class="title">Shop by Category</div>
+                    <div class="content">Explore a Wide Array of Exquisite Categories</div>
+                </div>
+                <div class="more-content">
+                    <div class="card-wrapper">
+                        <ons-card id="ringCategory" class="home-category-cards" onclick="navCat();">
+                            <div class="img-box px-2 pt-5">
+                                <img src="assets/img/Ring-category-full.png" alt="" style="width: 100%">
+                            </div>
+                            <div class="title">
+                                RINGS
+                            </div>
+                        </ons-card>
+                        <ons-card id="earringsCategory" class="home-category-cards" onclick="navCat();">
+                            <div class="img-box"><img src="assets/img/earing-category-full.png" alt=""
+                                    style="width: 100%">
+                            </div>
+                            <div class="title">
+                                EARRINGS
+                            </div>
+                        </ons-card>
+                        <ons-card class="home-category-cards" onclick="navCat();">
+                            <div class="img-box pb-4-5rem pe-3"><img src="assets/img/pendants-category-full.png"
+                                    alt="" style="width: 100%">
+                            </div>
+                            <div class="title">
+                                PENDANTS
+                            </div>
+                        </ons-card>
+                        <ons-card class="home-category-cards" onclick="navCat();">
+                            <div class="img-box px-2"><img src="assets/img/bracelets-category-full.png" alt=""
+                                    style="width: 100%"></div>
+                            <div class="title">
+                                BRACELETS
+                            </div>
+                        </ons-card>
+                        <ons-card class="home-category-cards" onclick="navCat();">
+                            <div class="img-box"><img src="assets/img/bangles-category-full.png" alt=""
+                                    style="width: 100%"></div>
+                            <div class="title">
+                                BANGLES
+                            </div>
+                        </ons-card>
+                        <ons-card class="home-category-cards" onclick="navCat();">
+                            <div class="img-box pb-4-5rem"><img src="assets/img/necklace-category-full.png"
+                                    alt="" style="width: 110%"></div>
+                            <div class="title">
+                                NECKLACE
+                            </div>
+                        </ons-card>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                document.addEventListener('init', function (event) {
+                    var page = event.target;
+
+                    /* if (page.id === 'homePage') {
+                        page.querySelector('#earringsCategory').onclick = function () {
+                            console.log('clicked on earringsCategory')
+                            document.querySelector('#myNavigator').pushPage('category-earring.html', { data: { title: 'EarRing Category' } });
+                        };
+                    } */
+                    // else if (page.id === 'category-earring') {
+                    //     page.querySelector('div class="ons-toolbar navbar" .center').innerHTML = page.data.title;
+                    // }
+                });
+
+                function navCat(){
+                    document.querySelector('#myNavigator').pushPage('category-earring.html', { data: { title: 'EarRing Category' } });
+                }
+
+            </script>
+
+            <!-- Most Popular section from Homepage -->
+            <div class="home-most-popular">
+                <div class="caption text-center">
+                    <div class="title">Most Popular Jewellery</div>
+                    <div class="content">A curated selection of pieces cherished by connoisseurs</div>
+                </div>
+                <!-- carousel with 4 slides / 4 cards -->
+                <div class="carousel-most-popular">
+                    <ons-carousel swipeable auto-scroll overscrollable id="carouselMostPopular">
+                        <ons-carousel-item>
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide" onclick="navProd();">
+                                    <ons-card class="home-most-popular-card">
+                                        <div class="img-group">
+                                            <div class="img">
+                                                <img src="assets/img/ring-popular-1-resized.png" alt=""
+                                                    style="width: 100%">
+                                            </div>
+                                            <div class="badges">
+                                                <div class="left">
+                                                    <div class="tag offer-green">
+                                                        <p>30% Off</p>
+                                                    </div>
+                                                </div>
+                                                <div class="heart-shape">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                        viewBox="0 0 37 37" fill="none">
+                                                        <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                        <path
+                                                            d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                            fill="#7D7D7D" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="content">
+                                            <p class="product-title">3-Hook Prong Solitaire</p>
+                                            <p class="text-muted product-description">Studsin Sterling Silver with
+                                                Diamond 7.5mm
+                                            </p>
+                                            <div class="price-breakup">
+                                                <p>₹53,423</p>
+                                                <p class="text-muted cut-price">₹76,318</p>
+                                            </div>
+                                        </div>
+                                    </ons-card>
+                                </div>
+                                <div class="swiper-slide" onclick="navProd();">
+                                    <ons-card class="home-most-popular-card">
+                                        <div class="img-group">
+                                            <div class="img">
+                                                <img src="assets/img/ring-popular-1-resized.png" alt=""
+                                                    style="width: 100%">
+                                            </div>
+                                            <div class="badges">
+                                                <div class="left">
+                                                    <div class="tag remark-salmon-pink">
+                                                        <p>Bestseller</p>
+                                                    </div>
+                                                </div>
+                                                <div class="heart-shape">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                        viewBox="0 0 37 37" fill="none">
+                                                        <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                        <path
+                                                            d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                            fill="#7D7D7D" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="content">
+                                            <p class="product-title">3-Hook Prong Solitaire</p>
+                                            <p class="text-muted product-description">Studsin Sterling Silver with
+                                                Diamond 7.5mm
+                                            </p>
+                                            <div class="price-breakup">
+                                                <p>₹53,423</p>
+                                                <p class="text-muted cut-price">₹76,318</p>
+                                            </div>
+                                        </div>
+                                    </ons-card>
+                                </div>
+                                <div class="swiper-slide" onclick="navProd();">
+                                    <ons-card class="home-most-popular-card">
+                                        <div class="img-group">
+                                            <div class="img">
+                                                <img src="assets/img/ring-popular-1-resized.png" alt=""
+                                                    style="width: 100%">
+                                            </div>
+                                            <div class="badges">
+                                                <div class="left">
+                                                    <div class="tag remark-salmon-pink">
+                                                        <p>Bestseller</p>
+                                                    </div>
+                                                </div>
+                                                <div class="heart-shape">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                        viewBox="0 0 37 37" fill="none">
+                                                        <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                        <path
+                                                            d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                            fill="#7D7D7D" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="content">
+                                            <p class="product-title">3-Hook Prong Solitaire</p>
+                                            <p class="text-muted product-description">Studsin Sterling Silver with
+                                                Diamond 7.5mm
+                                            </p>
+                                            <div class="price-breakup">
+                                                <p>₹53,423</p>
+                                                <p class="text-muted cut-price">₹76,318</p>
+                                            </div>
+                                        </div>
+                                    </ons-card>
+                                </div>
+                                <div class="swiper-slide" onclick="navProd();">
+                                    <ons-card class="home-most-popular-card">
+                                        <div class="img-group">
+                                            <div class="img">
+                                                <img src="assets/img/ring-popular-1-resized.png" alt=""
+                                                    style="width: 100%">
+                                            </div>
+                                            <div class="badges">
+                                                <div class="left">
+                                                    <div class="tag offer-green">
+                                                        <p>22% Off</p>
+                                                    </div>
+                                                </div>
+                                                <div class="heart-shape">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                        viewBox="0 0 37 37" fill="none">
+                                                        <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                        <path
+                                                            d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                            fill="#7D7D7D" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="content">
+                                            <p class="product-title">3-Hook Prong Solitaire</p>
+                                            <p class="text-muted product-description">Studsin Sterling Silver with
+                                                Diamond 7.5mm
+                                            </p>
+                                            <div class="price-breakup">
+                                                <p>₹53,423</p>
+                                                <p class="text-muted cut-price">₹76,318</p>
+                                            </div>
+                                        </div>
+                                    </ons-card>
+                                </div>
+                            </div>
+                        </ons-carousel-item>
+                        <ons-carousel-item>
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide" onclick="navProd();">
+                                    <ons-card class="home-most-popular-card">
+                                        <div class="img-group">
+                                            <div class="img">
+                                                <img src="assets/img/ring-popular-1-resized.png" alt=""
+                                                    style="width: 100%">
+                                            </div>
+                                            <div class="badges">
+                                                <div class="left">
+                                                    <div class="tag offer-green">
+                                                        <p>30% Off</p>
+                                                    </div>
+                                                </div>
+                                                <div class="heart-shape">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                        viewBox="0 0 37 37" fill="none">
+                                                        <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                        <path
+                                                            d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                            fill="#7D7D7D" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="content">
+                                            <p class="product-title">3-Hook Prong Solitaire</p>
+                                            <p class="text-muted product-description">Studsin Sterling Silver with
+                                                Diamond 7.5mm
+                                            </p>
+                                            <div class="price-breakup">
+                                                <p>₹53,423</p>
+                                                <p class="text-muted cut-price">₹76,318</p>
+                                            </div>
+                                        </div>
+                                    </ons-card>
+                                </div>
+                                <div class="swiper-slide" onclick="navProd();">
+                                    <ons-card class="home-most-popular-card">
+                                        <div class="img-group">
+                                            <div class="img">
+                                                <img src="assets/img/ring-popular-1-resized.png" alt=""
+                                                    style="width: 100%">
+                                            </div>
+                                            <div class="badges">
+                                                <div class="left">
+                                                    <div class="tag remark-salmon-pink">
+                                                        <p>Bestseller</p>
+                                                    </div>
+                                                </div>
+                                                <div class="heart-shape">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                        viewBox="0 0 37 37" fill="none">
+                                                        <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                        <path
+                                                            d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                            fill="#7D7D7D" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="content">
+                                            <p class="product-title">3-Hook Prong Solitaire</p>
+                                            <p class="text-muted product-description">Studsin Sterling Silver with
+                                                Diamond 7.5mm
+                                            </p>
+                                            <div class="price-breakup">
+                                                <p>₹53,423</p>
+                                                <p class="text-muted cut-price">₹76,318</p>
+                                            </div>
+                                        </div>
+                                    </ons-card>
+                                </div>
+                                <div class="swiper-slide" onclick="navProd();">
+                                    <ons-card class="home-most-popular-card">
+                                        <div class="img-group">
+                                            <div class="img">
+                                                <img src="assets/img/ring-popular-1-resized.png" alt=""
+                                                    style="width: 100%">
+                                            </div>
+                                            <div class="badges">
+                                                <div class="left">
+                                                    <div class="tag remark-salmon-pink">
+                                                        <p>Bestseller</p>
+                                                    </div>
+                                                </div>
+                                                <div class="heart-shape">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                        viewBox="0 0 37 37" fill="none">
+                                                        <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                        <path
+                                                            d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                            fill="#7D7D7D" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="content">
+                                            <p class="product-title">3-Hook Prong Solitaire</p>
+                                            <p class="text-muted product-description">Studsin Sterling Silver with
+                                                Diamond 7.5mm
+                                            </p>
+                                            <div class="price-breakup">
+                                                <p>₹53,423</p>
+                                                <p class="text-muted cut-price">₹76,318</p>
+                                            </div>
+                                        </div>
+                                    </ons-card>
+                                </div>
+                                <div class="swiper-slide" onclick="navProd();">
+                                    <ons-card class="home-most-popular-card">
+                                        <div class="img-group">
+                                            <div class="img">
+                                                <img src="assets/img/ring-popular-1-resized.png" alt=""
+                                                    style="width: 100%">
+                                            </div>
+                                            <div class="badges">
+                                                <div class="left">
+                                                    <div class="tag offer-green">
+                                                        <p>22% Off</p>
+                                                    </div>
+                                                </div>
+                                                <div class="heart-shape">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                        viewBox="0 0 37 37" fill="none">
+                                                        <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                        <path
+                                                            d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                            fill="#7D7D7D" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="content">
+                                            <p class="product-title">3-Hook Prong Solitaire</p>
+                                            <p class="text-muted product-description">Studsin Sterling Silver with
+                                                Diamond 7.5mm
+                                            </p>
+                                            <div class="price-breakup">
+                                                <p>₹53,423</p>
+                                                <p class="text-muted cut-price">₹76,318</p>
+                                            </div>
+                                        </div>
+                                    </ons-card>
+                                </div>
+                            </div>
+                        </ons-carousel-item>
+                    </ons-carousel>
+
+                    <div class="carousel-buttons">
+                        <div class="btn-prev" onclick="prev()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="70" viewBox="0 0 30 70"
+                                fill="none">
+                                <path d="M0 0H20C25.5228 0 30 4.47715 30 10V60C30 65.5229 25.5228 70 20 70H0V0Z"
+                                    fill="#EBEBEB" />
+                                <path
+                                    d="M20.6116 49.969C20.4331 49.9715 20.2561 49.9314 20.092 49.8514C19.9279 49.7714 19.7803 49.6533 19.6588 49.5045L7.40835 35.5684C6.86388 34.949 6.86388 33.989 7.40835 33.3696L19.6588 19.4645C20.2033 18.8452 21.0472 18.8452 21.5917 19.4645C22.1361 20.0839 22.1361 21.044 21.5917 21.6633L10.294 34.4845L21.5917 47.3367C22.1361 47.956 22.1361 48.9161 21.5917 49.5355C21.3194 49.8451 20.9655 50 20.6388 50L20.6116 49.969Z"
+                                    fill="#A6A6A6" />
+                            </svg>
+                        </div>
+                        <div class="btn-next" onclick="next()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="70" viewBox="0 0 30 70"
+                                fill="none">
+                                <path d="M0 10C0 4.47715 4.47715 0 10 0H30V70H10C4.47715 70 0 65.5229 0 60V10Z"
+                                    fill="#EBEBEB" />
+                                <path
+                                    d="M9.38839 19.031C9.5669 19.0285 9.7439 19.0685 9.908 19.1486C10.0721 19.2286 10.2197 19.3467 10.3412 19.4955L22.5917 33.4316C23.1361 34.051 23.1361 35.011 22.5917 35.6304L10.3412 49.5355C9.79673 50.1548 8.95281 50.1548 8.40835 49.5355C7.86388 48.9161 7.86388 47.956 8.40835 47.3367L19.706 34.5155L8.40835 21.6633C7.86388 21.044 7.86388 20.0839 8.40835 19.4645C8.68058 19.1549 9.03448 19 9.36116 19L9.38839 19.031Z"
+                                    fill="#A6A6A6" />
+                            </svg>
+                        </div>
+
+                    </div>
+                </div>
+
+                <script>
+                    var carousel = document.getElementById('carouselMostPopular');
+                    // var carouselVariation = document.getElementById('carouselVariation');
+
+                    var prev = function () {
+                        carousel.prev();
+                        // carouselVariation.prev();
+                    };
+
+                    var next = function () {
+                        carousel.next();
+                        // carouselVariation.next();
+                    };
+
+                    ons.ready(function () {
+                        var carousel = document.addEventListener('postchange', function (event) {
+                            console.log('Changed to ' + event.activeIndex)
+                        });
+                    });
+
+                    function navProd() {
+                        document.querySelector('#myNavigator').pushPage('product-page.html', { data: { title: 'Product' } });
+                    }
+
+                </script>
+
+                <!-- == auto scroll most popular section == -->
+                <!-- <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <ons-card class="home-most-popular-card">
+                                <div class="img-group">
+                                    <div class="img">
+                                        <img src="assets/img/ring-popular-1-resized.png" alt=""
+                                            style="width: 100%">
+                                    </div>
+                                    <div class="badges">
+                                        <div class="left">
+                                            <div class="tag offer-green">
+                                                <p>30% Off</p>
+                                            </div>
+                                        </div>
+                                        <div class="heart-shape">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                viewBox="0 0 37 37" fill="none">
+                                                <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                <path
+                                                    d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                    fill="#7D7D7D" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <p class="product-title">3-Hook Prong Solitaire</p>
+                                    <p class="text-muted product-description">Studsin Sterling Silver with Diamond 7.5mm
+                                    </p>
+                                    <div class="price-breakup">
+                                        <p>₹53,423</p>
+                                        <p class="text-muted cut-price">₹76,318</p>
+                                    </div>
+                                </div>
+                            </ons-card>
+                        </div>
+                        <div class="swiper-slide">
+                            <ons-card class="home-most-popular-card">
+                                <div class="img-group">
+                                    <div class="img">
+                                        <img src="assets/img/ring-popular-1-resized.png" alt=""
+                                            style="width: 100%">
+                                    </div>
+                                    <div class="badges">
+                                        <div class="left">
+                                            <div class="tag remark-salmon-pink">
+                                                <p>Bestseller</p>
+                                            </div>
+                                        </div>
+                                        <div class="heart-shape">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                viewBox="0 0 37 37" fill="none">
+                                                <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                <path
+                                                    d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                    fill="#7D7D7D" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <p class="product-title">3-Hook Prong Solitaire</p>
+                                    <p class="text-muted product-description">Studsin Sterling Silver with Diamond 7.5mm
+                                    </p>
+                                    <div class="price-breakup">
+                                        <p>₹53,423</p>
+                                        <p class="text-muted cut-price">₹76,318</p>
+                                    </div>
+                                </div>
+                            </ons-card>
+                        </div>
+                        <div class="swiper-slide">
+                            <ons-card class="home-most-popular-card">
+                                <div class="img-group">
+                                    <div class="img">
+                                        <img src="assets/img/ring-popular-1-resized.png" alt=""
+                                            style="width: 100%">
+                                    </div>
+                                    <div class="badges">
+                                        <div class="left">
+                                            <div class="tag remark-salmon-pink">
+                                                <p>Bestseller</p>
+                                            </div>
+                                        </div>
+                                        <div class="heart-shape">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                viewBox="0 0 37 37" fill="none">
+                                                <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                <path
+                                                    d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                    fill="#7D7D7D" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <p class="product-title">3-Hook Prong Solitaire</p>
+                                    <p class="text-muted product-description">Studsin Sterling Silver with Diamond 7.5mm
+                                    </p>
+                                    <div class="price-breakup">
+                                        <p>₹53,423</p>
+                                        <p class="text-muted cut-price">₹76,318</p>
+                                    </div>
+                                </div>
+                            </ons-card>
+                        </div>
+                        <div class="swiper-slide">
+                            <ons-card class="home-most-popular-card">
+                                <div class="img-group">
+                                    <div class="img">
+                                        <img src="assets/img/ring-popular-1-resized.png" alt=""
+                                            style="width: 100%">
+                                    </div>
+                                    <div class="badges">
+                                        <div class="left">
+                                            <div class="tag offer-green">
+                                                <p>22% Off</p>
+                                            </div>
+                                        </div>
+                                        <div class="heart-shape">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                viewBox="0 0 37 37" fill="none">
+                                                <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                <path
+                                                    d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                    fill="#7D7D7D" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <p class="product-title">3-Hook Prong Solitaire</p>
+                                    <p class="text-muted product-description">Studsin Sterling Silver with Diamond 7.5mm
+                                    </p>
+                                    <div class="price-breakup">
+                                        <p>₹53,423</p>
+                                        <p class="text-muted cut-price">₹76,318</p>
+                                    </div>
+                                </div>
+                            </ons-card>
+                        </div>
+                        <div class="swiper-slide">
+                            <ons-card class="home-most-popular-card">
+                                <div class="img-group">
+                                    <div class="img">
+                                        <img src="assets/img/ring-popular-1-resized.png" alt=""
+                                            style="width: 100%">
+                                    </div>
+                                    <div class="badges">
+                                        <div class="left">
+                                            <div class="tag offer-green">
+                                                <p>30% Off</p>
+                                            </div>
+                                        </div>
+                                        <div class="heart-shape">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                viewBox="0 0 37 37" fill="none">
+                                                <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                <path
+                                                    d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                    fill="#7D7D7D" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <p class="product-title">3-Hook Prong Solitaire</p>
+                                    <p class="text-muted product-description">Studsin Sterling Silver with Diamond 7.5mm
+                                    </p>
+                                    <div class="price-breakup">
+                                        <p>₹53,423</p>
+                                        <p class="text-muted cut-price">₹76,318</p>
+                                    </div>
+                                </div>
+                            </ons-card>
+                        </div>
+                        <div class="swiper-slide">
+                            <ons-card class="home-most-popular-card">
+                                <div class="img-group">
+                                    <div class="img">
+                                        <img src="assets/img/ring-popular-1-resized.png" alt=""
+                                            style="width: 100%">
+                                    </div>
+                                    <div class="badges">
+                                        <div class="left">
+                                            <div class="tag offer-green">
+                                                <p>30% Off</p>
+                                            </div>
+                                        </div>
+                                        <div class="heart-shape">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                viewBox="0 0 37 37" fill="none">
+                                                <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                <path
+                                                    d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                    fill="#7D7D7D" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <p class="product-title">3-Hook Prong Solitaire</p>
+                                    <p class="text-muted product-description">Studsin Sterling Silver with Diamond 7.5mm
+                                    </p>
+                                    <div class="price-breakup">
+                                        <p>₹53,423</p>
+                                        <p class="text-muted cut-price">₹76,318</p>
+                                    </div>
+                                </div>
+                            </ons-card>
+                        </div>
+                        <div class="swiper-slide">
+                            <ons-card class="home-most-popular-card">
+                                <div class="img-group">
+                                    <div class="img">
+                                        <img src="assets/img/ring-popular-1-resized.png" alt=""
+                                            style="width: 100%">
+                                    </div>
+                                    <div class="badges">
+                                        <div class="left">
+                                            <div class="tag offer-green">
+                                                <p>30% Off</p>
+                                            </div>
+                                        </div>
+                                        <div class="heart-shape">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                viewBox="0 0 37 37" fill="none">
+                                                <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                <path
+                                                    d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                    fill="#7D7D7D" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <p class="product-title">3-Hook Prong Solitaire</p>
+                                    <p class="text-muted product-description">Studsin Sterling Silver with Diamond 7.5mm
+                                    </p>
+                                    <div class="price-breakup">
+                                        <p>₹53,423</p>
+                                        <p class="text-muted cut-price">₹76,318</p>
+                                    </div>
+                                </div>
+                            </ons-card>
+                        </div>
+                        <div class="swiper-slide">
+                            <ons-card class="home-most-popular-card">
+                                <div class="img-group">
+                                    <div class="img">
+                                        <img src="assets/img/ring-popular-1-resized.png" alt=""
+                                            style="width: 100%">
+                                    </div>
+                                    <div class="badges">
+                                        <div class="left">
+                                            <div class="tag offer-green">
+                                                <p>30% Off</p>
+                                            </div>
+                                        </div>
+                                        <div class="heart-shape">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                viewBox="0 0 37 37" fill="none">
+                                                <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                <path
+                                                    d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                    fill="#7D7D7D" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <p class="product-title">3-Hook Prong Solitaire</p>
+                                    <p class="text-muted product-description">Studsin Sterling Silver with Diamond 7.5mm
+                                    </p>
+                                    <div class="price-breakup">
+                                        <p>₹53,423</p>
+                                        <p class="text-muted cut-price">₹76,318</p>
+                                    </div>
+                                </div>
+                            </ons-card>
+                        </div>
+                    </div>
+                    < !-- comment  Navigation arrows -- >
+                    <div class="swiper-button-next">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="70" viewBox="0 0 30 70" fill="none">
+                            <path d="M0 10C0 4.47715 4.47715 0 10 0H30V70H10C4.47715 70 0 65.5229 0 60V10Z"
+                                fill="#EBEBEB" />
+                            <path
+                                d="M9.38839 19.031C9.5669 19.0285 9.7439 19.0685 9.908 19.1486C10.0721 19.2286 10.2197 19.3467 10.3412 19.4955L22.5917 33.4316C23.1361 34.051 23.1361 35.011 22.5917 35.6304L10.3412 49.5355C9.79673 50.1548 8.95281 50.1548 8.40835 49.5355C7.86388 48.9161 7.86388 47.956 8.40835 47.3367L19.706 34.5155L8.40835 21.6633C7.86388 21.044 7.86388 20.0839 8.40835 19.4645C8.68058 19.1549 9.03448 19 9.36116 19L9.38839 19.031Z"
+                                fill="#A6A6A6" />
+                        </svg>
+                    </div>
+                    <div class="swiper-button-prev">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="70" viewBox="0 0 30 70" fill="none">
+                            <path d="M0 0H20C25.5228 0 30 4.47715 30 10V60C30 65.5229 25.5228 70 20 70H0V0Z"
+                                fill="#EBEBEB" />
+                            <path
+                                d="M20.6116 49.969C20.4331 49.9715 20.2561 49.9314 20.092 49.8514C19.9279 49.7714 19.7803 49.6533 19.6588 49.5045L7.40835 35.5684C6.86388 34.949 6.86388 33.989 7.40835 33.3696L19.6588 19.4645C20.2033 18.8452 21.0472 18.8452 21.5917 19.4645C22.1361 20.0839 22.1361 21.044 21.5917 21.6633L10.294 34.4845L21.5917 47.3367C22.1361 47.956 22.1361 48.9161 21.5917 49.5355C21.3194 49.8451 20.9655 50 20.6388 50L20.6116 49.969Z"
+                                fill="#A6A6A6" />
+                        </svg>
+                    </div>
+                </div> -->
+            </div>
+
+            <!-- for section -->
+            <div class="for-who-section">
+                <div class="row">
+                    <div class="cards-wrapper">
+                        <ons-card class="prod-category" onclick="navCat();">
+                            <div class="relative">
+                                <img src="assets/img/boy-portrait-resized.png" alt="" style="width: 100%">
+                                <div class="card-overlay">
+                                    <h5 class="text-uppercase">FOR hiM</h5>
+                                </div>
+                            </div>
+                        </ons-card>
+                        <ons-card class="prod-category">
+                            <div class="relative">
+                                <img src="assets/img/girls-portrait-resized.png" alt="" style="width: 100%">
+                                <div class="card-overlay">
+                                    <h5 class="text-uppercase">FOR her</h5>
+                                </div>
+                            </div>
+                        </ons-card>
+                    </div>
+                </div>
+                <div class="row second-row">
+                    <div class="cards-wrapper">
+                        <ons-card class="prod-category" onclick="navCat();">
+                            <div class="relative">
+                                <img src="assets/img/forKids-resized.png" alt="" style="width: 100%">
+                                <div class="card-overlay">
+                                    <h5 class="text-uppercase">FOR kids</h5>
+                                </div>
+                            </div>
+                        </ons-card>
+                        <ons-card class="prod-category" onclick="navCat();">
+                            <div class="relative">
+                                <img src="assets/img/gifting-resized.png" alt="" style="width: 100%">
+                                <div class="card-overlay">
+                                    <h5 class="text-uppercase">Gifting</h5>
+                                </div>
+                            </div>
+                        </ons-card>
+                    </div>
+                </div>
+            </div>
+        </ons-page>
+
+    </template>
+
+    <template id="category-earring.html">
+        <!-- next page code -->
+        <!-- navbar / toolbar / tabbar -->
+
+        <ons-page id="earringCategory">
+            <div class="ons-toolbar navbar">
+                <div class="left">
+                    <ons-back-button class="remove-icon">
+                        <div class="frame-back-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="19" viewBox="0 0 25 19"
+                                fill="none">
+                                <path
+                                    d="M11.5974 18.4937C11.2759 18.8179 10.84 19 10.3854 19C9.93081 19 9.49484 18.8179 9.17336 18.4937L1.45896 10.7121C1.13757 10.3878 0.95703 9.94809 0.95703 9.48956C0.95703 9.03103 1.13757 8.59127 1.45896 8.26699L9.17336 0.485419C9.49669 0.170424 9.92972 -0.00387323 10.3792 6.54828e-05C10.8287 0.0040061 11.2587 0.185868 11.5765 0.506482C11.8944 0.827098 12.0747 1.26081 12.0786 1.71421C12.0825 2.16761 11.9097 2.60442 11.5974 2.93056L6.95676 7.76032L23.2427 7.76032C23.6974 7.76032 24.1334 7.94251 24.4549 8.26681C24.7764 8.5911 24.957 9.03094 24.957 9.48956C24.957 9.94818 24.7764 10.388 24.4549 10.7123C24.1334 11.0366 23.6974 11.2188 23.2427 11.2188L6.95676 11.2188L11.5974 16.0486C11.9188 16.3728 12.0993 16.8126 12.0993 17.2711C12.0993 17.7297 11.9188 18.1694 11.5974 18.4937Z"
+                                    fill="#FFEFDC" />
+                            </svg>
+                            <p>Back</p>
+                        </div>
+                    </ons-back-button>
+                </div>
+                <div class="center with-back">
+                    <div class="logo-imgs logo-left-img">
+                        <img src="assets/img/PTlogoresize.png" alt="pure traces logo text">
+                    </div>
+                    <div class="logo-font">X</div>
+                    <div class="logo-imgs logo-right-img">
+                        <img src="assets/img/rivalogoresized.png" alt="rivalogoresized">
+                    </div>
+                </div>
+                <div class="right">
+                    <ons-button onclick="showCart()" class="header-icon">
+                        <img src="assets/img/cart-trolley-shape.svg" alt="cart-trolley-shape">
+                    </ons-button>
+                    <ons-button class="header-icon">
+                        <img src="assets/img/wishlist-heart-shape.svg" alt="wishlist-heart-shape">
+                    </ons-button>
+                </div>
+            </div>
+
+            <!-- carousel onsen -->
+            <ons-carousel swipeable auto-scroll overscrollable auto-refresh id="carousel-cats"
+                class="earring-category-carousel" style="height: 396px;">
+                <ons-carousel-item style="background-image: url(assets/img/portrait-girl-h396.png);">
+                    <div class="cta-section">
+                        <div class="cta-content">
+                            <div class="cta-heading">
+                                <div class="cta-top-heading-with-line">
+                                    <p class="heading-second">NOW LAUNCHING</p>
+                                    <img src="assets/img/heading-bottom-line.svg" alt="">
+                                </div>
+                                <p class="heading-first">PURE COLLECTION</p>
+                                <p class="subheading">Wear with pride</p>
+                            </div>
+                            <div class="cta-button">
+                                <p>view collection</p>
+                            </div>
+                        </div>
+                    </div>
+                </ons-carousel-item>
+                <ons-carousel-item style="background-image: url(assets/img/carousel-gifting-bg.jpeg);">
+                    <div class="cta-section">
+                        <div class="cta-content">
+                            <div class="cta-heading">
+                                <div class="cta-top-heading-with-line">
+                                    <p class="heading-second">NOW LAUNCHING</p>
+                                    <img src="assets/img/heading-bottom-line.svg" alt="">
+                                </div>
+                                <p class="heading-first">PURE COLLECTION</p>
+                                <p class="subheading">Wear with pride</p>
+                            </div>
+                            <div class="cta-button">
+                                <p>view collection</p>
+                            </div>
+                        </div>
+                    </div>
+                </ons-carousel-item>
+                <ons-carousel-item style="background-image: url(assets/img/carousel-necklace-portrait-bg.jpeg);">
+                    <div class="cta-section">
+                        <div class="cta-content">
+                            <div class="cta-heading">
+                                <div class="cta-top-heading-with-line">
+                                    <p class="heading-second">NOW LAUNCHING</p>
+                                    <img src="assets/img/heading-bottom-line.svg" alt="">
+                                </div>
+                                <p class="heading-first">PURE COLLECTION</p>
+                                <p class="subheading">Wear with pride</p>
+                            </div>
+                            <div class="cta-button">
+                                <p>view collection</p>
+                            </div>
+                        </div>
+                    </div>
+                </ons-carousel-item>
+                <ons-carousel-item style="background-image: url(assets/img/carousel-boy-blacktshirt-bg.jpeg);">
+                    <div class="cta-section">
+                        <div class="cta-content">
+                            <div class="cta-heading">
+                                <div class="cta-top-heading-with-line">
+                                    <p class="heading-second">NOW LAUNCHING</p>
+                                    <img src="assets/img/heading-bottom-line.svg" alt="">
+                                </div>
+                                <p class="heading-first">PURE COLLECTION</p>
+                                <p class="subheading">Wear with pride</p>
+                            </div>
+                            <div class="cta-button">
+                                <p>view collection</p>
+                            </div>
+                        </div>
+                    </div>
+                </ons-carousel-item>
+                <ons-carousel-item style="background-image: url(assets/img/carousel-kids-bg.jpeg);">
+                    <div class="cta-section">
+                        <div class="cta-content">
+                            <div class="cta-heading">
+                                <div class="cta-top-heading-with-line">
+                                    <p class="heading-second">NOW LAUNCHING</p>
+                                    <img src="assets/img/heading-bottom-line.svg" alt="">
+                                </div>
+                                <p class="heading-first">PURE COLLECTION</p>
+                                <p class="subheading">Wear with pride</p>
+                            </div>
+                            <div class="cta-button">
+                                <p>view collection</p>
+                            </div>
+                        </div>
+                    </div>
+                </ons-carousel-item>
+            </ons-carousel>
+
+            <!-- below carousel // middle section -->
+            <div class="middle-section">
+                <!-- left side vertical cards -->
+                <div class="left-side-category-section">
+                    <div class="card-wrapper-vertical">
+                        <ons-card class="home-category-cards active">
+                            <div class="img-box pt-1-25rem pe-3">
+                                <img src="assets/img/all-earings-category.png" alt="" style="width: 180%">
+                            </div>
+                            <div class="title">
+                                All earRINGS
+                            </div>
+                        </ons-card>
+                        <ons-card class="home-category-cards">
+                            <div class="img-box pb-2 ps-2-5rem">
+                                <img src="assets/img/drops-danglers-category.png" alt="" style="width: 160%">
+                            </div>
+                            <div class="title">
+                                DROPS & DANGLERS
+                            </div>
+                        </ons-card>
+                        <ons-card class="home-category-cards">
+                            <div class="img-box pt-1-25rem">
+                                <img src="assets/img/hoops-and-huggies-category.png" alt="" style="width: 180%">
+                            </div>
+                            <div class="title">
+                                HOOPS & HUGGIES
+                            </div>
+                        </ons-card>
+                        <ons-card class="home-category-cards">
+                            <div class="img-box ps-5">
+                                <img src="assets/img/studs-category.png" alt="" style="width: 140%">
+                            </div>
+                            <div class="title">
+                                STUDS
+                            </div>
+                        </ons-card>
+                        <ons-card class="home-category-cards">
+                            <div class="img-box p-2-5rem">
+                                <img src="assets/img/front-and-back-category.png" alt="" style="width: 100%">
+                            </div>
+                            <div class="title">
+                                FRONT & BACK
+                            </div>
+                        </ons-card>
+                    </div>
+                </div>
+
+                <!-- right side filter and product listed -->
+                <div class="right-side-cards-section">
+                    <!-- for section // for gift page -->
+                    <div class="for-who-section d-none category-page pb-0">
+                        <div class="row second-row">
+                            <div class="cards-wrapper">
+                                <ons-card>
+                                    <div class="relative">
+                                        <img src="assets/img/boy-portrait-resized.png" alt=""
+                                            style="width: 100%">
+                                        <div class="card-overlay">
+                                            <h5 class="text-uppercase">FOR HIM</h5>
+                                        </div>
+                                    </div>
+                                </ons-card>
+                                <ons-card class="active">
+                                    <div class="relative">
+                                        <img src="assets/img/girls-portrait-resized.png" alt=""
+                                            style="width: 100%">
+                                        <div class="card-overlay">
+                                            <h5 class="text-uppercase">For Her</h5>
+                                        </div>
+                                    </div>
+                                </ons-card>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- filters -->
+                    <div class="filter-row">
+                        <p>Filters:</p>
+                        <div class="filter-badge">
+                            All Metals
+                        </div>
+                        <div class="filter-badge">
+                            <div class="circle bg-yellow-gold"></div>
+                            Yellow Gold
+                        </div>
+                        <div class="filter-badge">
+                            <div class="circle bg-rose-gold"></div>
+                            Rose Gold
+                        </div>
+                        <div class="filter-badge">
+                            <div class="circle bg-white-gold"></div>
+                            White Gold
+                        </div>
+                        <div class="filter-badge">
+                            All 14kt 18kt
+                        </div>
+                    </div>
+                    <!-- listed products -->
+                    <div class="products-result">
+                        <div class="product-card-wrapper">
+                            <ons-card class="home-most-popular-card">
+                                <div class="img-group">
+                                    <div class="img">
+                                        <img src="assets/img/ring-popular-1-resized.png" alt=""
+                                            style="width: 100%">
+                                    </div>
+                                    <div class="badges">
+                                        <div class="left">
+                                            <div class="tag offer-green">
+                                                <p>30% Off</p>
+                                            </div>
+                                        </div>
+                                        <div class="heart-shape">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                viewBox="0 0 37 37" fill="none">
+                                                <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                <path
+                                                    d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                    fill="#7D7D7D" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <p class="product-title">3-Hook Prong Solitaire</p>
+                                    <p class="text-muted product-description">Studsin Sterling Silver with
+                                        Diamond 7.5mm
+                                    </p>
+                                    <div class="price-breakup">
+                                        <p>₹53,423</p>
+                                        <p class="text-muted cut-price">₹76,318</p>
+                                    </div>
+                                </div>
+                            </ons-card>
+                        </div>
+                        <div class="product-card-wrapper">
+                            <ons-card class="home-most-popular-card">
+                                <div class="img-group">
+                                    <div class="img">
+                                        <img src="assets/img/ring-popular-1-resized.png" alt=""
+                                            style="width: 100%">
+                                    </div>
+                                    <div class="badges">
+                                        <div class="left">
+                                            <div class="tag offer-green">
+                                                <p>30% Off</p>
+                                            </div>
+                                        </div>
+                                        <div class="heart-shape">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                viewBox="0 0 37 37" fill="none">
+                                                <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                <path
+                                                    d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                    fill="#7D7D7D" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <p class="product-title">3-Hook Prong Solitaire</p>
+                                    <p class="text-muted product-description">Studsin Sterling Silver with
+                                        Diamond 7.5mm
+                                    </p>
+                                    <div class="price-breakup">
+                                        <p>₹53,423</p>
+                                        <p class="text-muted cut-price">₹76,318</p>
+                                    </div>
+                                </div>
+                            </ons-card>
+                        </div>
+                        <div class="product-card-wrapper">
+                            <ons-card class="home-most-popular-card">
+                                <div class="img-group">
+                                    <div class="img">
+                                        <img src="assets/img/ring-popular-1-resized.png" alt=""
+                                            style="width: 100%">
+                                    </div>
+                                    <div class="badges">
+                                        <div class="left">
+                                            <div class="tag offer-green">
+                                                <p>30% Off</p>
+                                            </div>
+                                        </div>
+                                        <div class="heart-shape">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                viewBox="0 0 37 37" fill="none">
+                                                <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                <path
+                                                    d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                    fill="#7D7D7D" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <p class="product-title">3-Hook Prong Solitaire</p>
+                                    <p class="text-muted product-description">Studsin Sterling Silver with
+                                        Diamond 7.5mm
+                                    </p>
+                                    <div class="price-breakup">
+                                        <p>₹53,423</p>
+                                        <p class="text-muted cut-price">₹76,318</p>
+                                    </div>
+                                </div>
+                            </ons-card>
+                        </div>
+                        <div class="product-card-wrapper">
+                            <ons-card class="home-most-popular-card">
+                                <div class="img-group">
+                                    <div class="img">
+                                        <img src="assets/img/ring-popular-1-resized.png" alt=""
+                                            style="width: 100%">
+                                    </div>
+                                    <div class="badges">
+                                        <div class="left">
+                                            <div class="tag offer-green">
+                                                <p>30% Off</p>
+                                            </div>
+                                        </div>
+                                        <div class="heart-shape">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                viewBox="0 0 37 37" fill="none">
+                                                <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                <path
+                                                    d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                    fill="#7D7D7D" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <p class="product-title">3-Hook Prong Solitaire</p>
+                                    <p class="text-muted product-description">Studsin Sterling Silver with
+                                        Diamond 7.5mm
+                                    </p>
+                                    <div class="price-breakup">
+                                        <p>₹53,423</p>
+                                        <p class="text-muted cut-price">₹76,318</p>
+                                    </div>
+                                </div>
+                            </ons-card>
+                        </div>
+                        <div class="product-card-wrapper">
+                            <ons-card class="home-most-popular-card">
+                                <div class="img-group">
+                                    <div class="img">
+                                        <img src="assets/img/ring-popular-1-resized.png" alt=""
+                                            style="width: 100%">
+                                    </div>
+                                    <div class="badges">
+                                        <div class="left">
+                                            <div class="tag offer-green">
+                                                <p>30% Off</p>
+                                            </div>
+                                        </div>
+                                        <div class="heart-shape">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                viewBox="0 0 37 37" fill="none">
+                                                <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                <path
+                                                    d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                    fill="#7D7D7D" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <p class="product-title">3-Hook Prong Solitaire</p>
+                                    <p class="text-muted product-description">Studsin Sterling Silver with
+                                        Diamond 7.5mm
+                                    </p>
+                                    <div class="price-breakup">
+                                        <p>₹53,423</p>
+                                        <p class="text-muted cut-price">₹76,318</p>
+                                    </div>
+                                </div>
+                            </ons-card>
+                        </div>
+                        <div class="product-card-wrapper">
+                            <ons-card class="home-most-popular-card">
+                                <div class="img-group">
+                                    <div class="img">
+                                        <img src="assets/img/ring-popular-1-resized.png" alt=""
+                                            style="width: 100%">
+                                    </div>
+                                    <div class="badges">
+                                        <div class="left">
+                                            <div class="tag offer-green">
+                                                <p>30% Off</p>
+                                            </div>
+                                        </div>
+                                        <div class="heart-shape">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                viewBox="0 0 37 37" fill="none">
+                                                <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                <path
+                                                    d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                    fill="#7D7D7D" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <p class="product-title">3-Hook Prong Solitaire</p>
+                                    <p class="text-muted product-description">Studsin Sterling Silver with
+                                        Diamond 7.5mm
+                                    </p>
+                                    <div class="price-breakup">
+                                        <p>₹53,423</p>
+                                        <p class="text-muted cut-price">₹76,318</p>
+                                    </div>
+                                </div>
+                            </ons-card>
+                        </div>
+                        <div class="product-card-wrapper">
+                            <ons-card class="home-most-popular-card">
+                                <div class="img-group">
+                                    <div class="img">
+                                        <img src="assets/img/ring-popular-1-resized.png" alt=""
+                                            style="width: 100%">
+                                    </div>
+                                    <div class="badges">
+                                        <div class="left">
+                                            <div class="tag offer-green">
+                                                <p>30% Off</p>
+                                            </div>
+                                        </div>
+                                        <div class="heart-shape">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                viewBox="0 0 37 37" fill="none">
+                                                <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                <path
+                                                    d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                    fill="#7D7D7D" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <p class="product-title">3-Hook Prong Solitaire</p>
+                                    <p class="text-muted product-description">Studsin Sterling Silver with
+                                        Diamond 7.5mm
+                                    </p>
+                                    <div class="price-breakup">
+                                        <p>₹53,423</p>
+                                        <p class="text-muted cut-price">₹76,318</p>
+                                    </div>
+                                </div>
+                            </ons-card>
+                        </div>
+                        <div class="product-card-wrapper">
+                            <ons-card class="home-most-popular-card">
+                                <div class="img-group">
+                                    <div class="img">
+                                        <img src="assets/img/ring-popular-1-resized.png" alt=""
+                                            style="width: 100%">
+                                    </div>
+                                    <div class="badges">
+                                        <div class="left">
+                                            <div class="tag offer-green">
+                                                <p>30% Off</p>
+                                            </div>
+                                        </div>
+                                        <div class="heart-shape">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                viewBox="0 0 37 37" fill="none">
+                                                <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                <path
+                                                    d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                    fill="#7D7D7D" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <p class="product-title">3-Hook Prong Solitaire</p>
+                                    <p class="text-muted product-description">Studsin Sterling Silver with
+                                        Diamond 7.5mm
+                                    </p>
+                                    <div class="price-breakup">
+                                        <p>₹53,423</p>
+                                        <p class="text-muted cut-price">₹76,318</p>
+                                    </div>
+                                </div>
+                            </ons-card>
+                        </div>
+                        <div class="product-card-wrapper">
+                            <ons-card class="home-most-popular-card">
+                                <div class="img-group">
+                                    <div class="img">
+                                        <img src="assets/img/ring-popular-1-resized.png" alt=""
+                                            style="width: 100%">
+                                    </div>
+                                    <div class="badges">
+                                        <div class="left">
+                                            <div class="tag offer-green">
+                                                <p>30% Off</p>
+                                            </div>
+                                        </div>
+                                        <div class="heart-shape">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                viewBox="0 0 37 37" fill="none">
+                                                <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                <path
+                                                    d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                    fill="#7D7D7D" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <p class="product-title">3-Hook Prong Solitaire</p>
+                                    <p class="text-muted product-description">Studsin Sterling Silver with
+                                        Diamond 7.5mm
+                                    </p>
+                                    <div class="price-breakup">
+                                        <p>₹53,423</p>
+                                        <p class="text-muted cut-price">₹76,318</p>
+                                    </div>
+                                </div>
+                            </ons-card>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                document.addEventListener('init', function (event) {
+                    var page = event.target;
+
+                    if (page.id === 'earringCategory') {
+                        page.querySelectorAll('.home-most-popular-card').forEach(element => {
+                            element.onclick = function () {
+                                console.log('clicked on card having className .home-most-popular-card,')
+                                document.querySelector('#myNavigator').pushPage('product-page.html', { data: { title: 'Product' } });
+                            };
+                        });
+                    }
+                    // else if (page.id === 'category-earring') {
+                    //     page.querySelector('div class="ons-toolbar navbar" .center').innerHTML = page.data.title;
+                    // }
+
+                    setInterval(function(){ 
+                        var carouselCats = document.getElementById('carousel-cats');
+                        if (carouselCats.getActiveIndex() === carouselCats.itemCount-1)
+                            carouselCats.setActiveIndex(0);
+                        else
+                            carouselCats.next(); 
+                    }, 3000);
+
+                });
+            </script>
+
+        </ons-page>
+
+    </template>
+
+    <!-- ========================== product page =========================== -->
+    <template id="product-page.html">
+        <ons-page id="productPage">
+            <!-- navbar same as categroy page -->
+            <div class="ons-toolbar navbar">
+                <div class="left">
+                    <ons-back-button class="remove-icon">
+                        <div class="frame-back-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="19" viewBox="0 0 25 19"
+                                fill="none">
+                                <path
+                                    d="M11.5974 18.4937C11.2759 18.8179 10.84 19 10.3854 19C9.93081 19 9.49484 18.8179 9.17336 18.4937L1.45896 10.7121C1.13757 10.3878 0.95703 9.94809 0.95703 9.48956C0.95703 9.03103 1.13757 8.59127 1.45896 8.26699L9.17336 0.485419C9.49669 0.170424 9.92972 -0.00387323 10.3792 6.54828e-05C10.8287 0.0040061 11.2587 0.185868 11.5765 0.506482C11.8944 0.827098 12.0747 1.26081 12.0786 1.71421C12.0825 2.16761 11.9097 2.60442 11.5974 2.93056L6.95676 7.76032L23.2427 7.76032C23.6974 7.76032 24.1334 7.94251 24.4549 8.26681C24.7764 8.5911 24.957 9.03094 24.957 9.48956C24.957 9.94818 24.7764 10.388 24.4549 10.7123C24.1334 11.0366 23.6974 11.2188 23.2427 11.2188L6.95676 11.2188L11.5974 16.0486C11.9188 16.3728 12.0993 16.8126 12.0993 17.2711C12.0993 17.7297 11.9188 18.1694 11.5974 18.4937Z"
+                                    fill="#FFEFDC" />
+                            </svg>
+                            <p>Back</p>
+                        </div>
+                    </ons-back-button>
+                </div>
+                <div class="center with-back">
+                    <div class="logo-imgs logo-left-img">
+                        <img src="assets/img/PTlogoresize.png" alt="pure traces logo text">
+                    </div>
+                    <div class="logo-font">X</div>
+                    <div class="logo-imgs logo-right-img">
+                        <img src="assets/img/rivalogoresized.png" alt="rivalogoresized">
+                    </div>
+                </div>
+                <div class="right">
+                    <ons-button onclick="showCart()" class="header-icon">
+                        <img src="assets/img/cart-trolley-shape.svg" alt="cart-trolley-shape">
+                    </ons-button>
+                    <ons-button class="header-icon">
+                        <img src="assets/img/wishlist-heart-shape.svg" alt="wishlist-heart-shape">
+                    </ons-button>
+                </div>
+            </div>
+
+            <!-- product image -->
+            <div class="product-showcase">
+
+                <div class="product-slider-images" style="height: 70%;">
+
+                    <div class="carousel-container-for-main-image">
+                        <ons-carousel id="carousel-test" fullscreen swipeable auto-scroll overscrollable initial-index="0">
+                            <ons-carousel-item class="carousel-item">
+                                <img src="assets/img/cart-product.png" alt="" style="width: 100%;">
+                            </ons-carousel-item>
+                            <ons-carousel-item class="carousel-item">
+                                <img src="assets/img/showcase-slide-image.png" alt="" style="width: 100%;">
+                            </ons-carousel-item>
+                            <ons-carousel-item class="carousel-item">
+                                <img src="assets/img/Ring-1.png" alt="" style="width: 100%;">
+                                <video class="video-main" autoplay loop muted style="width: 100%; display: none;"
+                                        src="assets/video/R_PTRG00451-PA1163 (30CT).mp4" type="video/mp4">
+                                </video>
+                                <div class="fullscreen-btn">
+                                    <img src="assets/img/video-play-icon.png" alt="video-play-icon" style="width: 100px;">
+                                </div>
+                            </ons-carousel-item>
+                        </ons-carousel>
+
+                    </div>
+
+                    <div class="sliding-varient-images">
+
+                        <span id="dot0" class="dot" onclick="setActiveItem(0);">
+                            <img src="assets/img/cart-product.png" alt="" style="width: 100%;">
+                        </span>
+
+                        <span id="dot1" class="dot" onclick="setActiveItem(1);">
+                            <img src="assets/img/showcase-slide-image.png" alt="" style="width: 100%;">
+                        </span>
+
+                        <span id="dot2" class="dot" onclick="setActiveItem(2);">
+                            <img src="assets/img/Ring-1.png" alt="" style="width: 100%;">
+                        </span>
+                        
+
+                    </div>
+
+                </div>
+
+                <div class="product-description-product-page">
+                    <div class="left">
+                        <p class="product-name">Mystical Moonbeam Solitaire Ring</p>
+                        <p class="product-varient">14K White Gold, GH, VS2+</p>
+                        <p class="product-price">₹448,977</p>
+                    </div>
+                    <div class="right">
+                        <img src="assets/img/heart-blank.svg" alt="">
+                    </div>
+                </div>
+
+                <div class="product-customization">
+                    <div class="color-and-quality">
+                        <div class="customization-heading">
+                            <p>Metal Color:</p>
+                            <div class="color-options">
+                                <div class="bg-yellow-gold color"></div>
+                                <div class="bg-rose-gold color"></div>
+                                <div class="bg-white-gold color"></div>
+                            </div>
+                        </div>
+                        <div class="gold-quality">
+                            <div class="14kt ">14kt</div>
+                            <div class="18kt active">18kt</div>
+                        </div>
+                    </div>
+                    <div class="select-diamond">
+                        <div class="customization-heading">
+                            <p>Select Diamond:</p>
+                            <div class="customization-data">
+                                <div class="vvs-ef">VVS EF</div>
+                                <div class="vvs-fg">VVS FG</div>
+                                <div class="vs-ef">VS EF</div>
+                                <div class="vs-fg active">VS FG</div>
+                            </div>
+                            <p class="text-underline">Diamond Guide</p>
+                        </div>
+
+                    </div>
+                    <div class="select-size">
+                        <div class="customization-heading">
+                            <p>Select Size:</p>
+                            <div class="customization-data">
+                                <div>10</div>
+                                <div class="active">11</div>
+                                <div>12</div>
+                                <div>13</div>
+                                <div>14</div>
+                                <div>15</div>
+                                <div>16</div>
+                                <div>17</div>
+                                <div>18</div>
+                                <div>19</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-buttons">
+                    <div class="btn-left">
+                        <img src="assets/img/bell.svg" alt="bell">
+                        <div class="text-uppercase btn-font">
+                            Enquire
+                        </div>
+                    </div>
+                    <div class="btn-right active">
+                        <div class="text-uppercase btn-font">
+                            ADD TO BAG
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <script>
+
+                var carouselTest;
+                var btnFullscreen;
+                var videoEle;
+
+                document.addEventListener('init', function (event) {
+
+                    carouselTest = document.getElementById('carousel-test');
+                    
+                    /* setInterval(function(){ 
+                        if(carouselTest.getActiveIndex() === carouselTest.itemCount-1)
+                            carouselTest.first();
+                        else
+                            carouselTest.next(); 
+                    }, 3000); */
+                    
+                    // for view in full screen
+                    function enterFullScreen(element) {
+                        if (element.requestFullscreen) {
+                            element.requestFullscreen();
+                        } else if (element.mozRequestFullScreen) {
+                            element.mozRequestFullScreen();     // Firefox
+                        } else if (element.webkitRequestFullscreen) {
+                            element.webkitRequestFullscreen();  // Safari
+                        } else if (element.msRequestFullscreen) {
+                            element.msRequestFullscreen();      // IE/Edge
+                        }
+                    };
+                    
+                    btnFullscreen = document.querySelector(".fullscreen-btn");
+
+                    btnFullscreen.addEventListener("click", function () {
+                        videoEle = document.querySelector('.video-main');
+                        videoEle.style.display = "block";
+                        enterFullScreen(videoEle);
+                    });
+
+                    document.addEventListener('fullscreenchange', (event) => {
+                        if (document.fullscreenElement) {
+                            console.log('Entered fullscreen:', document.fullscreenElement);
+                        } else {
+                            videoEle.style.display = "none";
+                            console.log('Exited fullscreen.');
+                        }
+                    });
+
+                });
+
+                function setActiveItem(index){
+                    carouselTest.setActiveIndex(index);
+                }
+
+            </script>
+
+            <!-- summary details // product details -->
+            <div class="product-details-all">
+                <div class="item-details">
+                    <p class="text-uppercase">item detals</p>
+                    <div class="item-details-row">
+                        <div class="left-part w-50">
+                            <div class="detail-row">
+                                <div class="detail-key">SKU</div>
+                                <div class="detail-value">Carat Total Weight</div>
+                            </div>
+                            <div class="detail-row">
+                                <div class="detail-key">Style</div>
+                                <div class="detail-value">Eternity Band</div>
+                            </div>
+                            <div class="detail-row">
+                                <div class="detail-key">Carat Total Weight</div>
+                                <div class="detail-value">3.00</div>
+                            </div>
+                        </div>
+                        <div class="right-part w-50">
+                            <div class="detail-row">
+                                <div class="detail-key">Metal Type & Color</div>
+                                <div class="detail-value">14K White Gold</div>
+                            </div>
+                            <div class="detail-row">
+                                <div class="detail-key">Rhodium Plated</div>
+                                <div class="detail-value">Yes</div>
+                            </div>
+                            <div class="detail-row">
+                                <div class="detail-key">Average Width (mm)</div>
+                                <div class="detail-value">3.38</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="994" height="3" viewBox="0 0 994 3" fill="none">
+                    <path d="M0.6875 1.44824L993.156 1.44816" stroke="#E6E6E6" stroke-width="1.34299" />
+                </svg>
+
+                <div class="item-details diamond-details">
+                    <p class="text-uppercase">Diamond details</p>
+                    <div class="item-details-row">
+                        <div class="left-part w-50">
+                            <div class="detail-row">
+                                <div class="detail-key">Stone Type</div>
+                                <div class="detail-value">Diamond</div>
+                            </div>
+                            <div class="detail-row">
+                                <div class="detail-key">Creation Method</div>
+                                <div class="detail-value">Lab Grown</div>
+                            </div>
+                            <div class="detail-row">
+                                <div class="detail-key">Shape</div>
+                                <div class="detail-value">Pear</div>
+                            </div>
+                            <div class="detail-row">
+                                <div class="detail-key">Color</div>
+                                <div class="detail-value">Near-Colorless (FG)</div>
+                            </div>
+                            <div class="detail-row">
+                                <div class="detail-key">Color Hue</div>
+                                <div class="detail-value">White</div>
+                            </div>
+                            <div class="detail-row">
+                                <div class="detail-key">Clarity</div>
+                                <div class="detail-value">VS2+</div>
+                            </div>
+                        </div>
+                        <div class="right-part w-50">
+                            <div class="detail-row">
+                                <div class="detail-key">Cut Grade</div>
+                                <div class="detail-value">Excellent</div>
+                            </div>
+                            <div class="detail-row">
+                                <div class="detail-key">Count</div>
+                                <div class="detail-value">12</div>
+                            </div>
+                            <div class="detail-row">
+                                <div class="detail-key">Carat Weight</div>
+                                <div class="detail-value">0.25</div>
+                            </div>
+                            <div class="detail-row">
+                                <div class="detail-key">Total Carat Weight</div>
+                                <div class="detail-value">3.01</div>
+                            </div>
+                            <div class="detail-row">
+                                <div class="detail-key">Setting</div>
+                                <div class="detail-value">Prong</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="994" height="3" viewBox="0 0 994 3" fill="none">
+                    <path d="M0.6875 1.44824L993.156 1.44816" stroke="#E6E6E6" stroke-width="1.34299" />
+                </svg>
+
+                <div class="item-details price-breakup">
+                    <!-- <p class="text-uppercase">Price Breakup</p> -->
+                    <ons-list-item class="ps-0" expandable>
+                        <div class="price-breakup-heading-row">
+                            <p>Price Breakup</p>
+                            <p class="subtitle">show more</p>
+                        </div>
+                        <div class="expandable-content">
+                            <div class="item-details-row">
+                                <div class="left-part w-50">
+                                    <div class="detail-row">
+                                        <div class="detail-key">Item Used</div>
+                                        <div class="detail-value">Estimated Amount</div>
+                                    </div>
+                                    <div class="detail-row">
+                                        <div class="detail-key">Item Used</div>
+                                        <div class="detail-value">Estimated Amount</div>
+                                    </div>
+                                    <div class="detail-row">
+                                        <div class="detail-key">Item Used</div>
+                                        <div class="detail-value">Estimated Amount</div>
+                                    </div>
+                                </div>
+                                <div class="right-part w-50">
+                                    <div class="detail-row">
+                                        <div class="detail-key">Item Used</div>
+                                        <div class="detail-value">Estimated Amount</div>
+                                    </div>
+                                    <div class="detail-row">
+                                        <div class="detail-key">Item Used</div>
+                                        <div class="detail-value">Estimated Amount</div>
+                                    </div>
+                                    <div class="detail-row">
+                                        <div class="detail-key">Item Used</div>
+                                        <div class="detail-value">Estimated Amount</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ons-list-item>
+
+                </div>
+            </div>
+
+        </ons-page>
+    </template>
+
+
+    <!-- cart modal -->
+    <ons-modal direction="up">
+        <div class="cart-visible-area">
+            <div class="cart-rectangle">
+                <div class="cart-heading">
+                    <!-- <img src="assets/img/emoji-celebrating-to-right.svg" alt="celebration"> -->
+                    <p>Your Cart</p>
+                    <!-- <img src="assets/img/emoji-celebrating-to-left.svg" alt="celebration"> -->
+                </div>
+                <!-- cart-product-wrapper -->
+                <div class="cart-product-wrapper">
+                    <div class="cart-product">
+                        <div class="product-inside">
+
+                            <div class="top-row product-description">
+                                <div class="product-img">
+                                    <img src="assets/img/cart-product-resized.png" alt="">
+                                </div>
+                                <div class="product-description-content">
+                                    <div class="name-and-remove">
+                                        <div class="name-left">
+                                            <p class="product-name">
+                                                3-Hook Prong Solitaire
+                                            </p>
+                                            <div class="product-description-value">
+                                                Studsin Sterling Silver | Diamond 7.5mm
+                                            </div>
+                                        </div>
+                                        <div class="remove-right">
+                                            <p>Remove</p>
+                                        </div>
+                                    </div>
+                                    <div class="price-and-quantity">
+                                        <div class="product-price">
+                                            <p>₹53,423</p>
+                                        </div>
+                                        <div class="cart-quantity">
+                                            <div class="minus-icon">
+                                                <div class="icon-img">
+                                                    <img src="assets/img/minus-icon.svg" alt="minus-icon">
+                                                </div>
+                                            </div>
+                                            <div class="cart-value">
+                                                2
+                                            </div>
+                                            <div class="plus-icon">
+                                                <div class="icon-img">
+                                                    <img src="assets/img/plus-icon.svg" alt="plus-icon">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="middle-row product-features">
+                                <div class="bg-rose-gold-light feature-tag">
+                                    <div class="metal-name">
+                                        18kt Rose Gold
+                                    </div>
+                                </div>
+                                <div class="bg-sky-blue feature-tag">
+                                    <div class="diamond-name">
+                                        VVS EF
+                                    </div>
+                                </div>
+                                <div class="bg-light-purple feature-tag">
+                                    <div class="selected-size">
+                                        Size12
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bottom-row subtotal">
+                                <p class="cart-subtotal-subheading">Sub-Total:</p>
+                                <p class="cart-subtotal-value">₹106,846</p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="cart-product">
+                        <div class="product-inside">
+
+                            <div class="top-row product-description">
+                                <div class="product-img">
+                                    <img src="assets/img/cart-product-resized.png" alt="">
+                                </div>
+                                <div class="product-description-content">
+                                    <div class="name-and-remove">
+                                        <div class="name-left">
+                                            <p class="product-name">
+                                                3-Hook Prong Solitaire
+                                            </p>
+                                            <p class="product-description-value">
+                                                Studsin Sterling Silver | Diamond 7.5mm
+                                            </p>
+                                        </div>
+                                        <div class="remove-right">
+                                            <p>Remove</p>
+                                        </div>
+                                    </div>
+                                    <div class="price-and-quantity">
+                                        <div class="product-price">
+                                            <p>₹53,423</p>
+                                        </div>
+                                        <div class="cart-quantity">
+                                            <div class="minus-icon">
+                                                <div class="icon-img">
+                                                    <img src="assets/img/minus-icon.svg" alt="minus-icon">
+                                                </div>
+                                            </div>
+                                            <div class="cart-value">
+                                                2
+                                            </div>
+                                            <div class="plus-icon">
+                                                <div class="icon-img">
+                                                    <img src="assets/img/plus-icon.svg" alt="plus-icon">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="middle-row product-features">
+                                <div class="bg-rose-gold-light feature-tag">
+                                    <div class="metal-name">
+                                        18kt Rose Gold
+                                    </div>
+                                </div>
+                                <div class="bg-sky-blue feature-tag">
+                                    <div class="diamond-name">
+                                        VVS EF
+                                    </div>
+                                </div>
+                                <div class="bg-light-purple feature-tag">
+                                    <div class="selected-size">
+                                        Size12
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bottom-row subtotal d-none">
+                                <p class="cart-subtotal-subheading">Sub-Total:</p>
+                                <p class="cart-subtotal-value">₹106,846</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="cart-product">
+                        <div class="product-inside">
+
+                            <div class="top-row product-description">
+                                <div class="product-img">
+                                    <img src="assets/img/cart-product-resized.png" alt="">
+                                </div>
+                                <div class="product-description-content">
+                                    <div class="name-and-remove">
+                                        <div class="name-left">
+                                            <p class="product-name">
+                                                3-Hook Prong Solitaire
+                                            </p>
+                                            <p class="product-description-value">
+                                                Studsin Sterling Silver | Diamond 7.5mm
+                                            </p>
+                                        </div>
+                                        <div class="remove-right">
+                                            <p>Remove</p>
+                                        </div>
+                                    </div>
+                                    <div class="price-and-quantity">
+                                        <div class="product-price">
+                                            <p>₹53,423</p>
+                                        </div>
+                                        <div class="cart-quantity">
+                                            <div class="minus-icon">
+                                                <div class="icon-img">
+                                                    <img src="assets/img/minus-icon.svg" alt="minus-icon">
+                                                </div>
+                                            </div>
+                                            <div class="cart-value">
+                                                2
+                                            </div>
+                                            <div class="plus-icon">
+                                                <div class="icon-img">
+                                                    <img src="assets/img/plus-icon.svg" alt="plus-icon">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="middle-row product-features">
+                                <div class="bg-rose-gold-light feature-tag">
+                                    <div class="metal-name">
+                                        18kt Rose Gold
+                                    </div>
+                                </div>
+                                <div class="bg-sky-blue feature-tag">
+                                    <div class="diamond-name">
+                                        VVS EF
+                                    </div>
+                                </div>
+                                <div class="bg-light-purple feature-tag">
+                                    <div class="selected-size">
+                                        Size12
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bottom-row subtotal d-none">
+                                <p class="cart-subtotal-subheading">Sub-Total:</p>
+                                <p class="cart-subtotal-value">₹106,846</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="cart-product">
+                        <div class="product-inside">
+
+                            <div class="top-row product-description">
+                                <div class="product-img">
+                                    <img src="assets/img/cart-product-resized.png" alt="">
+                                </div>
+                                <div class="product-description-content">
+                                    <div class="name-and-remove">
+                                        <div class="name-left">
+                                            <p class="product-name">
+                                                3-Hook Prong Solitaire
+                                            </p>
+                                            <p class="product-description-value">
+                                                Studsin Sterling Silver | Diamond 7.5mm
+                                            </p>
+                                        </div>
+                                        <div class="remove-right">
+                                            <p>Remove</p>
+                                        </div>
+                                    </div>
+                                    <div class="price-and-quantity">
+                                        <div class="product-price">
+                                            <p>₹53,423</p>
+                                        </div>
+                                        <div class="cart-quantity">
+                                            <div class="minus-icon">
+                                                <div class="icon-img">
+                                                    <img src="assets/img/minus-icon.svg" alt="minus-icon">
+                                                </div>
+                                            </div>
+                                            <div class="cart-value">
+                                                2
+                                            </div>
+                                            <div class="plus-icon">
+                                                <div class="icon-img">
+                                                    <img src="assets/img/plus-icon.svg" alt="plus-icon">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="middle-row product-features">
+                                <div class="bg-rose-gold-light feature-tag">
+                                    <div class="metal-name">
+                                        18kt Rose Gold
+                                    </div>
+                                </div>
+                                <div class="bg-sky-blue feature-tag">
+                                    <div class="diamond-name">
+                                        VVS EF
+                                    </div>
+                                </div>
+                                <div class="bg-light-purple feature-tag">
+                                    <div class="selected-size">
+                                        Size12
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bottom-row subtotal d-none">
+                                <p class="cart-subtotal-subheading">Sub-Total:</p>
+                                <p class="cart-subtotal-value">₹106,846</p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Total cart value box -->
+                <div class="cart-total-box">
+                    <div class="transparent-white-gradient-box">
+                    </div>
+                    <div class="total-amount-row">
+                        <p class="total-heading">Total</p>
+                        <p class="total-amount">₹5,34,535</p>
+                    </div>
+                    <div class="cart-buttons" style="background: transparent;">
+                        <div class="cart-btn enquire-btn">
+                            <img src="assets/img/bell-ring.svg" alt="bell">
+                            <div class="btn-font">
+                                Enquire
+                            </div>
+                        </div>
+                        <div class="cart-btn active place-order-btn">
+                            <div class="btn-font">
+                                Place Order
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- close btn -->
+                <div class="close-modal-btn">
+                    <img src="assets/img/cross-close-modal.svg" alt="">
+                </div>
+            </div>
+        </div>
+    </ons-modal>
+
+    <script>
+        function showCart() {
+            var modal = document.querySelector('ons-modal');
+            var closeModalButton = document.querySelector('.close-modal-btn');
+            modal.show();
+            closeModalButton.addEventListener('click', () => {
+                modal.hide();
+            })
+        }
+    </script>
+
+</body>
+
+</html>

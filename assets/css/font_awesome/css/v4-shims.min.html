@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="description" content="Error 404 | Dinomeals">
+		  <title>Error 404 | Dinomeals</title>
+<link rel="icon" type="image/png" href="/resources/images/dinomeals-favicon-sm.png" sizes="32x32" />
+<link rel="shortcut icon" type="image/png" href="/resources/images/dinomeals-favicon-big.png" sizes="196x196" />
+<link rel="apple-touch-icon-precomposed" type="image/png" href="/resources/images/dinomeals-favicon-big.png" sizes="180x180" />
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<style id="style-fix">
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html, body {
+	margin: 0; 
+	height: 100%; 
+	overflow: hidden;
+}
+</style>
+
+<style>
+/**
+ * placeholder-loading v0.1.3
+ * Author: Zalog (https://github.com/zalog/placeholder-loading)
+ * License: MIT
+ **/
+ .loading-overlay {
+    background: #FFF;
+    color: #424242;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 111111;
+	border: 1px solid #e6e6e6;
+	border-radius: 2px; 
+}
+.ph-item {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  /*padding: 15px;*/
+  overflow: hidden;
+  margin-bottom: 30px;
+  background-color: #fff;
+  /*border: 1px solid #e6e6e6;
+  border-radius: 2px;*/ 
+}
+
+.ph-item, .ph-item *, .ph-item ::after, .ph-item ::before {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box; 
+}
+/*
+.ph-item::before {
+    content: " ";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 50%;
+    z-index: 1;
+    width: 500%;
+    margin-left: -250%;
+    -webkit-animation: phAnimation 1s linear infinite;
+            animation: phAnimation 1s linear infinite;
+    background: -webkit-gradient(linear, left top, right top, color-stop(46%, transparent), color-stop(50%, rgba(255, 255, 255, 0.35)), color-stop(54%, transparent)) 50% 50%;
+    background: linear-gradient(to right, transparent 46%, rgba(255, 255, 255, 0.35) 50%, transparent 54%) 50% 50%; 
+}
+*/
+.ph-item > * {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
+    padding-right: 15px;
+    padding-left: 15px; 
+}
+
+.ph-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-bottom: 7.5px; 
+}
+
+.ph-row div {
+    height: 10px;
+    margin-bottom: 7.5px;
+    background-color: #ced4da; 
+}
+
+.ph-row .big, .ph-row.big div {
+    height: 20px;
+    margin-bottom: 15px; 
+}
+
+.ph-row .empty {
+    background-color: transparent; 
+}
+
+.ph-col-2 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 16.66667%;
+          flex: 0 0 16.66667%; 
+}
+
+.ph-col-4 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 33.33333%;
+          flex: 0 0 33.33333%; 
+}
+
+.ph-col-6 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 50%;
+          flex: 0 0 50%; 
+}
+
+.ph-col-8 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 66.66667%;
+          flex: 0 0 66.66667%; 
+}
+
+.ph-col-10 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 83.33333%;
+          flex: 0 0 83.33333%; 
+}
+
+.ph-col-12 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%; 
+}
+
+.ph-avatar {
+  position: relative;
+  width: 100%;
+  min-width: 60px;
+  background-color: #ced4da;
+  margin-bottom: 15px;
+  border-radius: 50%;
+  overflow: hidden; 
+}
+
+.ph-avatar::before {
+   content: " ";
+   display: block;
+   padding-top: 100%; 
+}
+
+.ph-picture {
+  width: 100%;
+  height: 120px;
+  background-color: #ced4da;
+  margin-bottom: 15px; 
+}
+
+.shim{
+	background: #f4f6f8 !important;
+	overflow: hidden;
+	position: relative;
+}
+
+.shim:after{
+	-webkit-animation: placeHolderShimmer 1s steps(20, end) infinite forwards;
+            animation: placeHolderShimmer 1s steps(20, end) infinite forwards;
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%, #f4f6f8), color-stop(20%, #edeef2), color-stop(40%, #f4f6f8), color-stop(100%, #f4f6f8));
+	background: -webkit-linear-gradient(left, #f4f6f8 0%, #edeef2 20%, #f4f6f8 40%, #f4f6f8 100%);
+	background: linear-gradient(to right, #f4f6f8 0%, #edeef2 20%, #f4f6f8 40%, #f4f6f8 100%);
+	content: ' ';
+	display: block;
+	height: 100%;
+	position: relative;
+	width: 100%;
+	will-change: transform;
+}
+
+/*
+@-webkit-keyframes phAnimation {
+  0% {
+    -webkit-transform: translate3d(-30%, 0, 0);
+            transform: translate3d(-30%, 0, 0); }
+  100% {
+    -webkit-transform: translate3d(30%, 0, 0);
+            transform: translate3d(30%, 0, 0); } 
+}
+
+@keyframes phAnimation {
+  0% {
+    -webkit-transform: translate3d(-30%, 0, 0);
+            transform: translate3d(-30%, 0, 0); }
+  100% {
+    -webkit-transform: translate3d(30%, 0, 0);
+            transform: translate3d(30%, 0, 0); } 
+}
+*/
+@-webkit-keyframes placeHolderShimmer {
+	0%{
+		transform: translateX(-100%);
+	}
+	100%{
+		transform: translateX(100%);
+	}
+}
+
+@keyframes placeHolderShimmer {
+	0%{
+		transform: translateX(-100%);
+	}
+	100%{
+		transform: translateX(100%);
+	}
+}
+
+</style>
+
+<!--[if]>
+
+|-----------------------------YOU ARE HERE---------------------------
+
+(((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((
+(((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((
+(((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((
+(((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((
+(((((((((((((((((((((((                  .(((((((((((((((((((((((
+(((((((((((((((((((     ,(((((((((((((((.     (((((((((((((((((((
+((((((((((((((((    *(((((((((((((((((((((((.   ,((((((((((((((((
+((((((((((((((/  *(((((((((((((((((((((((((((((    ((((((((((((((
+(((((((((((((((((((((((((((((((((((((((((((((((((.  ,((((((((((((
+(((((((((((((((((((((((((,             ,(((((((((((   (((((((((((
+((((((   .((((((((((((,                   ,(((((((((.  ((((((((((
+((((       (((((((((.                       .((((((((/  (((((((((
+(((         (((((((                           ((((((((.  ((((((((
+(((          (((((             /(/             ((((((((  .(((((((
+((/          ((((           ((((,((((           (((((((.  (((((((
+(((         /((((          ((.     .((          ((((((((  (((((((
+(((((     /((((((          ((       ((          ((((((((  (((((((
+((((((.  ((((((((           (((   (((           (((((        ((((
+((((((/  ((((((((             /(((/             ((((          (((
+(((((((  *((((((((             ,(,             ((((/  (*  ((  (((
+(((((((,  (((((((((                           (((((/  ((  ((  (((
+((((((((   (((((((((                         ((((((/  ((  ((  (((
+(((((((((   ((((((((((                     ((((((((/  ((  ((  (((
+((((((((((   ((((((((((((               (((((((((((((((((((((((((
+(((((((((((/   ((((((((((((((((/**(((((((((((((((((((((((((((((((
+(((((((((((((    (((((((((((((((((((((((((((((((  /((((((((((((((
+(((((((((((((((.   *(((((((((((((((((((((((((,   ,(((((((((((((((
+((((((((((((((((((     (((((((((((((((((((     ((((((((((((((((((
+(((((((((((((((((((((/         ...         /(((((((((((((((((((((
+(((((((((((((((((((((((((((*.       .*(((((((((((((((((((((((((((
+(((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((
+(((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((
+
+------------------Contact us: founders[at]dinomeals.com----------------|
+
+<![endif]-->
+
+
+</head>
+
+<body class="cbp-spmenu-push">
+
+<!-- Start Loading -->
+
+<section class="loading-overlay">
+  <div class="ph-item">
+	
+	<div class="ph-row">
+	  <div class="ph-col-12 big shim" style="height: 50px;"></div>
+	</div>
+
+    <div class="ph-col-12">
+      
+	  <div class="ph-picture shim" style="height: 150px;"></div>
+      
+	  <div class="ph-row">
+        <div class="ph-col-12 big shim"></div>
+		<div class="ph-col-12 big shim"></div>
+		<div class="ph-col-12 big shim"></div>
+      </div>
+
+    </div>
+
+	<div class="ph-col-6">
+      <div class="ph-picture shim"></div>
+    </div>
+
+	<div class="ph-col-6">
+      <div class="ph-picture shim"></div>
+    </div>
+
+	<div class="ph-row">
+	  <div class="ph-col-12 big shim" style="height: 200px;"></div>
+	</div>
+
+  </div>
+</section>
+
+<!-- End Loading  -->
+
+<div class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      
+	  <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      
+	  <div class="modal-body">
+        <p>Loading&hellip;</p>
+      </div>
+      
+	  <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-axn">Apply</button>
+      </div>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- Temporary -->
+<style>
+.nav-link:first-child {
+    border: 0;
+}
+.nav-link {
+    padding: 0 6px !important;
+    margin-top: 22px;
+    display: inline-block !important;
+    border-left: 1px solid #fff;
+}
+.srch-rest-form {
+    width: 55%;
+}
+.srch-rest-form .srch-grp {
+    width: 60%;
+}
+
+@media (max-width: 768px) {
+
+  .srch-rest-form {
+	width: 100%;
+	margin: 20% 0;
+  }
+  .srch-rest-form .srch-grp {
+    width: 300px;
+    margin: auto;
+  }
+
+}
+
+@media (max-width: 1024px) and (min-width: 768px){
+	
+	.srch-rest-form {
+	  width: 100%;
+	  margin: 20% 0;
+	}
+	.srch-rest-form .srch-grp {
+	  width: 300px;
+	  margin: auto;
+	}
+}
+</style>
+<!-- Remove -->
+
+<!-- Navigation -->
+
+<div id="overlay"></div>
+
+<nav class="navbar navbar-color" role="navigation">
+  <div class="container nav-container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+
+    <div class="navbar-header">
+      
+     <button class="navbar-toggle pull-left" data-toggle="collapse" id="showLeft" type="button">
+        <span class="sr-only">Toggle navigation</span> 
+        <span class="icon-bar"></span> 
+        <span class="icon-bar"></span> 
+        <span class="icon-bar"></span>
+     </button> 
+	 
+	 
+		<a class="navbar-brand" href="/">
+		 <img alt="dinomeals" class="lazy" data-original="/resources/images/dino-logo-trans.png" style="width: 150px; margin-top: -4px; margin-left: -10px;"> 
+		</a>
+		<a href="tel:+918080306090" class="visible-xs" style="position: absolute; right: 10px; top: 20px; color: #fff; font-size: 14px;">
+		 +91 8080306090
+		</a>
+		
+	 <a class="navbar-brand pull-right srch-alt ripple visible-md visible-xs visible-sm" href="javascript:void(0);">
+	    <!--<i class="mdi mdi-account-search fa-30px white"></i>-->
+		<img class="lazy" data-original="/resources/images/search-alt.png" width="33" style="margin-top: -15px; margin-left: 5px;">
+	 </a>
+
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+	<div class="navbar-form srch-rest-form hidden-md hidden-xs hidden-sm" role="search">
+			  
+		<select class="selectpicker cities" data-live-search="true" data-size="4">
+			<option value="Ambernath" data-tokens="Ambernath">Ambernath</option><option value="Mumbai" data-tokens="Mumbai">Mumbai</option><option value="Navi Mumbai" data-tokens="Navi Mumbai">Navi Mumbai</option><option value="Thane" data-tokens="Thane">Thane</option>		</select>
+
+		<div class="input-group input-group-lg srch-grp">
+			<input type="text" class="form-control srch-rest-ip" placeholder="Search Restaurants, Locality etc." name="search" required="">
+			<span class="input-group-btn" style="width: 1px;">
+				<button class="btn btn-default search-btn-alt" type="button"><i class="glyphicon glyphicon-search"></i></button>
+			</span>
+		</div>
+
+	</div>
+
+    <div class="collapse navbar-collapse pull-right hidden-xs">
+      <ul class="nav navbar-nav">
+        
+                <!--
+		<li>
+		 <div class="navbar-btn">
+
+		  <div class="btn-group">
+           <button class="login btn btn-subscribe ripple">
+             Login 
+           </button>
+		  </div>
+
+		 </div>
+        </li>
+
+		<li>
+		 <div class="navbar-btn">
+
+		  <div class="btn-group">
+           <a href="/register-vendor" class="btn btn-subscribe ripple" target="_blank">
+             Add Restaurant 
+           </a>
+		  </div>
+
+		 </div>
+        </li>
+		-->
+		<li>
+			<a href="javascript:void(0);" class="login nav-link" target="_blank">
+             Login
+            </a>
+			<!--<a href="/register-vendor" class="nav-link" target="_blank">
+             Add Restaurant 
+            </a>
+			
+			<a href="/redeem/paytm300" class="nav-link" target="_blank">
+             Redeem 
+            </a>
+			-->
+			<a href="tel:+918080306090" class="nav-link">+91 8080306090</a>
+		</li>
+
+		<!--
+        <li>
+		  <p class="navbar-btn">
+            <a title="Register" href="javascript:void(0);" class="btn btn-danger btn-cust register"  data-toggle="tooltip" data-placement="bottom">
+              <i class="mdi mdi-account-plus fa-30px" aria-hidden="true"></i> 
+            </a>
+		  </p>
+        </li>
+        -->
+        
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+
+  </div>
+  <!-- /.container -->
+</nav>
+
+<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-left">
+  <h3>Menu</h3>
+  
+    
+  <a href="javascript:void(0);" class="login"><i class="mdi mdi-login-variant pull-left mr-10" aria-hidden="true"></i> Login</a> 
+  <!--<a href="javascript:void(0);" class="register"><i class="mdi mdi-plus-box pull-left" aria-hidden="true"></i> Register</a>-->
+  
+  <a href="/tnc"><i class="mdi mdi-alert-circle pull-left mr-10" aria-hidden="true"></i> Terms of Use</a>
+  <a href="/pp"><i class="mdi mdi-cookie pull-left mr-10" aria-hidden="true"></i> Privacy Policy</a>
+  <!--<a href="/register-vendor" target="_blank"><i class="mdi mdi-map-marker-plus pull-left mr-10"></i>Add Restaurant</a>-->
+  <!--<a href="/redeem/paytm300" target="_blank"><i class="mdi mdi-sale pull-left mr-10"></i>Redeem Voucher</a>-->
+
+  <p class="nav-btm-msg">Login to view your reservations and earn points for eating out!</p>
+
+    
+</nav>
+<!-- /.cbp-spmenu -->
+
+<!-- End Navigation -->
+
+
+<!-- Login Form -->
+<div class="login-wrap hidden">
+  
+  <div class="omb_login">
+
+      <div class="row omb_socialButtons">
+        
+		
+		<div class="col-xs-6">
+          <a class="btn btn-lg btn-block ripple omb_btn-facebook" href="/auth/facebook">
+            <i class="mdi mdi-facebook visible-xs"></i> 
+            <span class="hidden-xs">Facebook</span>
+          </a>
+        </div>
+
+        <div class="col-xs-6">
+          <a class="btn btn-lg btn-block ripple omb_btn-google" href="/auth/google">
+            <i class="mdi mdi-google-plus visible-xs"></i> 
+            <span class="hidden-xs">Google+</span>
+          </a>
+        </div>
+
+		
+      </div>
+
+      <div class="row omb_loginOr">
+        <div class="col-xs-12">
+          <hr class="omb_hrOr">
+          <span class="omb_spanOr">or</span>
+        </div>
+      </div>
+
+      <div class="row omb_loginForm">
+        <div class="col-xs-12">
+          <form id="login-user" action="/service/user/login" autocomplete="off" method="post">
+            
+            <div class="form-group">
+              <div class="input-group">
+                <input class="form-control email-phone" name="username" placeholder="Phone" type="text" required>
+                <span class="input-group-addon">
+                  <a href="javascript:void(0);" class="btn btn-default send-otp no-boxer no-padding chef-red disabled" title="Send OTP" data-toggle="tooltip" data-placement="bottom">
+                    <img src="/resources/images/otp.png" height="35">
+                  </a>
+                </span>
+              </div>
+   			</div>
+   			<div class="form-group">
+              <input class="form-control login-pass hidden" name="password" placeholder="OTP" type="password" required>
+			</div>
+			<div class="form-group">
+              <span class="help-block"><br></span>
+            </div>
+            <div class="form-group">
+              <input class="form-control login-type" type="hidden" name="login-type" value="default">
+              <button class="btn btn-lg btn-primary btn-block btn-login hidden" type="submit" data-loading-text="Login <i class='glyphicon glyphicon-refresh spin pull-right'></i>" autocomplete="off">
+			   Login
+			  </button>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+	<!--
+      <div class="row omb_forgotPwd">
+        <div class="col-xs-12">
+          <p>
+            <a href="javascript:void(0);" class="fpl">Forgot Password?</a>
+          </p>
+        </div>
+      </div>
+    -->
+  </div>
+  <!--
+  <div class="omb_fp" style="display: none;">
+    
+    <div class="row omb_loginForm">
+      <div class="col-xs-12">
+        <p class="text-muted">Please enter your username to reset your password.</p>
+        <form id="forgot-pass" action="/service/user/forgot-pass" autocomplete="off" method="post">
+            
+          <div class="form-group">
+            <input class="form-control" name="username" placeholder="Email / Phone" type="text" required>
+   	  </div>
+   	  <div class="form-group">
+            <span class="help-block"><br></span>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Reset</button>
+          </div>
+            
+        </form>
+      </div>
+    </div>
+    
+    <div class="row omb_forgotPwd">
+      <div class="col-xs-12">
+        <p>
+          <a href="javascript:void(0);" class="fpl">Login</a>
+        </p>
+      </div>
+    </div>
+      
+  </div>
+  -->
+</div>
+
+<!-- Register Form
+<div class="register-wrap hidden">
+  
+  <div class="omb_login">
+  
+    <div class="row omb_loginForm">
+      <div class="col-xs-12">
+        <form id="register-user" action="/service/user/register" autocomplete="off" method="post">
+            
+          <div class="form-group">
+            <input class="form-control" name="email" placeholder="Email Address" type="email" required>
+   	  </div>
+   	  <div class="form-group">
+            <input class="form-control" name="phone" placeholder="Phone Number" type="number" maxlength="10" required>
+	  </div>
+   	  <div class="form-group">
+            <input class="form-control" name="pass" placeholder="Password" type="password" required>
+	  </div>
+	  <div class="form-group">
+            <span class="help-block"><br></span>
+          </div>
+          <div class="form-group">
+           <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+          </div>
+        
+        </form>
+      </div>
+    </div>
+  
+  </div>
+
+</div>
+-->
+
+<style>
+
+.abs-center {
+	position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+	height: 100%;
+	width: 100%;
+	background: rgba(0,0,0,0.5);
+	padding: 10px 5px;
+}
+
+h1 {
+	font-size: 30px;
+}
+
+h2 {
+	font-size: 22px;
+}
+
+.mt-20per {
+	margin-top: 20%;
+	top: 20%;
+}
+
+.mt-10per {
+	margin-top: 10%;
+	top: 10%;
+}
+
+@media (max-width: 767px){
+
+  h1 {
+	font-size: 20px;
+  }
+
+  h2 {
+	font-size: 15px;
+  }
+
+}
+
+</style>
+
+<div class="container-fluid">
+  <div class="row">
+	<div class="col-xs-12 no-padding">
+  
+	  <img class="center-block hidden-xs hidden-sm lazy" data-original="/resources/images/empty-table.jpg" height="600" alt="page-not-found">
+	  <img class="img-responsive visible-xs visible-sm lazy" data-original="/resources/images/empty-table.jpg" alt="page-not-found">
+
+	  <div class="abs-center">
+	    <h1 class="white mt-20per">Oops! Page not Found.</h1>
+		<h2 class="white">The requested page does not exist.</h2>
+		
+		<a href="/" class="btn btn-primary btn-lg mt-10per hidden-xs">Back Home</a>
+		<a href="/" class="btn btn-primary mt-10per center-block visible-xs" style="width: 125px;">Back Home</a>
+	  </div>
+
+	</div>
+  </div>
+</div>
+
+
+<!-- footer -->
+
+<section class="footer-area-content" id="index-footer">
+
+  <!-- Newsletter 
+  <div id="newsletter">
+    <div class="container">
+      
+	  <div class="row">
+        <div class="col-md-12 text-center">
+          <h4 class="white"><i class="glyphicon glyphicon-envelope"></i>Keep in touch, Join our newsletter</h4>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          
+		  <div class="col-sm-8">
+            <input class="form-control" id="email" name="email" placeholder="Your Email Address" required="required" type="email">
+          </div>
+
+          <div class="col-sm-4">
+            <a class="btn btn-subscribe" href="#">Subscribe</a>
+          </div>
+			
+        </div>
+      </div>
+		
+    </div>
+  </div>
+  <!-- END: Newsletter -->
+  
+  <div class="container">
+		 <div class="footer-wrapper style-3">
+		 <footer class="type-1"><div class="footer-columns-entry">
+		  <div class="row"><div class="col-md-3 col-sm-3">		  
+		  <h3 class="column-title">Popular Cities</h3><ul class="column"><li> <a href="/list/mumbai">Mumbai</a> </li><li> <a href="/list/navi-mumbai">Navi Mumbai</a> </li><li> <a href="/list/thane">Thane</a> </li></ul><div class="clear"></div></div><div class="col-md-3 col-sm-3">		  
+		  <h3 class="column-title">Popular Localities</h3><ul class="column"><li> <a href="/list/mumbai/powai">Powai</a> </li><li> <a href="/list/mumbai/bandra">Bandra</a> </li></ul><div class="clear"></div></div><div class="col-md-3 col-sm-3">		  
+		  <h3 class="column-title">Popular Cuisines</h3><ul class="column"><li> <a href="/cuisine/chinese/mumbai">Chinese</a> </li><li> <a href="/cuisine/continental/mumbai">Continental</a> </li><li> <a href="/cuisine/italian/mumbai">Italian</a> </li><li> <a href="/cuisine/north-indian/mumbai">North Indian</a> </li><li> <a href="/cuisine/south-indian/mumbai">South Indian</a> </li><li> <a href="/cuisine/finger-food/mumbai">Finger Food</a> </li></ul><div class="clear"></div></div><div class="col-md-3 col-sm-3">		  
+		  <h3 class="column-title">Popular Restaurants</h3><ul class="column"><li> <a href="/v/the-elbo-room-bandra-mumbai">The Elbo Room</a> </li><li> <a href="/v/utsav-hiranandani-gardens-powai-mumbai">Utsav</a> </li><li> <a href="/v/the-bakers-dozen-hiranandani-gardens-powai-mumbai">The Baker's Dozen</a> </li></ul><div class="clear"></div></div></div>
+		  </div></footer>
+		  </div>
+	      </div>
+  <div class="footer-bottom footer-wrapper style-3">
+    <div class="container">
+      <div class="row">
+        
+		<div class="col-md-12">
+          <div class="footer-bottom-navigation">
+            
+			<div class="cell-view">
+              <div class="footer-links">
+                <a href="/tnc" target="_blank">Terms & Conditions</a> 
+				<a href="/pp" target="_blank">Privacy Policy</a> 
+				<a href="/contact-us">Contact Us</a>
+				<a href="/services">Services</a>
+				<a href="/about-us">About Us</a>
+				<a href="/register-vendor" target="_blank">Add Restaurant</a>
+				<a href="http://blog.dinomeals.com">Blog</a>
+              </div>
+
+              <div class="copyright">
+				&copy; 
+				2016-2023 
+				<a href="/">Tech2edge</a>
+              </div>
+            </div>
+
+
+            <div class="cell-view">
+              <div class="social-content">
+                <a class="post-facebook" href="https://www.facebook.com/dinomeals" target="_blank"><i class="mdi mdi-facebook"></i></a> 
+				<a class="post-google-plus" href="https://www.instagram.com/dinomeals/" target="_blank"><i class="mdi mdi-instagram"></i></a> 
+				<a class="post-twitter" href="https://twitter.com/dinomeals" target="_blank"><i class="mdi mdi-twitter"></i></a> 
+              </div>
+            </div>
+			  
+          </div>
+        </div>
+		  
+      </div>	
+    </div>
+  </div>
+	
+</section>
+
+<!-- /footer -->
+
+<div class="srch-alt-wrap"></div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-85102759-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script>
+/* Load Assets */
+loadAssets=function(e){var t,s,n={},c=0,r={css:[],js:[]},a=e.styleSheets;function o(t,s){var n,c=e.createElement(t);for(n in s)s.hasOwnProperty(n)&&c.setAttribute(n,s[n]);return c}function l(e){var t,s,a=n[e];a&&(t=a.callback,(s=a.urls).shift(),c=0,s.length||(t&&t.call(a.context,a.obj),n[e]=null,r[e].length&&i(e)))}function i(c,a,i,h,g){var d,p,y,b,k,m,v,j=function(){l(c)},w="css"===c,A=[];if(t||(v=navigator.userAgent,((t={async:!0===e.createElement("script").async}).webkit=/AppleWebKit\//.test(v))||(t.ie=/MSIE|Trident/.test(v))||(t.opera=/Opera/.test(v))||(t.gecko=/Gecko\//.test(v))||(t.unknown=!0)),a)if(a="string"==typeof a?[a]:a.concat(),w||t.async||t.gecko||t.opera)r[c].push({urls:a,callback:i,obj:h,context:g});else for(d=0,p=a.length;d<p;++d)r[c].push({urls:[a[d]],callback:d===p-1?i:null,obj:h,context:g});if(!n[c]&&(b=n[c]=r[c].shift())){for(s||(s=e.head||e.getElementsByTagName("head")[0]),d=0,p=(k=b.urls.concat()).length;d<p;++d)m=k[d],w?y=t.gecko?o("style"):o("link",{href:m,rel:"stylesheet"}):(y=o("script",{src:m})).async=!1,y.className="loadassets",y.setAttribute("charset","utf-8"),t.ie&&!w&&"onreadystatechange"in y&&!("draggable"in y)?y.onreadystatechange=function(){/loaded|complete/.test(y.readyState)&&(y.onreadystatechange=null,j())}:w&&(t.gecko||t.webkit)?t.webkit?(b.urls[d]=y.href,f()):(y.innerHTML='@import "'+m+'";',u(y)):y.onload=y.onerror=j,A.push(y);for(d=0,p=A.length;d<p;++d)s.appendChild(A[d])}}function u(e){var t;try{t=!!e.sheet.cssRules}catch(s){return void((c+=1)<200?setTimeout(function(){u(e)},50):t&&l("css"))}l("css")}function f(){var e,t=n.css;if(t){for(e=a.length;--e>=0;)if(a[e].href===t.urls[0]){l("css");break}c+=1,t&&(c<200?setTimeout(f,50):l("css"))}}return{css:function(e,t,s,n){i("css",e,t,s,n)},js:function(e,t,s,n){i("js",e,t,s,n)}}}(this.document);
+</script>
+
+<script type="text/javascript" charset="utf-8">
+
+loadAssets.css(["https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/paper/bootstrap.min.css", 
+"https://cdn.materialdesignicons.com/1.7.22/css/materialdesignicons.min.css", 
+"https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.2/animate.min.css", "/resources/css/cache/d2b12a108da8df8757fea7c1171823537068490a.css"]);
+
+loadAssets.js("https://code.jquery.com/jquery-1.11.1.min.js", function(){
+	$(function(){
+		setTimeout(function(){ $(".loading-overlay").hide(); }, 500);
+	});
+});  
+
+loadAssets.js(["https://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js", 
+"https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js",
+"https://cdnjs.cloudflare.com/ajax/libs/jquery_lazyload/1.9.7/jquery.lazyload.min.js", "/resources/js/cache/5ea7d00942ff92104eb32936dcc74f03d8e370ce.js"], 
+
+function(){
+
+	$(window).load(function() {
+
+		$("#style-fix").remove();
+		
+		$("img.lazy").lazyload();
+		
+		$(".carousel").on("slide.bs.carousel", function(ev) {
+			var $target;
+			$target = $(ev.relatedTarget).find("img.lazy");
+			$target.each(function(){
+				$(this).attr("src", $(this).data('original'));
+			});
+		});
+
+		if($(window).width() > 768){
+			getLocalPresence(".navbar-form");
+		}
+
+		$(window).on("resize", function(){
+			if($(window).width() > 768){
+				getLocalPresence(".navbar-form");
+			}
+		});
+
+		$(".srch-alt").click(function(){
+			var close = '<button type="button" class="close mt-10 mr-10 srch-alt-close" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+			var srchForm = $(".srch-rest-form")[0].outerHTML;
+			
+			$(".srch-alt-wrap").html(close+srchForm);
+			$(".srch-alt-wrap").find(".srch-rest-form").removeClass("hidden-md hidden-xs hidden-sm");
+			$(".srch-alt-wrap").addClass("loading-overlay animated slideInUp").css("background", "#fff");
+			
+			var $select = $('.srch-alt-wrap').find('.selectpicker')[0].outerHTML;
+			$('.srch-alt-wrap').find('.bootstrap-select').remove(); // remove previously rendered selectpicker
+			$('.srch-alt-wrap').find('.srch-grp').before($select);
+			$('.srch-alt-wrap').find('.selectpicker').selectpicker('render'); // re-render selectpicker
+
+			getLocalPresence(".srch-alt-wrap");
+			setTimeout(function(){ $(".srch-alt-wrap").find(".bc-menu").css("max-height", "300px"); }, 100);
+		});
+
+		$(document).on("click", ".srch-alt-close", function(){
+			$(".srch-alt-wrap").removeClass("slideInUp").addClass("slideOutDown");
+			setTimeout(function(){ $(".srch-alt-wrap").removeClass("loading-overlay animated slideOutDown") }, 500);
+			$(".srch-alt-wrap").html("");
+		});
+		
+		function getLocalPresence(form){
+
+			$(form).find('.srch-rest-ip').bootcomplete({
+				url:'/service/user/presence',
+				method: 'post',
+				focusFlag: true,
+				formParams: {'city': $(form).find('.selectpicker')},
+				dataParams : {'country': "India"},
+			});
+		}
+
+		$(document).on("keyup", ".srch-rest-ip", function(e){
+		
+			var sel = $(this).next(".bc-menu").find(".bc-selected");
+			var label = sel.attr("data-label"), city = $(".selectpicker").val(), id = sel.attr("data-id");
+			
+			if($(this).val() != ""){
+				toggleSrchBtnAlt(true);
+				
+				if(e.which == 13){
+					performSearch(label, id, city);
+					toggleSrchBtnAlt(false);
+				}else if(e.which == 27){
+					toggleSrchBtnAlt(false);
+				}
+
+			}else{
+				toggleSrchBtnAlt(false);
+			}
+
+		});
+
+		$(document).on("click", ".srch-rest-form .bc-fill", function(){
+			var label = $(this).attr("data-label"), city = $(this).parents(".srch-rest-form").find(".selectpicker").val(), 
+				id = $(this).attr("data-id");
+			performSearch(label, id, city);
+		});
+
+		function performSearch(label, id, city){
+			var searchLoc = "/searching?l="+label+"&i="+id+"&c="+city;
+			top.location.href = searchLoc;
+		}
+
+		function toggleSrchBtnAlt(flag){
+	
+			if(flag){
+				$(".search-btn-alt").attr("disabled", "true").addClass("op9");
+				$(".search-btn-alt").find("i").removeClass("glyphicon-search").addClass("glyphicon-cog fa-20px spin");
+			}else{
+				$(".search-btn-alt").removeAttr("disabled").removeClass("op9");
+				$(".search-btn-alt").find("i").addClass("glyphicon-search").removeClass("glyphicon-cog fa-20px spin");
+			}
+		}
+	});
+
+});
+</script>
+
+<!--
+<script>
+var rsrs = [];
+$(window).load(function(){
+
+	$("link").each(function(){
+		
+		var type = $(this).attr("rel");
+		var ref = $(this).attr("href");
+
+		switch(type){
+			
+			case 'stylesheet':
+			case 'icon':
+			case 'shortcut icon':
+			case 'apple-touch-icon-precomposed':
+				rsrs.push(ref);
+			break;
+			
+			default: "";
+			break;
+
+		}
+	
+	});
+
+	$("img").each(function(){
+		
+		var src = $(this).hasClass("lazy") ? $(this).attr("data-original") : $(this).attr("src");
+
+		if(typeof src !== "undefined"){
+			rsrs.push(src);
+		}
+	
+	});
+
+	$("script").each(function(){
+		
+		var src = $(this).attr("src");
+		if(typeof src !== "undefined"){
+			rsrs.push(src);
+		}
+	});
+	
+	console.log(rsrs);
+
+});
+</script>
+
+<script type="text/javascript" src="/resources/js/app.js"></script>
+-->
+
+</body>
+
+</html>

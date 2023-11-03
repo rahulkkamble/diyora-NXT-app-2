@@ -1,0 +1,70 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- Include Bootstrap 5 CSS via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-4">
+    <div class="mb-4">
+        <input type="button" class="btn btn-primary" value="Play Changed Url 1" onclick="changeVideoUrl('https://cdn.pixabay.com/vimeo/441300945/forest-45129.mp4?width=640&hash=dd5cfb031355438951ca3bdc53fc22f2cfbc4bd5')" />
+        <br/>
+        <code>
+                https://cdn.pixabay.com/vimeo/441300945/forest-45129.mp4?width=640&hash=dd5cfb031355438951ca3bdc53fc22f2cfbc4bd5
+        </code>
+    </div>
+    <div class="mb-4">
+        <input type="button" class="btn btn-primary" value="Play Changed Url 2" onclick="changeVideoUrl('https://cdn.pixabay.com/vimeo/207598589/dog-8251.mp4?width=640&hash=4417fdf12d911ebb99b24d607d73ce8bbea381da')" />
+        <br/>
+        <code>
+        https://cdn.pixabay.com/vimeo/207598589/dog-8251.mp4?width=640&hash=4417fdf12d911ebb99b24d607d73ce8bbea381da
+        </code>
+    </div>
+    <div class="mb-4">
+        <input type="button" class="btn btn-primary" value="Play Changed Url 3" onclick="changeVideoUrl('https://cdn.pixabay.com/vimeo/662525710/winter-103361.mp4?width=1280&hash=31cbab7161d5acac4854d54b362494edf76fd68c')" />
+        <br/>
+        <code>
+        https://cdn.pixabay.com/vimeo/662525710/winter-103361.mp4?width=1280&hash=31cbab7161d5acac4854d54b362494edf76fd68c
+        </code>
+    </div>
+</div>
+
+<script>
+    function changeVideoUrl(newUrl) {
+        const kioskId = 1; // Set the kioskId here
+
+        fetch(`/api/kiosk/${kioskId}/change-url`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                '_method':'put'
+                // Add any additional headers if needed
+            },
+            body: JSON.stringify({ url: newUrl })
+        })
+            .then(response => {
+                if (response.ok) {
+                    // Update the UI here if the request was successful
+                    console.log('Video URL changed successfully.');
+                } else {
+                    console.error('Failed to change video URL.');
+                }
+            })
+            .catch(error => {
+                console.error('An error occurred:', error);
+            });
+    }
+</script>
+
+<!-- Include Bootstrap 5 JavaScript via CDN -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>
