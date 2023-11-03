@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -1510,8 +1511,7 @@
                         else
                             carouselCats.next();
                     }, 5000);
-                    // Remove the event listener so the code runs only once
-                    document.removeEventListener('init', arguments.callee);
+
                 });
             </script>
 
@@ -2088,6 +2088,7 @@
                     //     page.querySelector('div class="ons-toolbar navbar" .center').innerHTML = page.data.title;
                     // }
 
+                    
                     // filter-badge active on click
                     const filterBadges = document.querySelectorAll('.filter-badge');
 
@@ -2132,9 +2133,6 @@
                         else
                             carouselCats.next();
                     }, 5000);
-
-                    // Remove the event listener so the code runs only once
-                    document.removeEventListener('init', arguments.callee);
                 });
             </script>
         </ons-page>
@@ -2204,7 +2202,7 @@
                             <ons-carousel-item class="carousel-item">
                                 <img src="assets/img/Ring-1.png" alt="" style="width: 100%;">
                                 <video class="video-main" autoplay loop muted style="width: 100%; display: none;"
-                                    src="assets/video/R_PTRG00451-PA1163%20(30CT).mp4" type="video/mp4">
+                                    src="assets/video/sample-ring-1.mp4" type="video/mp4">
                                 </video>
                                 <div class="fullscreen-btn">
                                     <img src="assets/img/video-play-icon.png" alt="video-play-icon"
@@ -2347,20 +2345,10 @@
                 var carouselTest;
                 var btnFullscreen;
                 var videoEle;
-                var videoEle2;
                 var reqUrl;
                 var kioskId;
 
-                document.addEventListener("DOMContentLoaded", (event) => {
-                    console.log("DOM fully loaded and parsed");
-                });
-
                 document.addEventListener('init', function (event) {
-
-                    console.log('product page init')
-                    videoEle2 = document.querySelector('.video-main');
-                    reqUrl = videoEle2.src;
-                    changeVideoUrl(reqUrl);
 
                     carouselTest = document.getElementById('carousel-test');
 
@@ -2391,7 +2379,7 @@
                         });
                     });
 
-                    // select Size active on click
+                    // select Diamond active on click
                     const selectSize = document.querySelector('.select-size .customization-data').querySelectorAll('div');
                     selectSize.forEach(function (option) {
                         option.addEventListener('click', function () {
@@ -2426,14 +2414,13 @@
                     };
 
                     btnFullscreen = document.querySelector(".fullscreen-btn");
-                    // reqUrl = 'https://cdn.pixabay.com/vimeo/662525710/winter-103361.mp4?width=1280&hash=31cbab7161d5acac4854d54b362494edf76fd68c';
+                    // reqUrl = 'https://metaverse.tech2edge.co/diyora-kiosk-sim/assets/video/sample-ring-1.mp4';
+
 
                     btnFullscreen.addEventListener("click", function () {
                         videoEle = document.querySelector('.video-main');
                         videoEle.style.display = "block";
                         enterFullScreen(videoEle);
-                        // console.log(videoEle.src, "this is source attribute");
-                        // reqUrl = videoEle.src;
                         // changeVideoUrl(reqUrl);
                     });
 
@@ -2446,36 +2433,40 @@
                         }
                     });
 
-                    // video request ajax
-                    function changeVideoUrl(newUrl) {
-                        kioskId = 1; // Set the kioskId here
-
-                        fetch(`https://t2esamples.online/api/kiosk/${kioskId}/change-url`, {
-                            method: 'PUT',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/json',
-                                '_method': 'put'
-                                // Add any additional headers if needed
-                            },
-                            body: JSON.stringify({ url: newUrl })
-                        })
-                            .then(response => {
-                                if (response.ok) {
-                                    // Update the UI here if the request was successful
-                                    console.log('Video URL changed successfully.');
-                                } else {
-                                    console.error('Failed to change video URL.');
-                                }
-                            })
-                            .catch(error => {
-                                console.error('An error occurred:', error);
-                            });
-                    }
-
-                    // Remove the event listener so the code runs only once
-                    document.removeEventListener('init', arguments.callee);
                 });
+
+                reqUrl = 'https://metaverse.tech2edge.co/diyora-kiosk-sim/assets/video/sample-ring-1.mp4';
+
+                setTimeout(function(){
+                    changeVideoUrl(reqUrl);
+                }, 100);
+
+                // video request ajax
+                function changeVideoUrl(newUrl) {
+                    kioskId = 1; // Set the kioskId here
+
+                    fetch(`https://t2esamples.online/api/kiosk/${kioskId}/change-url`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                            '_method': 'put'
+                            // Add any additional headers if needed
+                        },
+                        body: JSON.stringify({ url: newUrl })
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                // Update the UI here if the request was successful
+                                console.log('Video URL changed successfully.');
+                            } else {
+                                console.error('Failed to change video URL.');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('An error occurred:', error);
+                        });
+                }
 
                 function setActiveItem(index) {
                     carouselTest.setActiveIndex(index);
@@ -2792,9 +2783,9 @@
                                             <p class="product-name">
                                                 3-Hook Prong Solitaire
                                             </p>
-                                            <p class="product-description-value">
+                                            <div class="product-description-value">
                                                 Studsin Sterling Silver | Diamond 7.5mm
-                                            </p>
+                                            </div>
                                         </div>
                                         <div class="remove-right">
                                             <p>Remove</p>
@@ -2837,293 +2828,6 @@
                                 <div class="bg-light-purple feature-tag">
                                     <div class="selected-size">
                                         Size12
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bottom-row subtotal">
-                                <p class="cart-subtotal-subheading">Sub-Total:</p>
-                                <p class="cart-subtotal-value">₹106,846</p>
-                            </div>
-
-
-
-                        </div>
-                    </div>
-                    <div class="cart-product">
-                        <div class="product-inside">
-
-                            <div class="top-row product-description">
-                                <div class="product-img">
-                                    <img src="assets/img/cart-product-resized.png" alt="">
-                                </div>
-                                <div class="product-description-content">
-                                    <div class="name-and-remove">
-                                        <div class="name-left">
-                                            <p class="product-name">
-                                                3-Hook Prong Solitaire
-                                            </p>
-                                            <p class="product-description-value">
-                                                Studsin Sterling Silver | Diamond 7.5mm
-                                            </p>
-                                        </div>
-                                        <div class="remove-right">
-                                            <p>Remove</p>
-                                        </div>
-                                    </div>
-                                    <div class="price-and-quantity">
-                                        <div class="product-price">
-                                            <p>₹53,423</p>
-                                        </div>
-                                        <div class="cart-quantity">
-                                            <div class="minus-icon">
-                                                <div class="icon-img">
-                                                    <img src="assets/img/minus-icon.svg" alt="minus-icon">
-                                                </div>
-                                            </div>
-                                            <div class="cart-value">
-                                                2
-                                            </div>
-                                            <div class="plus-icon">
-                                                <div class="icon-img">
-                                                    <img src="assets/img/plus-icon.svg" alt="plus-icon">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="middle-row product-features">
-                                <div class="bg-rose-gold-light feature-tag">
-                                    <div class="metal-name">
-                                        18kt Rose Gold
-                                    </div>
-                                </div>
-                                <div class="bg-sky-blue feature-tag">
-                                    <div class="diamond-name">
-                                        VVS EF
-                                    </div>
-                                </div>
-                                <div class="bg-light-purple feature-tag">
-                                    <div class="selected-size">
-                                        Size12
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bottom-row subtotal d-none">
-                                <p class="cart-subtotal-subheading">Sub-Total:</p>
-                                <p class="cart-subtotal-value">₹106,846</p>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="cart-product">
-                        <div class="product-inside">
-
-                            <div class="top-row product-description">
-                                <div class="product-img">
-                                    <img src="assets/img/cart-product-resized.png" alt="">
-                                </div>
-                                <div class="product-description-content">
-                                    <div class="name-and-remove">
-                                        <div class="name-left">
-                                            <p class="product-name">
-                                                3-Hook Prong Solitaire
-                                            </p>
-                                            <p class="product-description-value">
-                                                Studsin Sterling Silver | Diamond 7.5mm
-                                            </p>
-                                        </div>
-                                        <div class="remove-right">
-                                            <p>Remove</p>
-                                        </div>
-                                    </div>
-                                    <div class="price-and-quantity">
-                                        <div class="product-price">
-                                            <p>₹53,423</p>
-                                        </div>
-                                        <div class="cart-quantity">
-                                            <div class="minus-icon">
-                                                <div class="icon-img">
-                                                    <img src="assets/img/minus-icon.svg" alt="minus-icon">
-                                                </div>
-                                            </div>
-                                            <div class="cart-value">
-                                                2
-                                            </div>
-                                            <div class="plus-icon">
-                                                <div class="icon-img">
-                                                    <img src="assets/img/plus-icon.svg" alt="plus-icon">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="middle-row product-features">
-                                <div class="bg-rose-gold-light feature-tag">
-                                    <div class="metal-name">
-                                        18kt Rose Gold
-                                    </div>
-                                </div>
-                                <div class="bg-sky-blue feature-tag">
-                                    <div class="diamond-name">
-                                        VVS EF
-                                    </div>
-                                </div>
-                                <div class="bg-light-purple feature-tag">
-                                    <div class="selected-size">
-                                        Size12
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bottom-row subtotal d-none">
-                                <p class="cart-subtotal-subheading">Sub-Total:</p>
-                                <p class="cart-subtotal-value">₹106,846</p>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="cart-product">
-                        <div class="product-inside">
-
-                            <div class="top-row product-description">
-                                <div class="product-img">
-                                    <img src="assets/img/cart-product-resized.png" alt="">
-                                </div>
-                                <div class="product-description-content">
-                                    <div class="name-and-remove">
-                                        <div class="name-left">
-                                            <p class="product-name">
-                                                3-Hook Prong Solitaire
-                                            </p>
-                                            <p class="product-description-value">
-                                                Studsin Sterling Silver | Diamond 7.5mm
-                                            </p>
-                                        </div>
-                                        <div class="remove-right">
-                                            <p>Remove</p>
-                                        </div>
-                                    </div>
-                                    <div class="price-and-quantity">
-                                        <div class="product-price">
-                                            <p>₹53,423</p>
-                                        </div>
-                                        <div class="cart-quantity">
-                                            <div class="minus-icon">
-                                                <div class="icon-img">
-                                                    <img src="assets/img/minus-icon.svg" alt="minus-icon">
-                                                </div>
-                                            </div>
-                                            <div class="cart-value">
-                                                2
-                                            </div>
-                                            <div class="plus-icon">
-                                                <div class="icon-img">
-                                                    <img src="assets/img/plus-icon.svg" alt="plus-icon">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="middle-row product-features">
-                                <div class="bg-rose-gold-light feature-tag">
-                                    <div class="metal-name">
-                                        18kt Rose Gold
-                                    </div>
-                                </div>
-                                <div class="bg-sky-blue feature-tag">
-                                    <div class="diamond-name">
-                                        VVS EF
-                                    </div>
-                                </div>
-                                <div class="bg-light-purple feature-tag">
-                                    <div class="selected-size">
-                                        Size12
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bottom-row subtotal d-none">
-                                <p class="cart-subtotal-subheading">Sub-Total:</p>
-                                <p class="cart-subtotal-value">₹106,846</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Total cart value box -->
-                <div class="cart-total-box">
-                    <div class="transparent-white-gradient-box">
-                    </div>
-                    <div class="total-amount-row">
-                        <p class="total-heading">Total</p>
-                        <p class="total-amount">₹5,34,535</p>
-                    </div>
-                    <div class="cart-buttons" style="background: transparent;">
-                        <div class="cart-btn enquire-btn">
-                            <img src="assets/img/bell-ring.svg" alt="bell">
-                            <div class="btn-font">
-                                Enquire
-                            </div>
-                        </div>
-                        <div class="cart-btn active place-order-btn">
-                            <div class="btn-font">
-                                Place Order
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- close btn -->
-                <div class="close-modal-btn">
-                    <img src="assets/img/cross-close-modal.svg" alt="">
-                </div>
-            </div>
-        </div>
-    </ons-modal>
-
-    <!-- wishlist modal // copy of cart modal -->
-    <ons-modal class="modal-cart modal-wishlist" direction="up">
-        <div class="cart-visible-area">
-            <div class="cart-rectangle">
-                <div class="cart-heading">
-                    <!-- <img src="assets/img/emoji-celebrating-to-right.svg" alt="celebration"> -->
-                    <p>Your Cart</p>
-                    <!-- <img src="assets/img/emoji-celebrating-to-left.svg" alt="celebration"> -->
-                </div>
-                <!-- cart-product-wrapper -->
-                <div class="cart-product-wrapper">
-                    <div class="cart-product">
-                        <div class="product-inside">
-                            <div class="top-row product-description">
-                                <div class="product-img">
-                                    <img src="assets/img/cart-product-resized.png" alt="">
-                                </div>
-                                <div class="product-description-content">
-                                    <div class="name-and-remove">
-                                        <div class="name-left">
-                                            <p class="product-name">
-                                                3-Hook Prong Solitaire
-                                            </p>
-                                            <p class="product-description-value">
-                                                Studsin Sterling Silver | Diamond 7.5mm
-                                            </p>
-                                        </div>
-                                        <div class="remove-right">
-                                            <p>Remove</p>
-                                        </div>
-                                    </div>
-                                    <div class="price-and-quantity">
-                                        <div class="product-price">
-                                            <p>₹53,423</p>
-                                        </div>
-                                        
                                     </div>
                                 </div>
                             </div>
