@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -2088,7 +2087,7 @@
                     //     page.querySelector('div class="ons-toolbar navbar" .center').innerHTML = page.data.title;
                     // }
 
-                    
+
                     // filter-badge active on click
                     const filterBadges = document.querySelectorAll('.filter-badge');
 
@@ -2437,7 +2436,7 @@
 
                 reqUrl = 'https://metaverse.tech2edge.co/diyora-kiosk-sim/assets/video/sample-ring-1.mp4';
 
-                setTimeout(function(){
+                setTimeout(function () {
                     changeVideoUrl(reqUrl);
                 }, 100);
 
@@ -2640,7 +2639,7 @@
                 </div>
             </div>
             <!-- added to cart modal -->
-            <ons-modal class="modal-added-to-cart" direction="up">
+            <ons-modal animation="fade" animation-options="{duration: 0.2, delay: 0, timing: 'ease-in'}" class="modal-added-to-cart" direction="up">
                 <div class="cart-visible-area">
                     <div class="cart-rectangle">
                         <div class="cart-image-top">
@@ -2673,43 +2672,12 @@
                 </div>
             </ons-modal>
 
-            <!-- modal for enquiry -->
-            <ons-modal class="modal-added-to-cart modal-enquiry" direction="up">
-                <div class="cart-visible-area">
-                    <div class="cart-rectangle">
-                        <div class="cart-image-top">
-                            <img src="assets/img/enquiry-modal.png" alt="">
-                        </div>
-                        <div class="cart-heading">
-                            <p>Personal Specialist Notified</p>
-                        </div>
-                        <div class="cart-content">
-                            <p>Assistance has been notified. They will attend to your needs shortly to assist
-                                with your
-                                purchase.</p>
-                        </div>
-                        <div class="cart-buttons">
-                            <div onclick="showCart()" class="add-more-btn cart-btn">
-                                <div class="btn-font">Your Cart</div>
-                            </div>
-                            <div class="enquire-again-btn cart-btn btn-green">
-                                <img src="assets/img/bell-ring.svg" alt="bell">
-                                <div class="btn-font">
-                                    Enquire Again
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- close btn -->
-                        <div class="close-modal-btn-3 for-enquiry-modal">
-                            <img src="assets/img/cross-close-modal.svg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </ons-modal>
             <script>
                 // make active
                 // Get references to the elements
+                var allModals = document.querySelectorAll('ons-modal'); // Selected all modals
+
                 var audio = new Audio('assets/ringing-bell.mp3'); // Replace 'bell.mp3' with the path to your audio file
 
                 var goldQualityDiv = document.querySelector('.gold-quality');
@@ -2732,6 +2700,10 @@
                     var modalAddedToCart = document.querySelector('ons-modal.modal-added-to-cart');
                     var closeModalButton = document.querySelector('.close-modal-btn-2.for-added-to-cart-modal');
                     var addMoreBtn = document.querySelector('.modal-added-to-cart .add-more-btn');
+                    // close all modals before showing cart
+                    allModals.forEach((eachModal) => {
+                        eachModal.hide();
+                    })
                     modalAddedToCart.show();
                     addMoreBtn.addEventListener('click', () => {
                         modalAddedToCart.hide();
@@ -2741,27 +2713,27 @@
                     })
                 }
 
-                function showEnquiryCart() {
-                    var modalEnquiry = document.querySelector('ons-modal.modal-added-to-cart.modal-enquiry');
-                    var closeModalButton = document.querySelector('.close-modal-btn-3.for-enquiry-modal');
-                    var enquireAgainBtn = document.querySelector('.enquire-again-btn');
-                    // Play the audio
-                    audio.play();
-                    modalEnquiry.show();
-                    enquireAgainBtn.addEventListener('click', () => {
-                        modalEnquiry.hide();
-                    })
-                    closeModalButton.addEventListener('click', () => {
-                        modalEnquiry.hide();
-                    })
-                }
+                // function showEnquiryCart() {
+                //     var modalEnquiry = document.querySelector('ons-modal.modal-added-to-cart.modal-enquiry');
+                //     var closeModalButton = document.querySelector('.close-modal-btn-3.for-enquiry-modal');
+                //     var enquireAgainBtn = document.querySelector('.enquire-again-btn');
+                //     // Play the audio
+                //     audio.play();
+                //     modalEnquiry.show();
+                //     enquireAgainBtn.addEventListener('click', () => {
+                //         modalEnquiry.hide();
+                //     })
+                //     closeModalButton.addEventListener('click', () => {
+                //         modalEnquiry.hide();
+                //     })
+                // }
             </script>
         </ons-page>
     </template>
 
 
     <!-- cart modal -->
-    <ons-modal class="modal-cart" direction="up">
+    <ons-modal cancelable="true" animation="fade" animation-options="{duration: 0.2, delay: 0, timing: 'ease-in'}" class="modal-cart" direction="up">
         <div class="cart-visible-area">
             <div class="cart-rectangle">
                 <div class="cart-heading">
@@ -3058,7 +3030,7 @@
                         <p class="total-amount">₹5,34,535</p>
                     </div>
                     <div class="cart-buttons" style="background: transparent;">
-                        <div class="cart-btn enquire-btn">
+                        <div onclick="showEnquiryCart()" class="cart-btn enquire-btn">
                             <img src="assets/img/bell-ring.svg" alt="bell">
                             <div class="btn-font">
                                 Enquire
@@ -3078,13 +3050,72 @@
             </div>
         </div>
     </ons-modal>
+
+    <!-- modal for enquiry -->
+    <ons-modal animation="fade" animation-options="{duration: 0.1, delay: 0, timing: 'ease-in'}" class="modal-added-to-cart modal-enquiry" direction="up">
+        <div class="cart-visible-area">
+            <div class="cart-rectangle">
+                <div class="cart-image-top">
+                    <img src="assets/img/enquiry-modal.png" alt="">
+                </div>
+                <div class="cart-heading">
+                    <p>Personal Specialist Notified</p>
+                </div>
+                <div class="cart-content">
+                    <p>Assistance has been notified. They will attend to your needs shortly to assist
+                        with your
+                        purchase.</p>
+                </div>
+                <div class="cart-buttons">
+                    <div onclick="showCart()" class="add-more-btn cart-btn">
+                        <div class="btn-font">Your Cart</div>
+                    </div>
+                    <div class="enquire-again-btn cart-btn btn-green">
+                        <img src="assets/img/bell-ring.svg" alt="bell">
+                        <div class="btn-font">
+                            Enquire Again
+                        </div>
+                    </div>
+                </div>
+                <!-- close btn -->
+                <div class="close-modal-btn-3 for-enquiry-modal">
+                    <img src="assets/img/cross-close-modal.svg" alt="">
+                </div>
+            </div>
+        </div>
+    </ons-modal>
     <script>
+        var audio = new Audio('assets/ringing-bell.mp3'); // Replace 'bell.mp3' with the path to your audio file
+        var allModals = document.querySelectorAll('ons-modal'); // Selected all modals
+
         function showCart() {
-            var modal = document.querySelector('ons-modal.modal-cart');
+            var modalCart = document.querySelector('ons-modal.modal-cart');
             var closeModalButton = document.querySelector('.close-modal-btn');
-            modal.show();
+            // close all modals before showing cart
+            allModals.forEach((eachModal) => {
+                eachModal.hide();
+            })
+            modalCart.show();
             closeModalButton.addEventListener('click', () => {
-                modal.hide();
+                modalCart.hide();
+            })
+        }
+        function showEnquiryCart() {
+            var modalEnquiry = document.querySelector('ons-modal.modal-added-to-cart.modal-enquiry');
+            var closeModalButton = document.querySelector('.close-modal-btn-3.for-enquiry-modal');
+            var enquireAgainBtn = document.querySelector('.enquire-again-btn');
+            // Play the audio
+            audio.play();
+            // close all modals before showing cart
+            allModals.forEach((eachModal) => {
+                eachModal.hide();
+            })
+            modalEnquiry.show();
+            enquireAgainBtn.addEventListener('click', () => {
+                modalEnquiry.hide();
+            })
+            closeModalButton.addEventListener('click', () => {
+                modalEnquiry.hide();
             })
         }
     </script>
