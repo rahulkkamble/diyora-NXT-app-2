@@ -1095,12 +1095,14 @@ p.subheading {
     height: 137px;
     top: 0;
     bottom: 0;
+    background: -1.315px -199.574px / 100.7% 414.557% no-repeat, #D9D9D9aa;
 }
 
 .for-who-section.category-page .cards-wrapper ons-card.active .card-overlay,
 .for-who-section.category-page .cards-wrapper ons-card:active .card-overlay,
 .for-who-section.category-page .cards-wrapper ons-card:focus .card-overlay {
-    background: -1.315px -199.574px / 100.7% 414.557% no-repeat, #D9D9D9aa;
+    /* background: -1.315px -199.574px / 100.7% 414.557% no-repeat, #D9D9D9aa; */
+    background: none;
 }
 
 
