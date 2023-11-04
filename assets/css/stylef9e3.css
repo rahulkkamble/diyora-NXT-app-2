@@ -956,7 +956,7 @@ p.subheading {
 .quality-options div {
     padding: 14px 16px;
     height: 47px;
-    border-radius: 13.81px;
+    border-radius: 13.182px;
     transition: all .5s ease;
 }
 
@@ -988,7 +988,7 @@ p.subheading {
     top: 0;
     z-index: 0;
     background: #033432;
-    border-radius: 13.973px;
+    border-radius: 12.182px;
     transition: all .5s ease 0s;
 }
 
@@ -1010,7 +1010,7 @@ p.subheading {
 .quality-options .q18kt:focus~.animation-active,
 .quality-options .q18kt:active~.animation-active {
     width: 62.91px;
-    left: calc(49.75px + 61.91px);
+    left: calc(48.5px + 61.91px);
 }
 
 .quality-options div.active,
