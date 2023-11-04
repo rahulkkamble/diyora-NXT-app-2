@@ -532,8 +532,13 @@ ons-card .img-group .img {
     justify-content: center;
 }
 
-ons-card .img-group .img img {
+ons-card .img-group .img img,
+ons-card .img-group .img video {
     width: 100%;
+}
+
+ons-card .img-group .img video {
+    scale: 1.22;
 }
 
 ons-card .img-group .badges {
