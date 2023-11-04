@@ -1480,11 +1480,11 @@
                     filterBadges.forEach(function (badge) {
                         badge.addEventListener('click', function () {
                             // Remove the "active" class from all filter badges
-                            filterBadges.forEach(function (item) {
-                                item.classList.remove('active');
-                            });
+                            // filterBadges.forEach(function (item) {
+                            //     item.classList.remove('active');
+                            // });
                             // Add the "active" class to the clicked filter badge
-                            badge.classList.add('active');
+                            badge.classList.toggle('active');
                         });
                     });
 
@@ -1513,9 +1513,7 @@
 
                 });
             </script>
-
         </ons-page>
-
     </template>
 
     <!-- category gifting -->
@@ -2089,18 +2087,19 @@
 
 
                     // filter-badge active on click
-                    const filterBadges = document.querySelectorAll('.filter-badge');
+                    // ========== Repeated from category page
+                    // const filterBadges = document.querySelectorAll('.filter-badge');
 
-                    filterBadges.forEach(function (badge) {
-                        badge.addEventListener('click', function () {
-                            // Remove the "active" class from all filter badges
-                            filterBadges.forEach(function (item) {
-                                item.classList.remove('active');
-                            });
-                            // Add the "active" class to the clicked filter badge
-                            badge.classList.add('active');
-                        });
-                    });
+                    // filterBadges.forEach(function (badge) {
+                    //     badge.addEventListener('click', function () {
+                    //         // Remove the "active" class from all filter badges
+                    //         // filterBadges.forEach(function (item) {
+                    //         //     item.classList.remove('active');
+                    //         // });
+                    //         // Add the "active" class to the clicked filter badge
+                    //         badge.classList.toggle('active');
+                    //     });
+                    // });
 
                     var qualityDivCategory = document.querySelector('.quality-options');
                     var qualityElementsCategory = qualityDivCategory.querySelectorAll('.quality-options div');
