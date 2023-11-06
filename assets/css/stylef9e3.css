@@ -276,7 +276,7 @@ ons-page {
     padding: 0;
 }
 
-.header-icon .notification-number .value{
+.header-icon .notification-number .value {
     /* Typo */
     color: #000;
     text-align: center;
@@ -2120,10 +2120,33 @@ ons-back-button.remove-icon .back-button--material__label {
     line-height: normal;
 }
 
-
-
 /* temp no use carousel */
 
+/* animations */
+
+@keyframes breath {
+    0% {
+        background: rgba(255, 255, 255, 0.10);
+        backdrop-filter: blur(17.325780868530273px);
+    }
+
+    50% {
+        background: rgba(255, 255, 255, 0.50);
+        backdrop-filter: blur(71.17500305175781px);
+    }
+
+    100% {
+        background: rgba(255, 255, 255, 0.10);
+        backdrop-filter: blur(17.325780868530273px);
+    }
+}
+
+.home-category-cards.animation {
+    animation-name: breath;
+    animation-delay: 230ms;
+    animation-timing-function: ease-in-out;
+    animation-duration: 3000ms;
+}
 
 
 

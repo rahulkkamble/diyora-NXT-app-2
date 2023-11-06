@@ -537,11 +537,11 @@
                         const randomCard = cards[randomIndex];
 
                         // Add "active" class to the randomly chosen card
-                        randomCard.classList.add('active');
+                        randomCard.classList.add('animation');
 
                         setTimeout(() => {
-                            randomCard.classList.remove('active');
-                        }, 150);
+                            randomCard.classList.remove('animation');
+                        }, 3000);
                     }
 
 
@@ -1043,7 +1043,7 @@
                 <!-- left side vertical cards -->
                 <div class="left-side-category-section">
                     <div class="card-wrapper-vertical">
-                        <ons-card class="home-category-cards active">
+                        <ons-card class="home-category-cards active animation">
                             <div class="img-box pt-1-25rem pe-3">
                                 <img src="assets/img/all-earings-category.png" alt="" style="width: 180%">
                             </div>
