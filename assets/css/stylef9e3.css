@@ -476,6 +476,7 @@ ons-page {
     /* for auto scroll */
     justify-content: start;
     overflow-x: auto;
+    scroll-behavior: smooth;
 }
 
 .carousel-most-popular {
