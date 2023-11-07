@@ -1504,14 +1504,14 @@
                         });
                     });
                 });
-                
+
                 setInterval(function () {
-                        var carouselCats = document.getElementById('carousel-cats');
-                        if (carouselCats.getActiveIndex() === carouselCats.itemCount - 1)
-                            carouselCats.setActiveIndex(0);
-                        else
-                            carouselCats.next();
-                    }, 5000);
+                    var carouselCats = document.getElementById('carousel-cats');
+                    if (carouselCats.getActiveIndex() === carouselCats.itemCount - 1)
+                        carouselCats.setActiveIndex(0);
+                    else
+                        carouselCats.next();
+                }, 5000);
             </script>
         </ons-page>
     </template>
@@ -2130,16 +2130,16 @@
                             element.classList.add('active');
                         });
                     });
-                    
+
                 });
 
                 setInterval(function () {
-                        var carouselCats = document.getElementById('carousel-cats');
-                        if (carouselCats.getActiveIndex() === carouselCats.itemCount - 1)
-                            carouselCats.setActiveIndex(0);
-                        else
-                            carouselCats.next();
-                    }, 5000);
+                    var carouselCats = document.getElementById('carousel-cats');
+                    if (carouselCats.getActiveIndex() === carouselCats.itemCount - 1)
+                        carouselCats.setActiveIndex(0);
+                    else
+                        carouselCats.next();
+                }, 5000);
             </script>
         </ons-page>
     </template>
@@ -2209,14 +2209,14 @@
                                 <img src="assets/img/cart-product.png" alt="" style="width: 100%;">
                             </ons-carousel-item>
                             <ons-carousel-item class="carousel-item">
-                                <img src="assets/img/Ring-1.png" alt="" style="width: 100%;">
-                                <video class="video-main" autoplay loop muted style="width: 100%; display: none;"
+                                <!-- <img src="assets/img/Ring-1.png" alt="" style="width: 100%;"> -->
+                                <video class="video-main" autoplay loop muted style="width: 100%;"
                                     src="assets/video/sample-ring-1.mp4" type="video/mp4">
                                 </video>
-                                <div class="fullscreen-btn">
+                                <!-- <div class="fullscreen-btn">
                                     <img src="assets/img/video-play-icon.png" alt="video-play-icon"
                                         style="width: 100px;">
-                                </div>
+                                </div> -->
                             </ons-carousel-item>
                             <ons-carousel-item class="carousel-item">
                                 <img src="assets/img/cart-product.png" alt="" style="width: 100%;">
@@ -2248,7 +2248,13 @@
                             <img src="assets/img/cart-product.png" alt="" style="width: 100%;">
                         </span>
                         <span id="dot2" class="dot" onclick="setActiveItem(4);">
-                            <img src="assets/img/Ring-1.png" alt="" style="width: 100%;">
+                            <div class="varient-image-dot">
+                                <img src="assets/img/Ring-1.png" alt="" style="width: 100%;">
+                                <div class="fullscreen-btn">
+                                    <img src="assets/img/video-play-icon.png" alt="video-play-icon"
+                                        style="width: 100px;">
+                                </div>
+                            </div>
                         </span>
                         <span id="dot3" class="dot" onclick="setActiveItem(5);">
                             <img src="assets/img/cart-product.png" alt="" style="width: 100%;">
@@ -2422,16 +2428,16 @@
                         }
                     };
 
-                    btnFullscreen = document.querySelector(".fullscreen-btn");
-                    // reqUrl = 'https://metaverse.tech2edge.co/diyora-kiosk-sim/assets/video/sample-ring-1.mp4';
+                    // btnFullscreen = document.querySelector(".fullscreen-btn");
+                    // // reqUrl = 'https://metaverse.tech2edge.co/diyora-kiosk-sim/assets/video/sample-ring-1.mp4';
 
 
-                    btnFullscreen.addEventListener("click", function () {
-                        videoEle = document.querySelector('.video-main');
-                        videoEle.style.display = "block";
-                        enterFullScreen(videoEle);
-                        // changeVideoUrl(reqUrl);
-                    });
+                    // btnFullscreen.addEventListener("click", function () {
+                    //     videoEle = document.querySelector('.video-main');
+                    //     videoEle.style.display = "block";
+                    //     enterFullScreen(videoEle);
+                    //     // changeVideoUrl(reqUrl);
+                    // });
 
                     document.addEventListener('fullscreenchange', (event) => {
                         if (document.fullscreenElement) {
