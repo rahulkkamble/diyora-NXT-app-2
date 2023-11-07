@@ -465,13 +465,23 @@ ons-page {
     align-items: flex-start;
 }
 
+.carousel-most-popular .swiper-wrapper-auto-scroll{
+    width: 997px;
+    overflow: hidden;
+}
+
 .carousel-most-popular .swiper-wrapper {
     justify-content: center;
     gap: 12px;
+    /* for auto scroll */
+    justify-content: start;
+    overflow-x: auto;
 }
 
 .carousel-most-popular {
     position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 .carousel-buttons {
@@ -499,6 +509,7 @@ ons-page {
     width: 240px;
     height: 340px;
     font-size: 18px;
+    flex-shrink: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1179,7 +1190,7 @@ p.subheading {
     width: 30px;
     height: 30px;
     position: absolute;
-    top: 40%;
+    top: 35%;
     left: 40%;
     transform: translate(-50% -50%);
 }
@@ -1206,12 +1217,14 @@ p.subheading {
 }
 
 /* scrollbar invisible */
-.product-showcase .sliding-varient-images{
+.product-showcase .sliding-varient-images,
+.carousel-most-popular .swiper-wrapper{
     -ms-overflow-style: none;
     scrollbar-width: none;
     overflow: -moz-scrollbars-none;
 }
-.product-showcase .sliding-varient-images::-webkit-scrollbar {
+.product-showcase .sliding-varient-images::-webkit-scrollbar,
+.carousel-most-popular .swiper-wrapper::-webkit-scrollbar {
         display: none;
 }
 /* scrollbar invisible end */
