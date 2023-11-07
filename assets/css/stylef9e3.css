@@ -238,6 +238,8 @@ ons-page {
     align-self: center;
     display: inline-flex;
     height: 40px;
+    width: 600px;   /* later added for fixed width max 600 */
+    justify-content: center;    /* later added for center img div */
     /* padding: .25rem 0; */
 }
 

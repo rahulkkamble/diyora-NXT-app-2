@@ -29,12 +29,15 @@
             <div class="ons-toolbar navbar">
                 <div class="left"></div>
                 <div class="center">
-                    <div class="logo-imgs logo-left-img">
+                    <!-- <div class="logo-imgs logo-left-img">
                         <img src="assets/img/PTlogoresize.png" alt="pure traces logo text">
                     </div>
                     <div class="logo-font">X</div>
                     <div class="logo-imgs logo-right-img">
                         <img src="assets/img/rivalogoresized.png" alt="rivalogoresized">
+                    </div> -->
+                    <div class="logo-imgs">
+                        <img onclick="logoLink()" src="assets/img/logo-center.png" alt="logo">
                     </div>
                 </div>
                 <div class="right">
@@ -544,7 +547,6 @@
                         }, 3000);
                     }
 
-
                     // Call the function to add and remove "active" class randomly
                     setInterval(addActiveClassRandomly, 7000); // You can adjust the interval as needed
 
@@ -924,12 +926,15 @@
                     </ons-back-button>
                 </div>
                 <div class="center with-back">
-                    <div class="logo-imgs logo-left-img">
+                    <!-- <div class="logo-imgs logo-left-img">
                         <img src="assets/img/PTlogoresize.png" alt="pure traces logo text">
                     </div>
                     <div class="logo-font">X</div>
                     <div class="logo-imgs logo-right-img">
                         <img src="assets/img/rivalogoresized.png" alt="rivalogoresized">
+                    </div> -->
+                    <div class="logo-imgs">
+                        <img onclick="logoLink()" src="assets/img/logo-center.png" alt="logo">
                     </div>
                 </div>
                 <div class="right">
@@ -1460,7 +1465,6 @@
             <script>
                 document.addEventListener('init', function (event) {
                     var page = event.target;
-
                     if (page.id === 'earringCategory') {
                         page.querySelectorAll('.home-most-popular-card').forEach(element => {
                             element.onclick = function () {
@@ -1472,11 +1476,8 @@
                     // else if (page.id === 'category-earring') {
                     //     page.querySelector('div class="ons-toolbar navbar" .center').innerHTML = page.data.title;
                     // }
-
-
                     // filter-badge active on click
                     const filterBadges = document.querySelectorAll('.filter-badge');
-
                     filterBadges.forEach(function (badge) {
                         badge.addEventListener('click', function () {
                             // Remove the "active" class from all filter badges
@@ -1502,16 +1503,15 @@
                             element.classList.add('active');
                         });
                     });
-
-                    setInterval(function () {
+                });
+                
+                setInterval(function () {
                         var carouselCats = document.getElementById('carousel-cats');
                         if (carouselCats.getActiveIndex() === carouselCats.itemCount - 1)
                             carouselCats.setActiveIndex(0);
                         else
                             carouselCats.next();
                     }, 5000);
-
-                });
             </script>
         </ons-page>
     </template>
@@ -1537,12 +1537,15 @@
                     </ons-back-button>
                 </div>
                 <div class="center with-back">
-                    <div class="logo-imgs logo-left-img">
+                    <!-- <div class="logo-imgs logo-left-img">
                         <img src="assets/img/PTlogoresize.png" alt="pure traces logo text">
                     </div>
                     <div class="logo-font">X</div>
                     <div class="logo-imgs logo-right-img">
                         <img src="assets/img/rivalogoresized.png" alt="rivalogoresized">
+                    </div> -->
+                    <div class="logo-imgs">
+                        <img onclick="logoLink()" src="assets/img/logo-center.png" alt="logo">
                     </div>
                 </div>
                 <div class="right">
@@ -1896,7 +1899,8 @@
                             <ons-card class="home-most-popular-card">
                                 <div class="img-group">
                                     <div class="img">
-                                        <video autoplay loop src="./assets/video/small-ring-moving-circular.mp4"></video>
+                                        <video autoplay loop
+                                            src="./assets/video/small-ring-moving-circular.mp4"></video>
                                         <!-- <img src="assets/img/ring-popular-1-resized.png" alt="" style="width: 100%"> -->
                                     </div>
                                     <div class="badges">
@@ -2126,14 +2130,16 @@
                             element.classList.add('active');
                         });
                     });
-                    setInterval(function () {
+                    
+                });
+
+                setInterval(function () {
                         var carouselCats = document.getElementById('carousel-cats');
                         if (carouselCats.getActiveIndex() === carouselCats.itemCount - 1)
                             carouselCats.setActiveIndex(0);
                         else
                             carouselCats.next();
                     }, 5000);
-                });
             </script>
         </ons-page>
     </template>
@@ -2157,12 +2163,15 @@
                     </ons-back-button>
                 </div>
                 <div class="center with-back">
-                    <div class="logo-imgs logo-left-img">
+                    <!-- <div class="logo-imgs logo-left-img">
                         <img src="assets/img/PTlogoresize.png" alt="pure traces logo text">
                     </div>
                     <div class="logo-font">X</div>
                     <div class="logo-imgs logo-right-img">
                         <img src="assets/img/rivalogoresized.png" alt="rivalogoresized">
+                    </div> -->
+                    <div class="logo-imgs">
+                        <img onclick="logoLink()" src="assets/img/logo-center.png" alt="logo">
                     </div>
                 </div>
                 <div class="right">
@@ -2640,7 +2649,8 @@
                 </div>
             </div>
             <!-- added to cart modal -->
-            <ons-modal animation="fade" animation-options="{duration: 0.2, delay: 0, timing: 'ease-in'}" class="modal-added-to-cart" direction="up">
+            <ons-modal animation="fade" animation-options="{duration: 0.2, delay: 0, timing: 'ease-in'}"
+                class="modal-added-to-cart" direction="up">
                 <div class="cart-visible-area">
                     <div class="cart-rectangle">
                         <div class="cart-image-top">
@@ -2734,7 +2744,8 @@
 
 
     <!-- cart modal -->
-    <ons-modal cancelable="true" animation="fade" animation-options="{duration: 0.2, delay: 0, timing: 'ease-in'}" class="modal-cart" direction="up">
+    <ons-modal cancelable="true" animation="fade" animation-options="{duration: 0.2, delay: 0, timing: 'ease-in'}"
+        class="modal-cart" direction="up">
         <div class="cart-visible-area">
             <div class="cart-rectangle">
                 <div class="cart-heading">
@@ -3053,7 +3064,8 @@
     </ons-modal>
 
     <!-- modal for enquiry -->
-    <ons-modal animation="fade" animation-options="{duration: 0.1, delay: 0, timing: 'ease-in'}" class="modal-added-to-cart modal-enquiry" direction="up">
+    <ons-modal animation="fade" animation-options="{duration: 0.1, delay: 0, timing: 'ease-in'}"
+        class="modal-added-to-cart modal-enquiry" direction="up">
         <div class="cart-visible-area">
             <div class="cart-rectangle">
                 <div class="cart-image-top">
@@ -3119,6 +3131,12 @@
                 modalEnquiry.hide();
             })
         }
+        function logoLink() {
+            document.querySelector('#myNavigator').pushPage('homepage.html', { data: { title: 'Homepage' } });
+            console.log('logoLink run')
+        }
+
+
     </script>
 
 </body>
