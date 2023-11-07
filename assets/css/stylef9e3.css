@@ -1194,6 +1194,17 @@ p.subheading {
     /* margin: auto; */
 }
 
+/* scrollbar invisible */
+.product-showcase .sliding-varient-images{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow: -moz-scrollbars-none;
+}
+.product-showcase .sliding-varient-images::-webkit-scrollbar {
+        display: none;
+}
+/* scrollbar invisible end */
+
 .product-showcase .variation-carousel-buttons {
     position: absolute;
     top: 88.5%;
