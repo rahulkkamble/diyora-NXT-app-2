@@ -47,7 +47,7 @@
                             <div class="value">7</div>
                         </div>
                     </ons-button>
-                    <ons-button class="header-icon">
+                    <ons-button onclick="showWishlist(event)" class="header-icon">
                         <img src="assets/img/wishlist-heart-shape.svg" alt="wishlist-heart-shape">
                         <div class="notification-number">
                             <div class="value">3</div>
@@ -687,7 +687,7 @@
                             <div class="value">7</div>
                         </div>
                     </ons-button>
-                    <ons-button class="header-icon">
+                    <ons-button onclick="showWishlist(event)" class="header-icon">
                         <img src="assets/img/wishlist-heart-shape.svg" alt="wishlist-heart-shape">
                         <div class="notification-number">
                             <div class="value">3</div>
@@ -1299,7 +1299,7 @@
                             <div class="value">7</div>
                         </div>
                     </ons-button>
-                    <ons-button class="header-icon">
+                    <ons-button onclick="showWishlist(event)" class="header-icon">
                         <img src="assets/img/wishlist-heart-shape.svg" alt="wishlist-heart-shape">
                         <div class="notification-number">
                             <div class="value">3</div>
@@ -1935,7 +1935,7 @@
                             <div class="value">7</div>
                         </div>
                     </ons-button>
-                    <ons-button class="header-icon">
+                    <ons-button onclick="showWishlist(event)" class="header-icon">
                         <img src="assets/img/wishlist-heart-shape.svg" alt="wishlist-heart-shape">
                         <div class="notification-number">
                             <div class="value">3</div>
@@ -2406,41 +2406,6 @@
 
                 </div>
             </div>
-            <!-- added to cart modal -->
-            <ons-modal animation="fade" animation-options="{duration: 0.2, delay: 0, timing: 'ease-in'}"
-                class="modal-added-to-cart" direction="up">
-                <div class="cart-visible-area">
-                    <div class="cart-rectangle">
-                        <div class="cart-image-top">
-                            <img src="assets/img/cart-modal-added-successfully.png" alt="">
-                        </div>
-                        <div class="cart-heading">
-                            <img src="assets/img/emoji-celebrating-to-right.svg" alt="celebration">
-                            <p>Congratulations!</p>
-                            <img src="assets/img/emoji-celebrating-to-left.svg" alt="celebration">
-                        </div>
-                        <div class="cart-content">
-                            <p>Your Product has been successfully added to the cart! You can add more products
-                                or
-                                enquire the order.</p>
-                        </div>
-                        <div class="cart-buttons">
-                            <div class="add-more-btn cart-btn">
-                                <div class="btn-font">Add More</div>
-                            </div>
-                            <div onclick="showCart(event)" class="view-cart-btn cart-btn btn-green">
-                                <div class="btn-font">View Cart</div>
-                            </div>
-                        </div>
-
-                        <!-- close btn -->
-                        <div class="close-modal-btn-2 for-added-to-cart-modal">
-                            <img src="assets/img/cross-close-modal.svg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </ons-modal>
-
 
             <script>
                 // make active
@@ -2465,24 +2430,24 @@
                     });
                 });
 
-                function showAddedToCart(event) {
-                    var modalAddedToCart = document.querySelector('ons-modal.modal-added-to-cart');
-                    var closeModalButton = document.querySelector('.close-modal-btn-2.for-added-to-cart-modal');
-                    var addMoreBtn = document.querySelector('.modal-added-to-cart .add-more-btn');
-                    // close all modals before showing cart
-                    allModals.forEach((eachModal) => {
-                        eachModal.hide();
-                    })
-                    modalAddedToCart.show();
-                    addMoreBtn.addEventListener('click', () => {
-                        modalAddedToCart.hide();
-                    })
-                    closeModalButton.addEventListener('click', () => {
-                        modalAddedToCart.hide();
-                    })
-                    event.stopImmediatePropagation();
-                    hideOuter(modalAddedToCart);
-                }
+                // function showAddedToCart(event) {
+                //     var modalAddedToCart = document.querySelector('ons-modal.modal-added-to-cart');
+                //     var closeModalButton = document.querySelector('.close-modal-btn-2.for-added-to-cart-modal');
+                //     var addMoreBtn = document.querySelector('.modal-added-to-cart .add-more-btn');
+                //     // close all modals before showing cart
+                //     allModals.forEach((eachModal) => {
+                //         eachModal.hide();
+                //     })
+                //     modalAddedToCart.show();
+                //     addMoreBtn.addEventListener('click', () => {
+                //         modalAddedToCart.hide();
+                //     })
+                //     closeModalButton.addEventListener('click', () => {
+                //         modalAddedToCart.hide();
+                //     })
+                //     event.stopImmediatePropagation();
+                //     hideOuter(modalAddedToCart);
+                // }
 
                 // function showEnquiryCart() {
                 //     var modalEnquiry = document.querySelector('ons-modal.modal-added-to-cart.modal-enquiry');
@@ -2823,6 +2788,236 @@
         </div>
     </ons-modal>
 
+    <!-- wishlist-modal -->
+    <ons-modal cancelable="true" animation="fade" animation-options="{duration: 0.2, delay: 0, timing: 'ease-in'}"
+        class="modal-cart modal-wishlist" direction="up">
+        <div class="cart-visible-area">
+            <div class="cart-rectangle">
+                <div class="cart-heading">
+                    <img src="assets/img/sparkle.svg" alt="celebration">
+                    <p>Liked Products</p>
+                    <img src="assets/img/sparkle.svg" alt="celebration">
+                </div>
+                <!-- cart-product-wrapper -->
+                <div class="cart-product-wrapper">
+                    <div class="cart-product">
+                        <div class="product-inside">
+                            <div class="top-row product-description">
+                                <div class="product-img">
+                                    <img src="assets/img/cart-product-resized.png" alt="">
+                                </div>
+                                <div class="product-description-content">
+                                    <div class="name-and-remove">
+                                        <div class="name-left">
+                                            <p class="product-name">
+                                                3-Hook Prong Solitaire
+                                            </p>
+                                            <p class="product-description-value">
+                                                Studsin Sterling Silver | Diamond 7.5mm
+                                            </p>
+                                        </div>
+                                        <div class="remove-right">
+                                            <p>Remove</p>
+                                        </div>
+                                    </div>
+                                    <div class="price-and-quantity">
+                                        <div class="product-price">
+                                            <p>₹53,423</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cart-buttons">
+                                <div onclick="showEnquiryCart(event)" class="add-more-btn cart-btn">
+                                    <img src="assets/img/bell-ring.svg" alt="trolley">
+                                    <div class="btn-font">
+                                        Enquire
+                                    </div>
+                                </div>
+                                <div onclick="showAddedToCart(event)" class="cart-btn btn-green">
+                                    <img src="assets/img/cart-trolley.svg" alt="trolley">
+                                    <div class="btn-font">
+                                        Add to Cart
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cart-product">
+                        <div class="product-inside">
+                            <div class="top-row product-description">
+                                <div class="product-img">
+                                    <img src="assets/img/cart-product-resized.png" alt="">
+                                </div>
+                                <div class="product-description-content">
+                                    <div class="name-and-remove">
+                                        <div class="name-left">
+                                            <p class="product-name">
+                                                3-Hook Prong Solitaire
+                                            </p>
+                                            <p class="product-description-value">
+                                                Studsin Sterling Silver | Diamond 7.5mm
+                                            </p>
+                                        </div>
+                                        <div class="remove-right">
+                                            <p>Remove</p>
+                                        </div>
+                                    </div>
+                                    <div class="price-and-quantity">
+                                        <div class="product-price">
+                                            <p>₹53,423</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cart-buttons">
+                                <div onclick="showEnquiryCart(event)" class="add-more-btn cart-btn">
+                                    <img src="assets/img/bell-ring.svg" alt="trolley">
+                                    <div class="btn-font">
+                                        Enquire
+                                    </div>
+                                </div>
+                                <div onclick="showAddedToCart(event)" class=" cart-btn btn-green">
+                                    <img src="assets/img/cart-trolley.svg" alt="trolley">
+                                    <div class="btn-font">
+                                        Add to Cart
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cart-product">
+                        <div class="product-inside">
+                            <div class="top-row product-description">
+                                <div class="product-img">
+                                    <img src="assets/img/cart-product-resized.png" alt="">
+                                </div>
+                                <div class="product-description-content">
+                                    <div class="name-and-remove">
+                                        <div class="name-left">
+                                            <p class="product-name">
+                                                3-Hook Prong Solitaire
+                                            </p>
+                                            <p class="product-description-value">
+                                                Studsin Sterling Silver | Diamond 7.5mm
+                                            </p>
+                                        </div>
+                                        <div class="remove-right">
+                                            <p>Remove</p>
+                                        </div>
+                                    </div>
+                                    <div class="price-and-quantity">
+                                        <div class="product-price">
+                                            <p>₹53,423</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cart-buttons">
+                                <div onclick="showEnquiryCart(event)" class="add-more-btn cart-btn">
+                                    <img src="assets/img/bell-ring.svg" alt="trolley">
+                                    <div class="btn-font">
+                                        Enquire
+                                    </div>
+                                </div>
+                                <div onclick="showAddedToCart(event)" class="cart-btn btn-green">
+                                    <img src="assets/img/cart-trolley.svg" alt="trolley">
+                                    <div class="btn-font">
+                                        Add to Cart
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cart-product">
+                        <div class="product-inside">
+                            <div class="top-row product-description">
+                                <div class="product-img">
+                                    <img src="assets/img/cart-product-resized.png" alt="">
+                                </div>
+                                <div class="product-description-content">
+                                    <div class="name-and-remove">
+                                        <div class="name-left">
+                                            <p class="product-name">
+                                                3-Hook Prong Solitaire
+                                            </p>
+                                            <p class="product-description-value">
+                                                Studsin Sterling Silver | Diamond 7.5mm
+                                            </p>
+                                        </div>
+                                        <div class="remove-right">
+                                            <p>Remove</p>
+                                        </div>
+                                    </div>
+                                    <div class="price-and-quantity">
+                                        <div class="product-price">
+                                            <p>₹53,423</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cart-buttons">
+                                <div onclick="showEnquiryCart(event)" class="add-more-btn cart-btn">
+                                    <img src="assets/img/bell-ring.svg" alt="trolley">
+                                    <div class="btn-font">
+                                        Enquire
+                                    </div>
+                                </div>
+                                <div onclick="showAddedToCart(event)" class="cart-btn btn-green">
+                                    <img src="assets/img/cart-trolley.svg" alt="trolley">
+                                    <div class="btn-font">
+                                        Add to Cart
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Total cart value box -->
+                <!-- close btn -->
+                <div class="close-modal-btn close-modal-btn-4 for-wishlist-modal">
+                    <img src="assets/img/cross-close-modal.svg" alt="">
+                </div>
+            </div>
+        </div>
+    </ons-modal>
+
+    <!-- added to cart modal -->
+    <ons-modal animation="fade" animation-options="{duration: 0.2, delay: 0, timing: 'ease-in'}"
+        class="modal-added-to-cart" direction="up">
+        <div class="cart-visible-area">
+            <div class="cart-rectangle">
+                <div class="cart-image-top">
+                    <img src="assets/img/cart-modal-added-successfully.png" alt="">
+                </div>
+                <div class="cart-heading">
+                    <img src="assets/img/emoji-celebrating-to-right.svg" alt="celebration">
+                    <p>Congratulations!</p>
+                    <img src="assets/img/emoji-celebrating-to-left.svg" alt="celebration">
+                </div>
+                <div class="cart-content">
+                    <p>Your Product has been successfully added to the cart! You can add more products
+                        or
+                        enquire the order.</p>
+                </div>
+                <div class="cart-buttons">
+                    <div class="add-more-btn cart-btn">
+                        <div class="btn-font">Add More</div>
+                    </div>
+                    <div onclick="showCart(event)" class="view-cart-btn cart-btn btn-green">
+                        <div class="btn-font">View Cart</div>
+                    </div>
+                </div>
+
+                <!-- close btn -->
+                <div class="close-modal-btn-2 for-added-to-cart-modal">
+                    <img src="assets/img/cross-close-modal.svg" alt="">
+                </div>
+            </div>
+        </div>
+    </ons-modal>
+
     <!-- modal for enquiry -->
     <ons-modal animation="fade" animation-options="{duration: 0.1, delay: 0, timing: 'ease-in'}"
         class="modal-added-to-cart modal-enquiry" direction="up">
@@ -2875,6 +3070,22 @@
             event.stopImmediatePropagation();
             hideOuter(modalCart);
         }
+
+        function showWishlist(event) {
+            var modalWishlist = document.querySelector('ons-modal.modal-wishlist');
+            var closeModalButton4 = document.querySelector('.close-modal-btn-4.for-wishlist-modal');
+            // close all modals before showing cart
+            allModals.forEach((eachModal) => {
+                eachModal.hide();
+            })
+            modalWishlist.show();
+            closeModalButton4.addEventListener('click', () => {
+                modalWishlist.hide();
+            })
+            event.stopImmediatePropagation();
+            hideOuter(modalWishlist);
+        }
+
         function showEnquiryCart(event) {
             event.stopImmediatePropagation();
             var modalEnquiry = document.querySelector('ons-modal.modal-added-to-cart.modal-enquiry');
@@ -2932,6 +3143,25 @@
                 modalEnq.hide();
                 modalEnq.removeEventListener('click', handleOuterClose);
             }
+        }
+
+        function showAddedToCart(event) {
+            var modalAddedToCart = document.querySelector('ons-modal.modal-added-to-cart');
+            var closeModalButton = document.querySelector('.close-modal-btn-2.for-added-to-cart-modal');
+            var addMoreBtn = document.querySelector('.modal-added-to-cart .add-more-btn');
+            // close all modals before showing cart
+            allModals.forEach((eachModal) => {
+                eachModal.hide();
+            })
+            modalAddedToCart.show();
+            addMoreBtn.addEventListener('click', () => {
+                modalAddedToCart.hide();
+            })
+            closeModalButton.addEventListener('click', () => {
+                modalAddedToCart.hide();
+            })
+            event.stopImmediatePropagation();
+            hideOuter(modalAddedToCart);
         }
 
         // });
