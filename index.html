@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div class="right">
-                    <ons-button onclick="showCart()" class="header-icon">
+                    <ons-button onclick="showCart(event)" class="header-icon">
                         <img src="assets/img/cart-trolley-shape.svg" alt="cart-trolley-shape">
                         <div class="notification-number">
                             <div class="value">7</div>
@@ -451,7 +451,7 @@
                     </ons-carousel> -->
 
                     <div class="carousel-buttons">
-                        <div class="btn-prev" onclick="prev()">
+                        <div class="btn-prev" onclick="prevScroll2()">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="70" viewBox="0 0 30 70"
                                 fill="none">
                                 <path d="M0 0H20C25.5228 0 30 4.47715 30 10V60C30 65.5229 25.5228 70 20 70H0V0Z"
@@ -461,7 +461,7 @@
                                     fill="#A6A6A6" />
                             </svg>
                         </div>
-                        <div class="btn-next" onclick="next()">
+                        <div class="btn-next" onclick="nextScroll2()">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="70" viewBox="0 0 30 70"
                                 fill="none">
                                 <path d="M0 10C0 4.47715 4.47715 0 10 0H30V70H10C4.47715 70 0 65.5229 0 60V10Z"
@@ -537,12 +537,41 @@
                     // Call the function to add and remove "active" class randomly
                     setInterval(addActiveClassRandomly, 7000); // You can adjust the interval as needed
 
-                    // scroll animation interval
+                    // Get a reference to the element you want to scroll
+                    var scrollableSwiper = document.querySelector(".swiper-wrapper");
+                    function smoothScroll(element, targetScrollLeft, duration) {
+                        var start = element.scrollLeft;
+                        var startTime = performance.now();
+                        var endTime = startTime + duration;
+                        function scroll() {
+                            var currentTime = performance.now();
+                            var timeFraction = (currentTime - startTime) / duration;
+                            if (timeFraction > 1) timeFraction = 1;
+                            element.scrollLeft = start + (targetScrollLeft - start) * timeFraction;
+                            if (timeFraction < 1) {
+                                requestAnimationFrame(scroll);
+                            }
+                        }
+                        requestAnimationFrame(scroll);
+                    }
+
+                    function prevScroll2() {
+                        var targetScrollLeft = scrollableSwiper.scrollLeft - 252; // Scroll left by 100 pixels
+                        var duration = 100; // Adjust the duration as needed (in milliseconds)
+                        smoothScroll(scrollableSwiper, targetScrollLeft, duration);
+                    }
+
+                    function nextScroll2() {
+                        var targetScrollLeft = scrollableSwiper.scrollLeft + 252; // Scroll right by 100 pixels
+                        var duration = 100; // Adjust the duration as needed (in milliseconds)
+                        smoothScroll(scrollableSwiper, targetScrollLeft, duration);
+                    }
+
+                    // scroll animation interval // in process
                     function animateScroll(scrollableDiv, targetPosition, duration) {
                         const startTime = performance.now();
                         const startPosition = scrollableDiv.scrollLeft;
                         const easeInOutQuad = t => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t);
-
                         function scrollStep(timestamp) {
                             const currentTime = timestamp - startTime;
                             if (currentTime < duration) {
@@ -552,23 +581,22 @@
                                 scrollableDiv.scrollLeft = targetPosition;
                             }
                         }
-
                         requestAnimationFrame(scrollStep);
                     }
-
+                    let m = null;
                     function scrollAnimation() {
+                        if (m) return;
                         const scrollableDiv = document.querySelector(".swiper-wrapper");
-                        animateScroll(scrollableDiv, 200, 2000); // Scroll 200px to the right with ease-in-out animation
-                        setTimeout(() => {
-                            animateScroll(scrollableDiv, 0, 2000); // Scroll back to 0 position with ease-in-out animation
+                        animateScroll(scrollableDiv, 200, 1000); // Scroll 200px to the right with ease-in-out animation
+                        m = setTimeout(() => {
+                            animateScroll(scrollableDiv, 0, 1000); // Scroll back to 0 position with ease-in-out animation
+                            m = null;
                         }, 2000);
                     }
-
                     function startScrollAnimation() {
                         scrollAnimation();
                         setInterval(scrollAnimation, 7000);
                     }
-
                     startScrollAnimation();
 
                 </script>
@@ -653,7 +681,7 @@
                     </div>
                 </div>
                 <div class="right">
-                    <ons-button onclick="showCart()" class="header-icon">
+                    <ons-button onclick="showCart(event)" class="header-icon">
                         <img src="assets/img/cart-trolley-shape.svg" alt="cart-trolley-shape">
                         <div class="notification-number">
                             <div class="value">7</div>
@@ -1201,6 +1229,7 @@
                             // });
                             // Add the "active" class to the clicked filter badge
                             badge.classList.toggle('active');
+                            console.log('toggle hit');
                         });
                     });
 
@@ -1264,7 +1293,7 @@
                     </div>
                 </div>
                 <div class="right">
-                    <ons-button onclick="showCart()" class="header-icon">
+                    <ons-button onclick="showCart(event)" class="header-icon">
                         <img src="assets/img/cart-trolley-shape.svg" alt="cart-trolley-shape">
                         <div class="notification-number">
                             <div class="value">7</div>
@@ -1802,52 +1831,62 @@
                             };
                         });
                     }
-                    // else if (page.id === 'category-earring') {
-                    //     page.querySelector('div class="ons-toolbar navbar" .center').innerHTML = page.data.title;
-                    // }
-
-
-                    // filter-badge active on click
-                    // ========== Repeated from category page
-                    // const filterBadges = document.querySelectorAll('.filter-badge');
-
-                    // filterBadges.forEach(function (badge) {
-                    //     badge.addEventListener('click', function () {
-                    //         // Remove the "active" class from all filter badges
-                    //         // filterBadges.forEach(function (item) {
-                    //         //     item.classList.remove('active');
-                    //         // });
-                    //         // Add the "active" class to the clicked filter badge
-                    //         badge.classList.toggle('active');
-                    //     });
-                    // });
-
-                    var qualityDivCategory = document.querySelector('.quality-options');
-                    var qualityElementsCategory = qualityDivCategory.querySelectorAll('.quality-options div');
-                    var forWhoSectionCards = document.querySelectorAll('.for-who-section ons-card')
-                    // Add click event listeners to the elements
-                    qualityElementsCategory.forEach(element => {
-                        element.addEventListener('click', () => {
-                            // Remove the 'active' class from all quality elements
-                            qualityElementsCategory.forEach(qualityElementCat => {
-                                qualityElementCat.classList.remove('active');
-                            });
-
-                            // Add the 'active' class to the clicked element
-                            element.classList.add('active');
-                        });
-                    });
-                    forWhoSectionCards.forEach(element => {
-                        element.addEventListener('click', () => {
-                            forWhoSectionCards.forEach(forWhoSecCard => {
-                                forWhoSecCard.classList.remove('active');
-                            });
-                            element.classList.add('active');
-                        });
-                    });
-
                 });
+                // else if (page.id === 'category-earring') {
+                //     page.querySelector('div class="ons-toolbar navbar" .center').innerHTML = page.data.title;
+                // }
 
+
+                // filter-badge active on click
+                // ========== Repeated from category page
+                // const filterBadges = document.querySelectorAll('.filter-badge');
+
+                // filterBadges.forEach(function (badge) {
+                //     badge.addEventListener('click', function () {
+                //         // Remove the "active" class from all filter badges
+                //         // filterBadges.forEach(function (item) {
+                //         //     item.classList.remove('active');
+                //         // });
+                //         // Add the "active" class to the clicked filter badge
+                //         badge.classList.toggle('active');
+                //     });
+                // });
+
+                var qualityDivCategory = document.querySelector('.quality-options');
+                var qualityElementsCategory = qualityDivCategory.querySelectorAll('.quality-options div');
+                var forWhoSectionCards = document.querySelectorAll('.for-who-section ons-card');
+                const filterBadges = document.querySelectorAll('.filter-badge');
+                filterBadges.forEach(function (badge) {
+                    badge.addEventListener('click', function () {
+                        // Remove the "active" class from all filter badges
+                        // filterBadges.forEach(function (item) {
+                        //     item.classList.remove('active');
+                        // });
+                        // Add the "active" class to the clicked filter badge
+                        badge.classList.toggle('active');
+                        console.log('toggle hit');
+                    });
+                });
+                // Add click event listeners to the elements
+                qualityElementsCategory.forEach(element => {
+                    element.addEventListener('click', () => {
+                        // Remove the 'active' class from all quality elements
+                        qualityElementsCategory.forEach(qualityElementCat => {
+                            qualityElementCat.classList.remove('active');
+                        });
+
+                        // Add the 'active' class to the clicked element
+                        element.classList.add('active');
+                    });
+                });
+                forWhoSectionCards.forEach(element => {
+                    element.addEventListener('click', () => {
+                        forWhoSectionCards.forEach(forWhoSecCard => {
+                            forWhoSecCard.classList.remove('active');
+                        });
+                        element.classList.add('active');
+                    });
+                });
                 setInterval(function () {
                     var carouselCats = document.getElementById('carousel-cats');
                     if (carouselCats.getActiveIndex() === carouselCats.itemCount - 1)
@@ -1890,7 +1929,7 @@
                     </div>
                 </div>
                 <div class="right">
-                    <ons-button onclick="showCart()" class="header-icon">
+                    <ons-button onclick="showCart(event)" class="header-icon">
                         <img src="assets/img/cart-trolley-shape.svg" alt="cart-trolley-shape">
                         <div class="notification-number">
                             <div class="value">7</div>
@@ -2054,13 +2093,13 @@
                 </div>
 
                 <div class="product-buttons">
-                    <div onclick="showEnquiryCart()" class="btn-left">
+                    <div onclick="showEnquiryCart(event)" class="btn-left">
                         <img src="assets/img/bell.svg" alt="bell">
                         <div class="text-uppercase btn-font">
                             Enquire
                         </div>
                     </div>
-                    <div onclick="showAddedToCart()" class="btn-right active">
+                    <div onclick="showAddedToCart(event)" class="btn-right active">
                         <div class="text-uppercase btn-font">
                             ADD TO BAG
                         </div>
@@ -2389,7 +2428,7 @@
                             <div class="add-more-btn cart-btn">
                                 <div class="btn-font">Add More</div>
                             </div>
-                            <div onclick="showCart()" class="view-cart-btn cart-btn btn-green">
+                            <div onclick="showCart(event)" class="view-cart-btn cart-btn btn-green">
                                 <div class="btn-font">View Cart</div>
                             </div>
                         </div>
@@ -2426,7 +2465,7 @@
                     });
                 });
 
-                function showAddedToCart() {
+                function showAddedToCart(event) {
                     var modalAddedToCart = document.querySelector('ons-modal.modal-added-to-cart');
                     var closeModalButton = document.querySelector('.close-modal-btn-2.for-added-to-cart-modal');
                     var addMoreBtn = document.querySelector('.modal-added-to-cart .add-more-btn');
@@ -2441,6 +2480,8 @@
                     closeModalButton.addEventListener('click', () => {
                         modalAddedToCart.hide();
                     })
+                    event.stopImmediatePropagation();
+                    hideOuter(modalAddedToCart);
                 }
 
                 // function showEnquiryCart() {
@@ -2761,7 +2802,7 @@
                         <p class="total-amount">₹5,34,535</p>
                     </div>
                     <div class="cart-buttons" style="background: transparent;">
-                        <div onclick="showEnquiryCart()" class="cart-btn enquire-btn">
+                        <div onclick="showEnquiryCart(event)" class="cart-btn enquire-btn">
                             <img src="assets/img/bell-ring.svg" alt="bell">
                             <div class="btn-font">
                                 Enquire
@@ -2799,7 +2840,7 @@
                         purchase.</p>
                 </div>
                 <div class="cart-buttons">
-                    <div onclick="showCart()" class="add-more-btn cart-btn">
+                    <div onclick="showCart(event)" class="add-more-btn cart-btn">
                         <div class="btn-font">Your Cart</div>
                     </div>
                     <div class="enquire-again-btn cart-btn btn-green">
@@ -2820,7 +2861,7 @@
         var audio = new Audio('assets/ringing-bell.mp3'); // Replace 'bell.mp3' with the path to your audio file
         var allModals = document.querySelectorAll('ons-modal'); // Selected all modals
 
-        function showCart() {
+        function showCart(event) {
             var modalCart = document.querySelector('ons-modal.modal-cart');
             var closeModalButton = document.querySelector('.close-modal-btn');
             // close all modals before showing cart
@@ -2831,8 +2872,11 @@
             closeModalButton.addEventListener('click', () => {
                 modalCart.hide();
             })
+            event.stopImmediatePropagation();
+            hideOuter(modalCart);
         }
-        function showEnquiryCart() {
+        function showEnquiryCart(event) {
+            event.stopImmediatePropagation();
             var modalEnquiry = document.querySelector('ons-modal.modal-added-to-cart.modal-enquiry');
             var closeModalButton = document.querySelector('.close-modal-btn-3.for-enquiry-modal');
             var enquireAgainBtn = document.querySelector('.enquire-again-btn');
@@ -2843,11 +2887,27 @@
                 eachModal.hide();
             })
             modalEnquiry.show();
+            // modalEnquiry.addEventListener('click', handleOuterClose);
+            hideOuter(modalEnquiry);
+
             enquireAgainBtn.addEventListener('click', () => {
                 modalEnquiry.hide();
             })
             closeModalButton.addEventListener('click', () => {
                 modalEnquiry.hide();
+            })
+        }
+        function hideOuter(modal) {
+            const rohit = (event) => {
+                event.stopImmediatePropagation();
+                modal.hide();
+                document.body.removeEventListener("click", rohit);
+            }
+            document.body.addEventListener("click", rohit);
+            modal.querySelector(".cart-visible-area").addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                return;
             })
         }
         function logoLink() {
@@ -2860,14 +2920,20 @@
         // modalEnq.addEventListener('show', function () {
         // modalEnq.style.display = 'block';
         // Add a click event listener to the document
-        document.addEventListener('click', function (event) {
+        function handleOuterClose(event) {
+            event.stopImmediatePropagation();
+            event.preventDefault();
+
             console.log(event)
             if (event.target !== modalEnq && !modalEnq.contains(event.target) && event.target !== cartVisibleArea) {
                 // If the click is outside the cart-visible-area, hide the modal
                 console.log('target hit')
                 modalEnq.style.display = 'none';
+                modalEnq.hide();
+                modalEnq.removeEventListener('click', handleOuterClose);
             }
-        });
+        }
+
         // });
 
     </script>

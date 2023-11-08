@@ -10,6 +10,7 @@ html {
 body,
 ons-page {
     background-color: #FFF;
+    overflow-x: hidden;
 }
 
 :root {
@@ -466,13 +467,13 @@ ons-page {
 }
 
 .carousel-most-popular .swiper-wrapper-auto-scroll{
-    width: 997px;
+    width: 990px;
     overflow: hidden;
 }
 
 .carousel-most-popular .swiper-wrapper {
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
     /* for auto scroll */
     justify-content: start;
     overflow-x: auto;
@@ -922,13 +923,17 @@ p.subheading {
 
 /* right side cards section */
 .right-side-cards-section {
-    padding: 1.5rem;
-    padding-left: 2.5rem;
+    padding: 1.3rem;   /* before working 1.5rem */
+    padding-left: 2.3rem;   /* before working 2.5rem */
     background-color: #fff;
     width: 100%;
     min-height: 1440px;
-
 }
+    
+ /* for gifting-pages-only */
+ #giftingCategory .right-side-cards-section {
+    overflow-x: hidden;
+ }
 
 .filter-row {
     margin: 0 auto;
@@ -939,7 +944,7 @@ p.subheading {
     flex-wrap: wrap;
     align-items: center;
     justify-content: start;
-    gap: 8px;
+    gap: 6px;
 }
 
 .filter-row .filter-badge, .filter-row .quality-options {
@@ -1077,12 +1082,16 @@ p.subheading {
 
 .products-result .product-card-wrapper {
     padding: 0;
-    width: 252px;
+    width: 247px;   /* from 252 */
     height: 343px;
 }
 
 .products-result .product-card-wrapper .img-group {
     height: 247px;
+}
+
+.products-result .product-card-wrapper .img-group {
+    overflow: hidden;
 }
 
 /* for who section category page */
@@ -2024,6 +2033,7 @@ p.subheading {
 .cart-total-box .cart-buttons .cart-btn:focus {
     color: #fff;
     background: #05A675;
+    border: 2px solid #05A675;
 }
 
 .cart-total-box .cart-buttons .cart-btn.active .btn-font,
