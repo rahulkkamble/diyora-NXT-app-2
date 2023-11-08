@@ -478,21 +478,69 @@
                     var carousel = document.getElementById('carouselMostPopular');
                     // var carouselVariation = document.getElementById('carouselVariation');
                     // var carouselItem = document.querySelector('#carouselMostPopular ons-carousel-item');
+                    var swiperWrapper = document.querySelector('.swiper-wrapper-auto-scroll .swiper-wrapper');
+                    var animationInterval;
+                    swiperWrapper.addEventListener("scroll", () => {
+                        // This function will be triggered when the div is scrolled
+                        console.log("Div scrolled!");
+                        // You can add your custom logic here
+                        clearInterval(animationInterval);
+                    });
 
-                    // function startCarouselAnimation() {
-                    //     var carouselItem = document.querySelector('#carouselMostPopular ons-carousel-item');
-                    //     // console.log(carouselItem, "animation started");
-                    //     if (carouselItem) {
-                    //         // Set the "className" property to "carousel-item slide"
-                    //         carouselItem.className = 'slide-0';
-                    //         // Force a reflow by accessing the element's offsetWidth property
-                    //         carouselItem.offsetWidth; // This is key for triggering the CSS animation
-                    //         // Remove the "slide" class to prepare for the next animation
-                    //         carouselItem.className = 'slide-to-left';
-                    //     }
-                    // }
-                    // Set an interval to start the animation every 5 seconds (adjust as needed)
-                    // setInterval(startCarouselAnimation, 6000);
+                    function startCarouselAnimation() {
+                        var carouselItem = document.querySelectorAll('.swiper-wrapper-auto-scroll .swiper-wrapper .swiper-slide');
+                        // console.log(carouselItem, "animation started");
+                        // if (carouselItem) {
+                        carouselItem.forEach((item) => {
+                            item.classList.add('slide-to-left');
+                            setTimeout(() => {
+                                item.classList.remove('slide-to-left');
+                            }, 2000)
+                        })
+                    }
+
+                    // Set an interval to start the animation every 7 seconds (adjust as needed)
+                    document.addEventListener('init', function (event) {
+                        animationInterval = setInterval(startCarouselAnimation, 7000);
+                    })
+
+                    // added to touch left not working : temporary
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const swiperWrapper = document.querySelector('.swiper-wrapper');
+                        const swiperSlides = document.querySelectorAll('.swiper-slide');
+                        let isDragging = false;
+                        let startOffsetX, lastOffsetX;
+
+                        swiperWrapper.addEventListener('mousedown', function (e) {
+                            isDragging = true;
+                            startOffsetX = e.clientX;
+                            lastOffsetX = e.clientX;
+                            swiperWrapper.style.transition = 'none';
+                        });
+
+                        document.addEventListener('mousemove', function (e) {
+                            if (isDragging) {
+                                const offsetX = e.clientX - startOffsetX;
+                                swiperWrapper.scrollLeft += lastOffsetX - e.clientX;
+                                lastOffsetX = e.clientX;
+                            }
+                        });
+
+                        document.addEventListener('mouseup', function () {
+                            isDragging = false;
+                            swiperWrapper.style.transition = '0.3s ease'; // Add a smooth transition effect when releasing the drag
+                        });
+
+                        swiperWrapper.addEventListener('mouseleave', function () {
+                            if (isDragging) {
+                                isDragging = false;
+                                swiperWrapper.style.transition = '0.3s ease'; // Add a smooth transition effect when leaving the swiper-wrapper while dragging
+                            }
+                        });
+                    });
+                    // delete optional not working
+
+
 
                     var prev = function () {
                         carousel.prev();
@@ -567,37 +615,42 @@
                         smoothScroll(scrollableSwiper, targetScrollLeft, duration);
                     }
 
+
+
                     // scroll animation interval // in process
-                    function animateScroll(scrollableDiv, targetPosition, duration) {
-                        const startTime = performance.now();
-                        const startPosition = scrollableDiv.scrollLeft;
-                        const easeInOutQuad = t => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t);
-                        function scrollStep(timestamp) {
-                            const currentTime = timestamp - startTime;
-                            if (currentTime < duration) {
-                                scrollableDiv.scrollLeft = startPosition + (targetPosition - startPosition) * easeInOutQuad(currentTime / duration);
-                                requestAnimationFrame(scrollStep);
-                            } else {
-                                scrollableDiv.scrollLeft = targetPosition;
-                            }
-                        }
-                        requestAnimationFrame(scrollStep);
-                    }
-                    let m = null;
-                    function scrollAnimation() {
-                        if (m) return;
-                        const scrollableDiv = document.querySelector(".swiper-wrapper");
-                        animateScroll(scrollableDiv, 200, 1000); // Scroll 200px to the right with ease-in-out animation
-                        m = setTimeout(() => {
-                            animateScroll(scrollableDiv, 0, 1000); // Scroll back to 0 position with ease-in-out animation
-                            m = null;
-                        }, 2000);
-                    }
-                    function startScrollAnimation() {
-                        scrollAnimation();
-                        setInterval(scrollAnimation, 7000);
-                    }
-                    startScrollAnimation();
+                    // function animateScroll(scrollableDiv, targetPosition, duration) {
+                    //     const startTime = performance.now();
+                    //     const startPosition = scrollableDiv.scrollLeft;
+                    //     const easeInOutQuad = t => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t);
+                    //     function scrollStep(timestamp) {
+                    //         const currentTime = timestamp - startTime;
+                    //         if (currentTime < duration) {
+                    //             scrollableDiv.scrollLeft = startPosition + (targetPosition - startPosition) * easeInOutQuad(currentTime / duration);
+                    //             requestAnimationFrame(scrollStep);
+                    //         } else {
+                    //             scrollableDiv.scrollLeft = targetPosition;
+                    //         }
+                    //     }
+                    //     requestAnimationFrame(scrollStep);
+                    // }
+                    // let m = null;
+                    // function scrollAnimation() {
+                    //     if (m) return;
+                    //     const scrollableDiv = document.querySelector(".swiper-wrapper");
+                    //     animateScroll(scrollableDiv, 200, 500); // Scroll 200px to the right with ease-in-out animation
+                    //     m = setTimeout(() => {
+                    //         animateScroll(scrollableDiv, 0, 1000); // Scroll back to 0 position with ease-in-out animation
+                    //         m = null;
+                    //     }, 100);
+                    // }
+                    // function startScrollAnimation() {
+                    //     scrollAnimation();
+                    //     setInterval(scrollAnimation, 7000);
+                    // }
+                    // startScrollAnimation();
+                    // scroll animation end
+
+
 
                 </script>
             </div>

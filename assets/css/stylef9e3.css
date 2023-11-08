@@ -185,8 +185,12 @@ ons-page {
         transform: translateX(0);
     }
 
-    50% {
-        transform: translateX(-100px);
+    35% {
+        transform: translateX(-140px);
+    }
+
+    65% {
+        transform: translateX(-140px);
     }
 
     100% {
@@ -196,12 +200,17 @@ ons-page {
 
 .slide-to-left {
     animation-name: slide-to-left-animation;
-    animation-duration: 1s;
+    /* animation-duration: 3s; */
     /* Adjust the duration as needed */
-    animation-timing-function: cubic-bezier(0.64, -0.13, 0, 1.49);
+    /* animation-timing-function: cubic-bezier(0.64, -0.03, 0, 1.49); */
     /* Adjust the timing function if desired */
     /* animation-iteration-count: infinite; */
     /* Adjust the iteration count if needed */
+    /* from figma */
+    animation-delay: 0ms;
+    animation-timing-function: ease-in-out;
+    animation-duration: 2000ms;
+
 }
 
 .slide-0 {
@@ -260,6 +269,11 @@ ons-page {
     list-style: none;
     line-height: normal;
     background: none;
+}
+
+.ons-toolbar.navbar .right ons-button img{
+    padding-top: 2px;
+    padding-right: 2px;
 }
 
 .ons-toolbar.navbar .header-icon {
@@ -1225,6 +1239,7 @@ p.subheading {
     width: 1020px;
     overflow: hidden;
     overflow-x: auto;
+    scroll-behavior: smooth;
     height: 139.573px;
     display: flex;
     flex-shrink: 0;
