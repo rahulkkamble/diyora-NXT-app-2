@@ -569,7 +569,7 @@ ons-card .img-group .img video {
 }
 
 ons-card .img-group .img video {
-    scale: 1.22;
+    scale: 1.32;
 }
 
 ons-card .img-group .badges {
@@ -961,8 +961,8 @@ p.subheading {
     display: inline-flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: start;
-    gap: 6px;
+    justify-content: space-between; /* start */
+    /* gap: 8px; */
 }
 
 .filter-row .filter-badge,
@@ -1090,7 +1090,8 @@ p.subheading {
     flex-wrap: wrap;
     /* flex-direction: column; */
     align-content: flex-start;
-    gap: 12px;
+    /* gap: 14px; */
+    justify-content: space-between;
     row-gap: 32px;
 }
 
@@ -1101,7 +1102,7 @@ p.subheading {
 
 .products-result .product-card-wrapper {
     padding: 0;
-    width: 247px;
+    width: 252px;
     /* from 252 */
     height: 343px;
 }
@@ -1124,8 +1125,13 @@ p.subheading {
     padding-bottom: 1.5rem;
 }
 
+.for-who-section.category-page .row .cards-wrapper {
+    justify-content: start;
+    gap: 1rem;
+}
+
 .for-who-section.category-page .cards-wrapper ons-card {
-    width: 382.621px;
+    width: 377.621px;
     height: 137px;
     flex-shrink: 0;
     overflow: hidden;
@@ -1266,20 +1272,20 @@ p.subheading {
 .product-showcase .variation-carousel-buttons {
     position: absolute;
     top: 88.5%;
-    left: 2.5%;
-    width: 95%;
+    left: 0;
+    width: 100%;
 }
 
 .product-showcase .variation-carousel-buttons .slide-prev-btn {
     position: absolute;
     top: 100%;
-    left: 0;
+    left: 0.5%;
 }
 
 .product-showcase .variation-carousel-buttons .slide-next-btn {
     position: absolute;
     top: 100%;
-    right: 0;
+    right: 0.5%;
 }
 
 .product-showcase .variation-carousel-buttons div:focus,
@@ -2243,6 +2249,29 @@ ons-back-button.remove-icon .back-button--material__label {
         backdrop-filter: blur(17.325780868530273px);
     }
 }
+@keyframes breath-reverse {
+    0% {
+        background: rgba(255, 255, 255, 0.50);
+        backdrop-filter: blur(71.17500305175781px);   
+    }
+
+    50% {
+        background: rgba(255, 255, 255, 0.10);
+        backdrop-filter: blur(17.325780868530273px);
+    }
+
+    100% {
+        background: rgba(255, 255, 255, 0.50);
+        backdrop-filter: blur(71.17500305175781px);
+    }
+}
+
+.home-category-cards.active.animation{
+    animation-name: breath-reverse;
+    animation-delay: 230ms;
+    animation-timing-function: ease-in-out;
+    animation-duration: 3000ms;
+}
 
 .home-category-cards.animation {
     animation-name: breath;
@@ -2265,9 +2294,6 @@ ons-back-button.remove-icon .back-button--material__label {
     font-weight: 650;
     line-height: normal;
 }
-
-/* .modal-wishlist  */
-
 
 
 

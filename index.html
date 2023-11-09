@@ -57,8 +57,8 @@
             </div>
 
             <!-- carousel onsen -->
-            <ons-carousel swipeable auto-scroll overscrollable auto-refresh id="carousel" class="home-carousel"
-                style="height: 396px;">
+            <ons-carousel auto-scroll-ratio="0.15" swipeable auto-scroll overscrollable auto-refresh id="carousel"
+                class="home-carousel" style="height: 396px;">
                 <ons-carousel-item style="background-image: url(assets/img/portrait-girl-h396.png);">
                 </ons-carousel-item>
             </ons-carousel>
@@ -495,52 +495,15 @@
                             item.classList.add('slide-to-left');
                             setTimeout(() => {
                                 item.classList.remove('slide-to-left');
-                            }, 2000)
+                                null;
+                            }, 2000);
                         })
                     }
 
                     // Set an interval to start the animation every 7 seconds (adjust as needed)
-                    document.addEventListener('init', function (event) {
-                        animationInterval = setInterval(startCarouselAnimation, 7000);
-                    })
-
-                    // added to touch left not working : temporary
-                    document.addEventListener('DOMContentLoaded', function () {
-                        const swiperWrapper = document.querySelector('.swiper-wrapper');
-                        const swiperSlides = document.querySelectorAll('.swiper-slide');
-                        let isDragging = false;
-                        let startOffsetX, lastOffsetX;
-
-                        swiperWrapper.addEventListener('mousedown', function (e) {
-                            isDragging = true;
-                            startOffsetX = e.clientX;
-                            lastOffsetX = e.clientX;
-                            swiperWrapper.style.transition = 'none';
-                        });
-
-                        document.addEventListener('mousemove', function (e) {
-                            if (isDragging) {
-                                const offsetX = e.clientX - startOffsetX;
-                                swiperWrapper.scrollLeft += lastOffsetX - e.clientX;
-                                lastOffsetX = e.clientX;
-                            }
-                        });
-
-                        document.addEventListener('mouseup', function () {
-                            isDragging = false;
-                            swiperWrapper.style.transition = '0.3s ease'; // Add a smooth transition effect when releasing the drag
-                        });
-
-                        swiperWrapper.addEventListener('mouseleave', function () {
-                            if (isDragging) {
-                                isDragging = false;
-                                swiperWrapper.style.transition = '0.3s ease'; // Add a smooth transition effect when leaving the swiper-wrapper while dragging
-                            }
-                        });
-                    });
-                    // delete optional not working
-
-
+                    // document.addEventListener('init', function (event) {
+                    animationInterval = setInterval(startCarouselAnimation, 7000);
+                    // })
 
                     var prev = function () {
                         carousel.prev();
@@ -562,17 +525,18 @@
                     }
 
                     // active class on homecategorycards
-                    function addActiveClassRandomly() {
-                        const cards = document.querySelectorAll('.home-category-cards');
+                    function addAnimationClassRandomly() {
+                        var cards = document.querySelectorAll('.home-category-cards');
 
                         // Remove "active" class from all cards
-                        cards.forEach(card => {
-                            card.classList.remove('active');
-                        });
-
+                        // cards.forEach(card => {
+                        //     card.classList.remove('active');
+                        // });
+                        var randomIndex;
+                        var randomCard;
                         // Choose a random card
-                        const randomIndex = Math.floor(Math.random() * cards.length);
-                        const randomCard = cards[randomIndex];
+                        randomIndex = Math.floor(Math.random() * cards.length);
+                        randomCard = cards[randomIndex];
 
                         // Add "active" class to the randomly chosen card
                         randomCard.classList.add('animation');
@@ -583,7 +547,7 @@
                     }
 
                     // Call the function to add and remove "active" class randomly
-                    setInterval(addActiveClassRandomly, 7000); // You can adjust the interval as needed
+                    setInterval(addAnimationClassRandomly, 7000); // You can adjust the interval as needed
 
                     // Get a reference to the element you want to scroll
                     var scrollableSwiper = document.querySelector(".swiper-wrapper");
@@ -604,7 +568,7 @@
                     }
 
                     function prevScroll2() {
-                        var targetScrollLeft = scrollableSwiper.scrollLeft - 252; // Scroll left by 100 pixels
+                        var targetScrollLeft = scrollableSwiper.scrollLeft - 252; // Scroll left by 252 pixels
                         var duration = 100; // Adjust the duration as needed (in milliseconds)
                         smoothScroll(scrollableSwiper, targetScrollLeft, duration);
                     }
@@ -619,11 +583,11 @@
 
                     // scroll animation interval // in process
                     // function animateScroll(scrollableDiv, targetPosition, duration) {
-                    //     const startTime = performance.now();
-                    //     const startPosition = scrollableDiv.scrollLeft;
-                    //     const easeInOutQuad = t => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t);
+                    //     var startTime = performance.now();
+                    //     var startPosition = scrollableDiv.scrollLeft;
+                    //     var easeInOutQuad = t => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t);
                     //     function scrollStep(timestamp) {
-                    //         const currentTime = timestamp - startTime;
+                    //         var currentTime = timestamp - startTime;
                     //         if (currentTime < duration) {
                     //             scrollableDiv.scrollLeft = startPosition + (targetPosition - startPosition) * easeInOutQuad(currentTime / duration);
                     //             requestAnimationFrame(scrollStep);
@@ -636,7 +600,7 @@
                     // let m = null;
                     // function scrollAnimation() {
                     //     if (m) return;
-                    //     const scrollableDiv = document.querySelector(".swiper-wrapper");
+                    //     var scrollableDiv = document.querySelector(".swiper-wrapper");
                     //     animateScroll(scrollableDiv, 200, 500); // Scroll 200px to the right with ease-in-out animation
                     //     m = setTimeout(() => {
                     //         animateScroll(scrollableDiv, 0, 1000); // Scroll back to 0 position with ease-in-out animation
@@ -705,7 +669,6 @@
     <template id="category-earring.html">
         <!-- next page code -->
         <!-- navbar / toolbar / tabbar -->
-
         <ons-page id="earringCategory">
             <div class="ons-toolbar navbar">
                 <div class="left">
@@ -749,8 +712,8 @@
                 </div>
             </div>
 
-            <!-- carousel onsen -->
-            <ons-carousel swipeable auto-scroll overscrollable auto-refresh id="carousel-cats"
+            <!-- carousel onsen  item-width="500px" -->
+            <ons-carousel auto-scroll-ratio="0.15" swipeable auto-scroll overscrollable auto-refresh id="carousel-cats"
                 class="earring-category-carousel" style="height: 396px;">
                 <ons-carousel-item style="background-image: url(assets/img/portrait-girl-h396.png);">
                     <div class="cta-section">
@@ -1261,54 +1224,67 @@
             <script>
                 document.addEventListener('init', function (event) {
                     var page = event.target;
-                    if (page.id === 'earringCategory') {
-                        page.querySelectorAll('.home-most-popular-card').forEach(element => {
-                            element.onclick = function () {
-                                console.log('clicked on card having className .home-most-popular-card,')
-                                document.querySelector('#myNavigator').pushPage('product-page.html', { data: { title: 'Product' } });
-                            };
-                        });
-                    }
+                    // if (page.id === 'earringCategory') {
+                    //     forEach function moved down
+                    // }
+
                     // else if (page.id === 'category-earring') {
                     //     page.querySelector('div class="ons-toolbar navbar" .center').innerHTML = page.data.title;
                     // }
-                    // filter-badge active on click
-                    const filterBadges = document.querySelectorAll('.filter-badge');
-                    filterBadges.forEach(function (badge) {
-                        badge.addEventListener('click', function () {
-                            // Remove the "active" class from all filter badges
-                            // filterBadges.forEach(function (item) {
-                            //     item.classList.remove('active');
-                            // });
-                            // Add the "active" class to the clicked filter badge
-                            badge.classList.toggle('active');
-                            console.log('toggle hit');
-                        });
-                    });
-
-                    var qualityDivCategory = document.querySelector('.quality-options');
-                    var qualityElementsCategory = qualityDivCategory.querySelectorAll('.quality-options div');
-                    // Add click event listeners to the elements
-                    qualityElementsCategory.forEach(element => {
-                        element.addEventListener('click', () => {
-                            // Remove the 'active' class from all quality elements
-                            qualityElementsCategory.forEach(qualityElementCat => {
-                                qualityElementCat.classList.remove('active');
-                            });
-
-                            // Add the 'active' class to the clicked element
-                            element.classList.add('active');
-                        });
+                });
+                document.querySelectorAll('.home-most-popular-card').forEach(element => {
+                    element.onclick = function () {
+                        console.log('clicked on card having className .home-most-popular-card,')
+                        document.querySelector('#myNavigator').pushPage('product-page.html', { data: { title: 'Product' } });
+                    };
+                });
+                // filter-badge active on click
+                var filterBadges = document.querySelectorAll('.filter-badge');
+                filterBadges.forEach(function (badge) {
+                    badge.addEventListener('click', function () {
+                        // Remove the "active" class from all filter badges
+                        // filterBadges.forEach(function (item) {
+                        //     item.classList.remove('active');
+                        // });
+                        // Add the "active" class to the clicked filter badge
+                        badge.classList.toggle('active');
+                        console.log('toggle hit');
                     });
                 });
 
-                setInterval(function () {
-                    var carouselCats = document.getElementById('carousel-cats');
-                    if (carouselCats.getActiveIndex() === carouselCats.itemCount - 1)
-                        carouselCats.setActiveIndex(0);
-                    else
-                        carouselCats.next();
-                }, 5000);
+                var qualityDivCategory = document.querySelector('.quality-options');
+                var qualityElementsCategory = qualityDivCategory.querySelectorAll('.quality-options div');
+                // Add click event listeners to the elements
+                qualityElementsCategory.forEach(element => {
+                    element.addEventListener('click', () => {
+                        // Remove the 'active' class from all quality elements
+                        qualityElementsCategory.forEach(qualityElementCat => {
+                            qualityElementCat.classList.remove('active');
+                        });
+                        // Add the 'active' class to the clicked element
+                        element.classList.add('active');
+                    });
+                });
+
+                var intervalX;
+                ons.getScriptPage().onInit = function () {
+                    // Set up page's content or anything else
+                    this.onShow = function () {
+                        console.log('category page : shown');
+                        intervalX = setInterval(function () {
+                            var carouselCats = document.getElementById('carousel-cats');
+                            if (carouselCats.getActiveIndex() === carouselCats.itemCount - 1)
+                                carouselCats.setActiveIndex(0);
+                            else
+                                carouselCats.next();
+                        }, 5000);
+                    };
+                    this.onHide = function () {
+                        console.log('category page : hide');
+                        clearInterval(intervalX);
+                    };
+                    // this.onDestroy = function () { ... };
+                };
             </script>
         </ons-page>
     </template>
@@ -1362,8 +1338,8 @@
             </div>
 
             <!-- carousel onsen -->
-            <ons-carousel swipeable auto-scroll overscrollable id="carousel-cats" class="earring-category-carousel"
-                style="height: 396px;">
+            <ons-carousel auto-scroll-ratio="0.15" swipeable auto-scroll overscrollable id="carousel-cats"
+                class="earring-category-carousel" style="height: 396px;">
                 <ons-carousel-item style="background-image: url(assets/img/portrait-girl-h396.png);">
                     <div class="cta-section">
                         <div class="cta-content">
@@ -1892,7 +1868,7 @@
 
                 // filter-badge active on click
                 // ========== Repeated from category page
-                // const filterBadges = document.querySelectorAll('.filter-badge');
+                // var filterBadges = document.querySelectorAll('.filter-badge');
 
                 // filterBadges.forEach(function (badge) {
                 //     badge.addEventListener('click', function () {
@@ -1905,10 +1881,12 @@
                 //     });
                 // });
 
+
                 var qualityDivCategory = document.querySelector('.quality-options');
                 var qualityElementsCategory = qualityDivCategory.querySelectorAll('.quality-options div');
                 var forWhoSectionCards = document.querySelectorAll('.for-who-section ons-card');
-                const filterBadges = document.querySelectorAll('.filter-badge');
+                var filterBadges = document.querySelectorAll('.filter-badge');
+                var carouselInterval;
                 filterBadges.forEach(function (badge) {
                     badge.addEventListener('click', function () {
                         // Remove the "active" class from all filter badges
@@ -1940,13 +1918,28 @@
                         element.classList.add('active');
                     });
                 });
-                setInterval(function () {
-                    var carouselCats = document.getElementById('carousel-cats');
-                    if (carouselCats.getActiveIndex() === carouselCats.itemCount - 1)
-                        carouselCats.setActiveIndex(0);
-                    else
-                        carouselCats.next();
-                }, 5000);
+
+                ons.getScriptPage().onInit = function () {
+                    // Set up page's content or anything else
+
+                    this.onShow = function () {
+                        console.log('gifting-page: shown');
+                        carouselInterval = setInterval(function () {
+                            var carouselCats = document.getElementById('carousel-cats');
+                            if (carouselCats.getActiveIndex() === carouselCats.itemCount - 1)
+                                carouselCats.setActiveIndex(0);
+                            else
+                                carouselCats.next();
+                        }, 5000);
+                    };
+                    this.onHide = function () {
+                        console.log('gifting-page: hide');
+                        clearInterval(carouselInterval);
+                    };
+                    this.onDestroy = function () {
+                        console.log('gifting-page: destroyed');
+                    };
+                };
             </script>
         </ons-page>
     </template>
@@ -2001,8 +1994,8 @@
             <div class="product-showcase">
                 <div class="product-slider-images" style="height: 100%;">
                     <div class="carousel-container-for-main-image">
-                        <ons-carousel id="carousel-test" fullscreen swipeable auto-scroll overscrollable
-                            initial-index="0">
+                        <ons-carousel auto-scroll-ratio="0.1" id="carousel-test" fullscreen swipeable auto-scroll
+                            overscrollable initial-index="0">
                             <ons-carousel-item class="carousel-item">
                                 <img src="assets/img/cart-product.png" alt="" style="width: 100%;">
                             </ons-carousel-item>
@@ -2017,9 +2010,11 @@
                             </ons-carousel-item>
                             <ons-carousel-item class="carousel-item">
                                 <!-- <img src="assets/img/Ring-1.png" alt="" style="width: 100%;"> -->
-                                <video class="video-main" autoplay loop muted style="width: 100%;"
+                                <video class="video-main" autoplay loop muted style="width: 100%; display: none;"
                                     src="assets/video/sample-ring-1.mp4" type="video/mp4">
                                 </video>
+                                <video autoplay loop muted style="width: 100%;"
+                                    src="assets/video/small-ring-moving-circular.mp4"></video>
                                 <!-- <div class="fullscreen-btn">
                                     <img src="assets/img/video-play-icon.png" alt="video-play-icon"
                                         style="width: 100px;">
@@ -2174,7 +2169,7 @@
                     carouselTest = document.getElementById('carousel-test');
 
                     // select Diamond active on click
-                    const diamondOptions = document.querySelector('.select-diamond .customization-data').querySelectorAll('div');
+                    var diamondOptions = document.querySelector('.select-diamond .customization-data').querySelectorAll('div');
                     diamondOptions.forEach(function (option) {
                         option.addEventListener('click', function () {
                             // Remove the "active" class from all options
@@ -2188,7 +2183,7 @@
                     });
 
                     // color options active on click
-                    const colorDivs = document.querySelectorAll('.color-options .color');
+                    var colorDivs = document.querySelectorAll('.color-options .color');
                     colorDivs.forEach(function (div) {
                         div.addEventListener('click', function () {
                             // Remove "active" class from all color divs
@@ -2201,7 +2196,7 @@
                     });
 
                     // select Diamond active on click
-                    const selectSize = document.querySelector('.select-size .customization-data').querySelectorAll('div');
+                    var selectSize = document.querySelector('.select-size .customization-data').querySelectorAll('div');
                     selectSize.forEach(function (option) {
                         option.addEventListener('click', function () {
                             // Remove the "active" class from all options
@@ -2256,6 +2251,9 @@
                 });
 
                 reqUrl = 'https://metaverse.tech2edge.co/diyora-kiosk-sim/assets/video/sample-ring-1.mp4';
+                // OR
+                // reqUrl = document.querySelector('.video-main').src;
+
 
                 setTimeout(function () {
                     changeVideoUrl(reqUrl);
@@ -2279,6 +2277,7 @@
                             if (response.ok) {
                                 // Update the UI here if the request was successful
                                 console.log('Video URL changed successfully.');
+
                             } else {
                                 console.error('Failed to change video URL.');
                             }
@@ -3162,7 +3161,7 @@
             })
         }
         function hideOuter(modal) {
-            const rohit = (event) => {
+            var rohit = (event) => {
                 event.stopImmediatePropagation();
                 modal.hide();
                 document.body.removeEventListener("click", rohit);
