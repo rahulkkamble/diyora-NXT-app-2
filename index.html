@@ -6,6 +6,7 @@
 
 <head>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Diyora NXT</title>
 
     <!-- onsen starter css -->
@@ -480,11 +481,16 @@
                     // var carouselItem = document.querySelector('#carouselMostPopular ons-carousel-item');
                     var swiperWrapper = document.querySelector('.swiper-wrapper-auto-scroll .swiper-wrapper');
                     var animationInterval;
+                    var handleScrollTimeout;
                     swiperWrapper.addEventListener("scroll", () => {
                         // This function will be triggered when the div is scrolled
                         console.log("Div scrolled!");
-                        // You can add your custom logic here
+                        clearTimeout(handleScrollTimeout);
                         clearInterval(animationInterval);
+                        handleScrollTimeout = setTimeout(() => {
+                            handleScroll();
+                        }, 600)
+                        // handleScroll();
                     });
 
                     function startCarouselAnimation() {
@@ -568,18 +574,56 @@
                     }
 
                     function prevScroll2() {
-                        var targetScrollLeft = scrollableSwiper.scrollLeft - 252; // Scroll left by 252 pixels
+                        var targetScrollLeft = scrollableSwiper.scrollLeft - 250; // Scroll left by 252 pixels
                         var duration = 100; // Adjust the duration as needed (in milliseconds)
                         smoothScroll(scrollableSwiper, targetScrollLeft, duration);
                     }
 
                     function nextScroll2() {
-                        var targetScrollLeft = scrollableSwiper.scrollLeft + 252; // Scroll right by 100 pixels
+                        var targetScrollLeft = scrollableSwiper.scrollLeft + 250; // Scroll right by 100 pixels
                         var duration = 100; // Adjust the duration as needed (in milliseconds)
                         smoothScroll(scrollableSwiper, targetScrollLeft, duration);
                     }
 
+                    // Calculate total width of swiper-wrapper
+                    var scrollTimeout;
+                    const swiperWrapper2 = document.querySelector('.swiper-wrapper');
+                    const swiperSlides2 = document.querySelectorAll('.swiper-slide');
+                    const swiperSlideEach = document.querySelector('.swiper-slide');
+                    const gap2 = 10;    /* give in number, will consider in pixels */
+                    // const gap2 = swiperWrapper2.style.columnGap;
+                    const slideWidth2 = swiperSlideEach.offsetWidth;
+                    const totalWidth = (slideWidth2 + gap2) * swiperSlides2.length - gap2;
+                    // Create array of target values
+                    const targetsArray = Array.from({ length: swiperSlides2.length }, (_, index) => index * (slideWidth2 + gap2));
+                    // Function to handle scroll
+                    function handleScroll() {
+                        clearTimeout(scrollTimeout);
 
+                        scrollTimeout = setTimeout(function() {
+                          
+                        const scrollPosition = swiperWrapper2.scrollLeft;
+                        const clientLeft = swiperWrapper2.getBoundingClientRect().left;
+
+                        // Calculate scrolled distance and client-left
+                        const scrolledDistance = scrollPosition + clientLeft;
+
+                        // Find the nearest target from the array
+                        const nearestTarget = findNearestValue(targetsArray, scrolledDistance);
+
+                        // Scroll to the nearest target
+                        swiperWrapper2.scrollLeft = nearestTarget;  
+                        // smoothScroll(swiperWrapper2, nearestTarget, 500);
+                        clearTimeout(scrollTimeout)
+                        }, 600)
+                    }
+
+                    // Function to find the nearest value in an array
+                    function findNearestValue(array, value) {
+                        return array.reduce(function (prev, curr) {
+                            return (Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev);
+                        });
+                    }
 
                     // scroll animation interval // in process
                     // function animateScroll(scrollableDiv, targetPosition, duration) {
@@ -597,7 +641,7 @@
                     //     }
                     //     requestAnimationFrame(scrollStep);
                     // }
-                    // let m = null;
+                    // var m = null;
                     // function scrollAnimation() {
                     //     if (m) return;
                     //     var scrollableDiv = document.querySelector(".swiper-wrapper");
