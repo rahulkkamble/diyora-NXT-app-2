@@ -123,22 +123,6 @@
             </div>
 
             <script>
-                document.addEventListener('init', function (event) {
-                    var page = event.target;
-                    /*     setTimeout(startCarouselAnimation, 2000);    starting animation for carousel moving left 
-                        indicating more elements on right */
-
-                    /* if (page.id === 'homePage') {
-                        page.querySelector('#earringsCategory').onclick = function () {
-                            console.log('clicked on earringsCategory')
-                            document.querySelector('#myNavigator').pushPage('category-earring.html', { data: { title: 'EarRing Category' } });
-                        };
-                    } */
-                    // else if (page.id === 'category-earring') {
-                    //     page.querySelector('div class="ons-toolbar navbar" .center').innerHTML = page.data.title;
-                    // }
-                });
-
                 function navCat(isGift) {
                     if (isGift) {
                         document.querySelector('#myNavigator').pushPage('category-gifting.html', { data: { title: 'Gifting Category' } });
@@ -481,16 +465,29 @@
                     // var carouselItem = document.querySelector('#carouselMostPopular ons-carousel-item');
                     var swiperWrapper = document.querySelector('.swiper-wrapper-auto-scroll .swiper-wrapper');
                     var animationInterval;
+
                     var handleScrollTimeout;
-                    swiperWrapper.addEventListener("scroll", () => {
-                        // This function will be triggered when the div is scrolled
-                        console.log("Div scrolled!");
-                        clearTimeout(handleScrollTimeout);
-                        clearInterval(animationInterval);
-                        handleScrollTimeout = setTimeout(() => {
-                            handleScroll();
-                        }, 600)
-                        // handleScroll();
+                    document.addEventListener('show', function (event) {
+                        if (event.target.id === 'homePage') {
+                            console.log('homepage shown');
+                            swiperWrapper.addEventListener("scroll", () => {
+                                // This function will be triggered when the div is scrolled
+                                console.log("Div scrolled!");
+                                clearTimeout(handleScrollTimeout);
+                                clearInterval(animationInterval);
+                                handleScrollTimeout = setTimeout(() => {
+                                    handleScroll();
+                                }, 600)
+                                // handleScroll();
+                            });
+                        }
+                    });
+                    document.addEventListener('hide', function (event) {
+                        if (event.target.id === 'homePage') {
+                            // Detach scroll event listener before the page is hidden
+                            console.log('homepage hide')
+                            swiperWrapper.removeEventListener('scroll', handleScroll);
+                        }
                     });
 
                     function startCarouselAnimation() {
@@ -585,36 +582,36 @@
                         smoothScroll(scrollableSwiper, targetScrollLeft, duration);
                     }
 
-                    // Calculate total width of swiper-wrapper
+                    // scroll to left boundry after scroll
                     var scrollTimeout;
-                    const swiperWrapper2 = document.querySelector('.swiper-wrapper');
-                    const swiperSlides2 = document.querySelectorAll('.swiper-slide');
-                    const swiperSlideEach = document.querySelector('.swiper-slide');
-                    const gap2 = 10;    /* give in number, will consider in pixels */
-                    // const gap2 = swiperWrapper2.style.columnGap;
-                    const slideWidth2 = swiperSlideEach.offsetWidth;
-                    const totalWidth = (slideWidth2 + gap2) * swiperSlides2.length - gap2;
+                    var swiperWrapper2 = document.querySelector('.swiper-wrapper');
+                    var swiperSlides2 = document.querySelectorAll('.swiper-slide');
+                    var swiperSlideEach = document.querySelector('.swiper-slide');
+                    var gap2 = 10;    /* give in number, will consider in pixels */
+                    // var gap2 = swiperWrapper2.style.columnGap;
+                    var slideWidth2 = swiperSlideEach.offsetWidth;
+                    var totalWidth = (slideWidth2 + gap2) * swiperSlides2.length - gap2;
                     // Create array of target values
-                    const targetsArray = Array.from({ length: swiperSlides2.length }, (_, index) => index * (slideWidth2 + gap2));
+                    var targetsArray = Array.from({ length: swiperSlides2.length }, (_, index) => index * (slideWidth2 + gap2));
                     // Function to handle scroll
                     function handleScroll() {
                         clearTimeout(scrollTimeout);
 
-                        scrollTimeout = setTimeout(function() {
-                          
-                        const scrollPosition = swiperWrapper2.scrollLeft;
-                        const clientLeft = swiperWrapper2.getBoundingClientRect().left;
+                        scrollTimeout = setTimeout(function () {
 
-                        // Calculate scrolled distance and client-left
-                        const scrolledDistance = scrollPosition + clientLeft;
+                            var scrollPosition = swiperWrapper2.scrollLeft;
+                            var clientLeft = swiperWrapper2.getBoundingClientRect().left;
 
-                        // Find the nearest target from the array
-                        const nearestTarget = findNearestValue(targetsArray, scrolledDistance);
+                            // Calculate scrolled distance and client-left
+                            var scrolledDistance = scrollPosition + clientLeft;
 
-                        // Scroll to the nearest target
-                        swiperWrapper2.scrollLeft = nearestTarget;  
-                        // smoothScroll(swiperWrapper2, nearestTarget, 500);
-                        clearTimeout(scrollTimeout)
+                            // Find the nearest target from the array
+                            var nearestTarget = findNearestValue(targetsArray, scrolledDistance);
+
+                            // Scroll to the nearest target
+                            swiperWrapper2.scrollLeft = nearestTarget;
+                            // smoothScroll(swiperWrapper2, nearestTarget, 500);
+                            clearTimeout(scrollTimeout)
                         }, 600)
                     }
 
@@ -624,41 +621,7 @@
                             return (Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev);
                         });
                     }
-
-                    // scroll animation interval // in process
-                    // function animateScroll(scrollableDiv, targetPosition, duration) {
-                    //     var startTime = performance.now();
-                    //     var startPosition = scrollableDiv.scrollLeft;
-                    //     var easeInOutQuad = t => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t);
-                    //     function scrollStep(timestamp) {
-                    //         var currentTime = timestamp - startTime;
-                    //         if (currentTime < duration) {
-                    //             scrollableDiv.scrollLeft = startPosition + (targetPosition - startPosition) * easeInOutQuad(currentTime / duration);
-                    //             requestAnimationFrame(scrollStep);
-                    //         } else {
-                    //             scrollableDiv.scrollLeft = targetPosition;
-                    //         }
-                    //     }
-                    //     requestAnimationFrame(scrollStep);
-                    // }
-                    // var m = null;
-                    // function scrollAnimation() {
-                    //     if (m) return;
-                    //     var scrollableDiv = document.querySelector(".swiper-wrapper");
-                    //     animateScroll(scrollableDiv, 200, 500); // Scroll 200px to the right with ease-in-out animation
-                    //     m = setTimeout(() => {
-                    //         animateScroll(scrollableDiv, 0, 1000); // Scroll back to 0 position with ease-in-out animation
-                    //         m = null;
-                    //     }, 100);
-                    // }
-                    // function startScrollAnimation() {
-                    //     scrollAnimation();
-                    //     setInterval(scrollAnimation, 7000);
-                    // }
-                    // startScrollAnimation();
-                    // scroll animation end
-
-
+                    // scroll to left boundry after scroll end here
 
                 </script>
             </div>
@@ -2363,6 +2326,58 @@
                     var duration = 100; // Adjust the duration as needed (in milliseconds)
                     smoothScroll(slidingVarientImages, targetScrollLeft, duration);
                 }
+
+                var handleScrollTimeout2;
+                slidingVarientImages.addEventListener("scroll", () => {
+                    // This function will be triggered when the div is scrolled
+                    console.log(" varient images Div scrolled!");
+                    clearTimeout(handleScrollTimeout2);
+                    handleScrollTimeout2 = setTimeout(() => {
+                        handleScroll2();
+                    }, 600)
+                    // handleScroll();
+                });
+
+                // scroll to left boundry after scroll
+                var scrollTimeout2;
+                // var slidingVarientImages= document.querySelector('.sliding-varient-images');
+                var allVarientImages = document.querySelectorAll('.sliding-varient-images span.dot');
+                var eachVarientImage = document.querySelector('.sliding-varient-images span.dot');
+                var gapInVarientImages = 10;    /* give in number, will consider in pixels */
+                // var gapInVarientImages = slidingVarientImages.style.columnGap;
+                var eachVarientImageWidth = eachVarientImage.offsetWidth;
+                var totalWidthOfVarientImages = (eachVarientImageWidth + gapInVarientImages) * allVarientImages.length - gapInVarientImages;
+                // Create array of target values
+                var arrayOfVarientImages = Array.from({ length: allVarientImages.length }, (_, index) => index * (eachVarientImageWidth + gapInVarientImages));
+                // Function to handle scroll
+                function handleScroll2() {
+                    clearTimeout(scrollTimeout2);
+
+                    scrollTimeout2 = setTimeout(function () {
+
+                        var scrollPosition = slidingVarientImages.scrollLeft;
+                        var clientLeft = slidingVarientImages.getBoundingClientRect().left;
+
+                        // Calculate scrolled distance and client-left
+                        var scrolledDistance = scrollPosition + clientLeft;
+
+                        // Find the nearest target from the array
+                        var nearestTarget = findNearestValue(arrayOfVarientImages, scrolledDistance);
+
+                        // Scroll to the nearest target
+                        slidingVarientImages.scrollLeft = nearestTarget;
+                        // smoothScroll(slidingVarientImages, nearestTarget, 500);
+                        clearTimeout(scrollTimeout2)
+                    }, 600)
+                }
+
+                // Function to find the nearest value in an array
+                function findNearestValue(array, value) {
+                    return array.reduce(function (prev, curr) {
+                        return (Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev);
+                    });
+                }
+                // scroll to left boundry after scroll end here
             </script>
 
             <!-- summary details // product details -->
