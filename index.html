@@ -463,33 +463,43 @@
                     var carousel = document.getElementById('carouselMostPopular');
                     // var carouselVariation = document.getElementById('carouselVariation');
                     // var carouselItem = document.querySelector('#carouselMostPopular ons-carousel-item');
-                    var swiperWrapper = document.querySelector('.swiper-wrapper-auto-scroll .swiper-wrapper');
+                    var swiperWrapper;
                     var animationInterval;
 
                     var handleScrollTimeout;
                     document.addEventListener('show', function (event) {
                         if (event.target.id === 'homePage') {
                             console.log('homepage shown');
+                            swiperWrapper = document.querySelector('.swiper-wrapper-auto-scroll .swiper-wrapper');
+                            var userScrolling = true;
                             swiperWrapper.addEventListener("scroll", () => {
-                                // This function will be triggered when the div is scrolled
-                                console.log("Div scrolled!");
-                                clearTimeout(handleScrollTimeout);
-                                clearInterval(animationInterval);
-                                handleScrollTimeout = setTimeout(() => {
-                                    handleScroll();
-                                }, 600)
-                                // handleScroll();
+                                if (userScrolling) {
+                                    console.log("Div scrolled!");
+                                    clearTimeout(handleScrollTimeout);
+                                    clearInterval(animationInterval);
+                                    handleScrollTimeout = setTimeout(() => {
+                                        handleScroll();
+                                        console.log('timeout running, calling handlescroll');
+                                    }, 2000);
+                                }
+                                userScrolling = true;
                             });
                         }
                     });
                     document.addEventListener('hide', function (event) {
                         if (event.target.id === 'homePage') {
                             // Detach scroll event listener before the page is hidden
-                            console.log('homepage hide')
+                            console.log('homepage hiden')
                             swiperWrapper.removeEventListener('scroll', handleScroll);
                         }
                     });
-
+                    // document.addEventListener('destroy', function (event) {
+                    //     if (event.target.id === 'homePage') {
+                    //         // Detach scroll event listener before the page is hidden
+                    //         console.log('homepage destroyed')
+                    //         swiperWrapper.removeEventListener('scroll', handleScroll);
+                    //     }
+                    // });
                     function startCarouselAnimation() {
                         var carouselItem = document.querySelectorAll('.swiper-wrapper-auto-scroll .swiper-wrapper .swiper-slide');
                         // console.log(carouselItem, "animation started");
@@ -499,7 +509,7 @@
                             setTimeout(() => {
                                 item.classList.remove('slide-to-left');
                                 null;
-                            }, 2000);
+                            }, 600);
                         })
                     }
 
@@ -594,7 +604,9 @@
                     // Create array of target values
                     var targetsArray = Array.from({ length: swiperSlides2.length }, (_, index) => index * (slideWidth2 + gap2));
                     // Function to handle scroll
+                    console.log('slideWidth:'+ slideWidth2 + ': total width: ' + totalWidth + 'target array : '+ targetsArray)
                     function handleScroll() {
+                        userScrolling = false;
                         clearTimeout(scrollTimeout);
 
                         scrollTimeout = setTimeout(function () {
