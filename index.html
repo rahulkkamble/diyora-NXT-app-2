@@ -22,7 +22,7 @@
 
 <body>
 
-    <ons-navigator swipeable id="myNavigator" page="homepage.html"></ons-navigator>
+    <ons-navigator animation="fade" swipeable id="myNavigator" page="homepage.html"></ons-navigator>
 
     <template id="homepage.html">
         <ons-page id="homePage" class="home-page">
@@ -458,184 +458,6 @@
                         </div>
                     </div>
                 </div>
-
-                <script>
-                    var carousel = document.getElementById('carouselMostPopular');
-                    // var carouselVariation = document.getElementById('carouselVariation');
-                    // var carouselItem = document.querySelector('#carouselMostPopular ons-carousel-item');
-                    var swiperWrapper;
-                    var animationInterval;
-
-                    var handleScrollTimeout;
-                    document.addEventListener('show', function (event) {
-                        if (event.target.id === 'homePage') {
-                            console.log('homepage shown');
-                            swiperWrapper = document.querySelector('.swiper-wrapper-auto-scroll .swiper-wrapper');
-                            var userScrolling = true;
-                            swiperWrapper.addEventListener("scroll", () => {
-                                if (userScrolling) {
-                                    console.log("Div scrolled!");
-                                    clearTimeout(handleScrollTimeout);
-                                    clearInterval(animationInterval);
-                                    handleScrollTimeout = setTimeout(() => {
-                                        handleScroll();
-                                        console.log('timeout running, calling handlescroll');
-                                    }, 2000);
-                                }
-                                userScrolling = true;
-                            });
-                        }
-                    });
-                    document.addEventListener('hide', function (event) {
-                        if (event.target.id === 'homePage') {
-                            // Detach scroll event listener before the page is hidden
-                            console.log('homepage hiden')
-                            swiperWrapper.removeEventListener('scroll', handleScroll);
-                        }
-                    });
-                    // document.addEventListener('destroy', function (event) {
-                    //     if (event.target.id === 'homePage') {
-                    //         // Detach scroll event listener before the page is hidden
-                    //         console.log('homepage destroyed')
-                    //         swiperWrapper.removeEventListener('scroll', handleScroll);
-                    //     }
-                    // });
-                    function startCarouselAnimation() {
-                        var carouselItem = document.querySelectorAll('.swiper-wrapper-auto-scroll .swiper-wrapper .swiper-slide');
-                        // console.log(carouselItem, "animation started");
-                        // if (carouselItem) {
-                        carouselItem.forEach((item) => {
-                            item.classList.add('slide-to-left');
-                            setTimeout(() => {
-                                item.classList.remove('slide-to-left');
-                                null;
-                            }, 600);
-                        })
-                    }
-
-                    // Set an interval to start the animation every 7 seconds (adjust as needed)
-                    // document.addEventListener('init', function (event) {
-                    animationInterval = setInterval(startCarouselAnimation, 7000);
-                    // })
-
-                    var prev = function () {
-                        carousel.prev();
-                        // carouselVariation.prev();
-                    };
-                    var next = function () {
-                        carousel.next();
-                        // carouselVariation.next();
-                    };
-
-                    ons.ready(function () {
-                        var carousel = document.addEventListener('postchange', function (event) {
-                            console.log('Changed to ' + event.activeIndex)
-                        });
-                    });
-
-                    function navProd() {
-                        document.querySelector('#myNavigator').pushPage('product-page.html', { data: { title: 'Product' } });
-                    }
-
-                    // active class on homecategorycards
-                    function addAnimationClassRandomly() {
-                        var cards = document.querySelectorAll('.home-category-cards');
-
-                        // Remove "active" class from all cards
-                        // cards.forEach(card => {
-                        //     card.classList.remove('active');
-                        // });
-                        var randomIndex;
-                        var randomCard;
-                        // Choose a random card
-                        randomIndex = Math.floor(Math.random() * cards.length);
-                        randomCard = cards[randomIndex];
-
-                        // Add "active" class to the randomly chosen card
-                        randomCard.classList.add('animation');
-
-                        setTimeout(() => {
-                            randomCard.classList.remove('animation');
-                        }, 3000);
-                    }
-
-                    // Call the function to add and remove "active" class randomly
-                    setInterval(addAnimationClassRandomly, 7000); // You can adjust the interval as needed
-
-                    // Get a reference to the element you want to scroll
-                    var scrollableSwiper = document.querySelector(".swiper-wrapper");
-                    function smoothScroll(element, targetScrollLeft, duration) {
-                        var start = element.scrollLeft;
-                        var startTime = performance.now();
-                        var endTime = startTime + duration;
-                        function scroll() {
-                            var currentTime = performance.now();
-                            var timeFraction = (currentTime - startTime) / duration;
-                            if (timeFraction > 1) timeFraction = 1;
-                            element.scrollLeft = start + (targetScrollLeft - start) * timeFraction;
-                            if (timeFraction < 1) {
-                                requestAnimationFrame(scroll);
-                            }
-                        }
-                        requestAnimationFrame(scroll);
-                    }
-
-                    function prevScroll2() {
-                        var targetScrollLeft = scrollableSwiper.scrollLeft - 250; // Scroll left by 252 pixels
-                        var duration = 100; // Adjust the duration as needed (in milliseconds)
-                        smoothScroll(scrollableSwiper, targetScrollLeft, duration);
-                    }
-
-                    function nextScroll2() {
-                        var targetScrollLeft = scrollableSwiper.scrollLeft + 250; // Scroll right by 100 pixels
-                        var duration = 100; // Adjust the duration as needed (in milliseconds)
-                        smoothScroll(scrollableSwiper, targetScrollLeft, duration);
-                    }
-
-                    // scroll to left boundry after scroll
-                    var scrollTimeout;
-                    var swiperWrapper2 = document.querySelector('.swiper-wrapper');
-                    var swiperSlides2 = document.querySelectorAll('.swiper-slide');
-                    var swiperSlideEach = document.querySelector('.swiper-slide');
-                    var gap2 = 10;    /* give in number, will consider in pixels */
-                    // var gap2 = swiperWrapper2.style.columnGap;
-                    var slideWidth2 = swiperSlideEach.offsetWidth;
-                    var totalWidth = (slideWidth2 + gap2) * swiperSlides2.length - gap2;
-                    // Create array of target values
-                    var targetsArray = Array.from({ length: swiperSlides2.length }, (_, index) => index * (slideWidth2 + gap2));
-                    // Function to handle scroll
-                    console.log('slideWidth:'+ slideWidth2 + ': total width: ' + totalWidth + 'target array : '+ targetsArray)
-                    function handleScroll() {
-                        userScrolling = false;
-                        clearTimeout(scrollTimeout);
-
-                        scrollTimeout = setTimeout(function () {
-
-                            var scrollPosition = swiperWrapper2.scrollLeft;
-                            var clientLeft = swiperWrapper2.getBoundingClientRect().left;
-
-                            // Calculate scrolled distance and client-left
-                            var scrolledDistance = scrollPosition + clientLeft;
-
-                            // Find the nearest target from the array
-                            var nearestTarget = findNearestValue(targetsArray, scrolledDistance);
-
-                            // Scroll to the nearest target
-                            swiperWrapper2.scrollLeft = nearestTarget;
-                            // smoothScroll(swiperWrapper2, nearestTarget, 500);
-                            clearTimeout(scrollTimeout)
-                        }, 600)
-                    }
-
-                    // Function to find the nearest value in an array
-                    function findNearestValue(array, value) {
-                        return array.reduce(function (prev, curr) {
-                            return (Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev);
-                        });
-                    }
-                    // scroll to left boundry after scroll end here
-
-                </script>
             </div>
 
             <!-- for section -->
@@ -681,6 +503,196 @@
                     </div>
                 </div>
             </div>
+
+            <script>
+                var carousel = document.getElementById('carouselMostPopular');
+                // var carouselVariation = document.getElementById('carouselVariation');
+                // var carouselItem = document.querySelector('#carouselMostPopular ons-carousel-item');
+                // var swiperWrapper;
+                var animationInterval;
+
+                var handleScrollTimeout;
+                document.addEventListener('show', function (event) {
+                    if (event.target.id === 'homePage') {
+                        console.log('homepage shown');
+                        var swiperWrapper = document.querySelector('.swiper-wrapper-auto-scroll .swiper-wrapper');
+                        // var userScrolling = true;
+                        swiperWrapper.addEventListener("scroll", () => {
+                            // if (userScrolling) {
+                            console.log("Div scrolled!");
+                            clearTimeout(handleScrollTimeout);
+                            clearInterval(animationInterval);
+                            handleScrollTimeout = setTimeout(() => {
+                                handleScroll();
+                                console.log('timeout running, calling handlescroll');
+                            }, 300);
+                            // }
+                            // userScrolling = true;
+                        }, true);
+                    }
+                });
+                document.addEventListener('hide', function (event) {
+                    if (event.target.id === 'homePage') {
+                        // Detach scroll event listener before the page is hidden
+                        console.log('homepage hiden');
+                        var swiperWrapper = document.querySelector('.swiper-wrapper-auto-scroll .swiper-wrapper');
+                        swiperWrapper.removeEventListener('scroll', handleScroll);
+                    }
+                });
+                // document.addEventListener('destroy', function (event) {
+                //     if (event.target.id === 'homePage') {
+                //         // Detach scroll event listener before the page is hidden
+                //         console.log('homepage destroyed')
+                //         swiperWrapper.removeEventListener('scroll', handleScroll);
+                //     }
+                // });
+                function startCarouselAnimation() {
+                    var carouselItem = document.querySelectorAll('.swiper-wrapper-auto-scroll .swiper-wrapper .swiper-slide');
+                    // console.log(carouselItem, "animation started");
+                    // if (carouselItem) {
+                    carouselItem.forEach((item) => {
+                        item.classList.add('slide-to-left');
+                        setTimeout(() => {
+                            item.classList.remove('slide-to-left');
+                            null;
+                        }, 3000);
+                    })
+                }
+
+                // Set an interval to start the animation every 7 seconds (adjust as needed)
+                // document.addEventListener('init', function (event) {
+                animationInterval = setInterval(startCarouselAnimation, 7000);
+                // })
+
+                var prev = function () {
+                    carousel.prev();
+                    // carouselVariation.prev();
+                };
+                var next = function () {
+                    carousel.next();
+                    // carouselVariation.next();
+                };
+
+                ons.ready(function () {
+                    var carousel = document.addEventListener('postchange', function (event) {
+                        console.log('Changed to ' + event.activeIndex)
+                    });
+                });
+
+                function navProd() {
+                    document.querySelector('#myNavigator').pushPage('product-page.html', { data: { title: 'Product' } });
+                }
+
+                // active class on homecategorycards
+                function addAnimationClassRandomly() {
+                    var cards = document.querySelectorAll('.home-category-cards');
+
+                    // Remove "active" class from all cards
+                    // cards.forEach(card => {
+                    //     card.classList.remove('active');
+                    // });
+                    var randomIndex;
+                    var randomCard;
+                    // Choose a random card
+                    randomIndex = Math.floor(Math.random() * cards.length);
+                    randomCard = cards[randomIndex];
+
+                    // Add "active" class to the randomly chosen card
+                    randomCard.classList.add('animation');
+
+                    setTimeout(() => {
+                        randomCard.classList.remove('animation');
+                    }, 3000);
+                }
+
+                // Call the function to add and remove "active" class randomly
+                setInterval(addAnimationClassRandomly, 7000); // You can adjust the interval as needed
+
+                // Get a reference to the element you want to scroll
+                var scrollableSwiper = document.querySelector(".swiper-wrapper");
+                function smoothScroll(element, targetScrollLeft, duration) {
+                    var start = element.scrollLeft;
+                    var startTime = performance.now();
+                    var endTime = startTime + duration;
+                    function scroll() {
+                        var currentTime = performance.now();
+                        var timeFraction = (currentTime - startTime) / duration;
+                        if (timeFraction > 1) timeFraction = 1;
+                        element.scrollLeft = start + (targetScrollLeft - start) * timeFraction;
+                        if (timeFraction < 1) {
+                            requestAnimationFrame(scroll);
+                        }
+                    }
+                    requestAnimationFrame(scroll);
+                }
+
+                function prevScroll2() {
+                    var targetScrollLeft = scrollableSwiper.scrollLeft - 250; // Scroll left by 252 pixels
+                    var duration = 100; // Adjust the duration as needed (in milliseconds)
+                    smoothScroll(scrollableSwiper, targetScrollLeft, duration);
+                }
+
+                function nextScroll2() {
+                    var targetScrollLeft = scrollableSwiper.scrollLeft + 250; // Scroll right by 100 pixels
+                    var duration = 100; // Adjust the duration as needed (in milliseconds)
+                    smoothScroll(scrollableSwiper, targetScrollLeft, duration);
+                }
+
+                // scroll to left boundry after scroll
+                var scrollTimeout;
+                function handleScroll() {
+                    var swiperWrapper2 = document.querySelector('.swiper-wrapper');
+                    var swiperSlides2 = document.querySelectorAll('.swiper-slide');
+                    var swiperSlideEach = document.querySelector('.swiper-slide');
+                    var gap2 = 10;    /* give in number, will consider in pixels */
+                    // var gap2 = swiperWrapper2.style.columnGap;
+                    var slideWidth2 = swiperSlideEach.offsetWidth;
+                    var totalWidth = (slideWidth2 + gap2) * swiperSlides2.length - gap2;
+                    // Create array of target values
+                    var targetsArray = Array.from({ length: swiperSlides2.length }, (_, index) => index * (slideWidth2 + gap2));
+                    // Function to handle scroll
+                    console.log('slideWidth:' + slideWidth2 + ': total width: ' + totalWidth + 'target array : ' + targetsArray)
+                    // userScrolling = false;
+                    clearTimeout(scrollTimeout);
+
+                    scrollTimeout = setTimeout(function () {
+
+                        var scrollPosition = swiperWrapper2.scrollLeft;
+                        var clientLeft = swiperWrapper2.getBoundingClientRect().left;
+
+                        // Calculate scrolled distance and client-left
+                        var scrolledDistance = scrollPosition + clientLeft;
+
+                        // Find the nearest target from the array
+                        var nearestTarget = findNearestValue(targetsArray, scrolledDistance);
+
+                        // Scroll to the nearest target
+                        swiperWrapper2.scrollLeft = nearestTarget;
+                        // smoothScroll(swiperWrapper2, nearestTarget, 500);
+                        clearTimeout(scrollTimeout)
+                    }, 600)
+                }
+
+                // Function to find the nearest value in an array
+                function findNearestValue(array, value) {
+                    return array.reduce(function (prev, curr) {
+                        return (Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev);
+                    });
+                }
+                // scroll to left boundry after scroll ends here
+
+                function logoLink() {
+                    document.querySelector('#myNavigator').pushPage('homepage.html', {
+                        data: { title: 'Homepage' },
+                        callback: function () {
+                            // Reattach scroll event listener after pushing the homepage
+                            var swiperWrapper = document.querySelector('.swiper-wrapper-auto-scroll .swiper-wrapper');
+                            swiperWrapper.addEventListener("scroll", handleScroll(), true);
+                        }
+                    });
+                    console.log('logoLink run');
+                }
+            </script>
         </ons-page>
 
     </template>
@@ -3244,10 +3256,10 @@
                 return;
             })
         }
-        function logoLink() {
-            document.querySelector('#myNavigator').pushPage('homepage.html', { data: { title: 'Homepage' } });
-            console.log('logoLink run')
-        }
+        // function logoLink() {
+        //     document.querySelector('#myNavigator').pushPage('homepage.html', { data: { title: 'Homepage' } });
+        //     console.log('logoLink run')
+        // }
         var modalEnq = document.querySelector('ons-modal.modal-added-to-cart.modal-enquiry');
         var cartVisibleArea = document.querySelector('.cart-visible-area');
 
