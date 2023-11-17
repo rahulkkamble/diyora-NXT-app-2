@@ -2340,13 +2340,13 @@
                 }
 
                 function prevScroll() {
-                    var targetScrollLeft = slidingVarientImages.scrollLeft - 140; // Scroll left by 100 pixels
+                    var targetScrollLeft = slidingVarientImages.scrollLeft - 152; // Scroll left by 100 pixels
                     var duration = 100; // Adjust the duration as needed (in milliseconds)
                     smoothScroll(slidingVarientImages, targetScrollLeft, duration);
                 }
 
                 function nextScroll() {
-                    var targetScrollLeft = slidingVarientImages.scrollLeft + 140; // Scroll right by 100 pixels
+                    var targetScrollLeft = slidingVarientImages.scrollLeft + 152; // Scroll right by 100 pixels
                     var duration = 100; // Adjust the duration as needed (in milliseconds)
                     smoothScroll(slidingVarientImages, targetScrollLeft, duration);
                 }
@@ -3244,16 +3244,16 @@
             })
         }
         function hideOuter(modal) {
-            var rohit = (event) => {
+            var hideModal = (event) => {
                 event.stopImmediatePropagation();
                 modal.hide();
-                document.body.removeEventListener("click", rohit);
+                document.body.removeEventListener("click", hideModal);
             }
-            document.body.addEventListener("click", rohit);
+            document.body.addEventListener("click", hideModal);
             modal.querySelector(".cart-visible-area").addEventListener("click", (e) => {
                 e.preventDefault();
                 e.stopImmediatePropagation();
-                return;
+                return; /* if cart-visible-area then do not hide */
             })
         }
         // function logoLink() {

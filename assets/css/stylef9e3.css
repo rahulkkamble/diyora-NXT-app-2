@@ -961,8 +961,11 @@ p.subheading {
     display: inline-flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between; /* start */
-    /* gap: 8px; */
+    justify-content: space-between;
+    gap: 8px;
+    /* for scrollbar */
+    justify-content: start; /* space-between */
+    gap: 6px;
 }
 
 .filter-row .filter-badge,
@@ -1091,7 +1094,9 @@ p.subheading {
     /* flex-direction: column; */
     align-content: flex-start;
     /* gap: 14px; */
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    /* for scrollbar gap:8px */
+    gap: 8px;
     row-gap: 32px;
 }
 
@@ -1119,6 +1124,8 @@ p.subheading {
 
 .for-who-section.category-page .cards-wrapper {
     padding: 0;
+    margin-left: 0;
+    margin-right: auto;
 }
 
 .for-who-section.category-page .row.second-row {
