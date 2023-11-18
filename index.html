@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-<!-- Mirrored from metaverse.tech2edge.co/diyora-kiosk-sim/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Oct 2023 12:25:11 GMT -->
-
 <head>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -1291,9 +1288,11 @@
                         // Remove the 'active' class from all quality elements
                         qualityElementsCategory.forEach(qualityElementCat => {
                             qualityElementCat.classList.remove('active');
+                            console.log('quality options active removed')
                         });
                         // Add the 'active' class to the clicked element
                         element.classList.add('active');
+                        console.log('quality options active added')
                     });
                 });
 
@@ -3187,6 +3186,7 @@
             </div>
         </div>
     </ons-modal>
+    
     <script>
         var audio = new Audio('assets/ringing-bell.mp3'); // Replace 'bell.mp3' with the path to your audio file
         var allModals = document.querySelectorAll('ons-modal'); // Selected all modals
