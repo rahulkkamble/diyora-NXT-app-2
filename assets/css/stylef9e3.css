@@ -2302,6 +2302,10 @@ ons-back-button.remove-icon .back-button--material__label {
     line-height: normal;
 }
 
+.modal-wishlist .cart-visible-area .cart-product-wrapper{
+    height: 800px;
+}
+
 
 
 
