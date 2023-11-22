@@ -638,7 +638,7 @@
                 // scroll to left boundry after scroll
                 var scrollTimeout;
                 function handleScroll() {
-                    var swiperWrapper2 = document.querySelector('.swiper-wrapper');
+                    var swiperWrapper2 = document.querySelector('.carousel-most-popular .swiper-wrapper');
                     var swiperSlides2 = document.querySelectorAll('.swiper-slide');
                     var swiperSlideEach = document.querySelector('.swiper-slide');
                     var gap2 = 10;    /* give in number, will consider in pixels */
@@ -687,6 +687,10 @@
                             swiperWrapper.addEventListener("scroll", handleScroll(), true);
                         }
                     }); */
+                    // Get a reference to the button element
+                    // Add a click event listener to the button
+                    // Reload the page
+                    location.reload();
                     console.log('logoLink run');
                 }
             </script>
@@ -3186,7 +3190,7 @@
             </div>
         </div>
     </ons-modal>
-    
+
     <script>
         var audio = new Audio('assets/ringing-bell.mp3'); // Replace 'bell.mp3' with the path to your audio file
         var allModals = document.querySelectorAll('ons-modal'); // Selected all modals

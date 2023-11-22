@@ -444,8 +444,8 @@ ons-page {
 
 /* ===== home-most-popular ===== */
 .home-page .home-most-popular {
-    padding-top: 2rem;
-    padding-bottom: 28px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     background-color: #FFF;
 }
 
@@ -2305,7 +2305,6 @@ ons-back-button.remove-icon .back-button--material__label {
 .modal-wishlist .cart-visible-area .cart-product-wrapper{
     height: 800px;
 }
-
 
 
 
