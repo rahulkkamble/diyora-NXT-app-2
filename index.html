@@ -523,6 +523,7 @@
                                 handleScroll();
                                 console.log('timeout running, calling handlescroll');
                             }, 300);
+                            animationInterval = setInterval(startCarouselAnimation, 12000);
                             // }
                             // userScrolling = true;
                         }, true);
@@ -557,9 +558,7 @@
                 }
 
                 // Set an interval to start the animation every 7 seconds (adjust as needed)
-                // document.addEventListener('init', function (event) {
                 animationInterval = setInterval(startCarouselAnimation, 7000);
-                // })
 
                 var prev = function () {
                     carousel.prev();
@@ -2185,6 +2184,7 @@
                         <div class="text-uppercase btn-font">
                             ADD TO BAG
                         </div>
+
                     </div>
                 </div>
             </div>

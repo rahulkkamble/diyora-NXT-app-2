@@ -217,6 +217,20 @@ ons-page {
     animation: none;
 }
 
+@keyframes slide-left-once {
+    0%{
+        transform: translateX(0%);
+    }
+    100%{
+        transform: translateX(-100%);
+    }
+}
+
+.slideLeftOnce{
+    animation-name: slide-left-once;
+    animation-duration: 500ms;
+}
+
 
 /* =============== start from here ================== */
 /* ==== toolbar / navbar ===== */
