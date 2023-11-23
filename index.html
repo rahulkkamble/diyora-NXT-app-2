@@ -197,6 +197,7 @@
                                                     <path
                                                         d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
                                                         fill="#7D7D7D" />
+                                                    
                                                 </svg>
                                             </div>
                                         </div>
@@ -1291,11 +1292,9 @@
                         // Remove the 'active' class from all quality elements
                         qualityElementsCategory.forEach(qualityElementCat => {
                             qualityElementCat.classList.remove('active');
-                            console.log('quality options active removed')
                         });
                         // Add the 'active' class to the clicked element
                         element.classList.add('active');
-                        console.log('quality options active added')
                     });
                 });
 
@@ -2028,7 +2027,7 @@
                 <div class="product-slider-images" style="height: 100%;">
                     <div class="carousel-container-for-main-image">
                         <ons-carousel auto-scroll-ratio="0.1" id="carousel-test" fullscreen swipeable auto-scroll
-                            overscrollable initial-index="0">
+                            overscrollable initial-index="4">
                             <ons-carousel-item class="carousel-item">
                                 <img src="assets/img/cart-product.png" alt="" style="width: 100%;">
                             </ons-carousel-item>
@@ -2082,9 +2081,9 @@
                         <span id="dot3" class="dot" onclick="setActiveItem(3);">
                             <img src="assets/img/cart-product.png" alt="" style="width: 100%;">
                         </span>
-                        <span id="dot4" class="dot" onclick="setActiveItem(4);">
+                        <span id="dot4" class="dot active" onclick="setActiveItem(4);">
                             <div class="varient-image-dot">
-                                <img src="assets/img/Ring-1.png" alt="" style="width: 100%;">
+                                <img src="assets/img/Ring-1.png" alt="" style="width: 90%;">
                                 <div class="fullscreen-btn">
                                     <img src="assets/img/video-play-icon.png" alt="video-play-icon"
                                         style="width: 100px;">
@@ -2200,7 +2199,6 @@
                 document.addEventListener('init', function (event) {
 
                     carouselTest = document.getElementById('carousel-test');
-
                     // select Diamond active on click
                     var diamondOptions = document.querySelector('.select-diamond .customization-data').querySelectorAll('div');
                     diamondOptions.forEach(function (option) {
@@ -2281,6 +2279,27 @@
                         }
                     });
 
+                    // hide next and previous buttons when varient images are equal to 7 and less than 7
+                    var carouselButtons = document.querySelector(".product-showcase .variation-carousel-buttons");
+                    var carouselVarientImageWrapper = document.querySelector(".product-showcase .sliding-varient-images");
+                    var carouselVarientImages = document.querySelectorAll(".product-showcase .sliding-varient-images span");
+                    if(carouselVarientImages.length <= 6) {
+                        carouselVarientImageWrapper.classList.add('justify-content-center');
+                        carouselButtons.style.display="none";
+                    }
+                    
+                    // set active class to varient image to show which varient is selected.
+                    carouselVarientImages.forEach( varient => {
+                        varient.addEventListener("click", () => {
+                            // remove active classes from all varient images
+                            carouselVarientImages.forEach( varient => {
+                                varient.classList.remove('active');
+                            })
+                            // add active class on selected varient
+                            varient.classList.add('active');
+                        })
+                    })
+
                 });
 
                 reqUrl = 'https://metaverse.tech2edge.co/diyora-kiosk-sim/assets/video/sample-ring-1.mp4';
@@ -2322,6 +2341,7 @@
 
                 function setActiveItem(index) {
                     carouselTest.setActiveIndex(index);
+                    carouselTest.classList.add = 'active';
                 }
                 // Get a reference to the element you want to scroll
                 var slidingVarientImages = document.querySelector('.product-showcase .sliding-varient-images');
@@ -2342,13 +2362,13 @@
                 }
 
                 function prevScroll() {
-                    var targetScrollLeft = slidingVarientImages.scrollLeft - 152; // Scroll left by 100 pixels
+                    var targetScrollLeft = slidingVarientImages.scrollLeft - 138; // Scroll left by 100 pixels
                     var duration = 100; // Adjust the duration as needed (in milliseconds)
                     smoothScroll(slidingVarientImages, targetScrollLeft, duration);
                 }
 
                 function nextScroll() {
-                    var targetScrollLeft = slidingVarientImages.scrollLeft + 152; // Scroll right by 100 pixels
+                    var targetScrollLeft = slidingVarientImages.scrollLeft + 140; // Scroll right by 100 pixels
                     var duration = 100; // Adjust the duration as needed (in milliseconds)
                     smoothScroll(slidingVarientImages, targetScrollLeft, duration);
                 }
@@ -2366,9 +2386,9 @@
 
                 // scroll to left boundry after scroll
                 var scrollTimeout2;
-                // var slidingVarientImages= document.querySelector('.sliding-varient-images');
-                var allVarientImages = document.querySelectorAll('.sliding-varient-images span.dot');
-                var eachVarientImage = document.querySelector('.sliding-varient-images span.dot');
+                // var slidingVarientImages= document.querySelector('.sliding-varient-images'); //initialized above
+                var allVarientImages = document.querySelectorAll('.sliding-varient-images span');
+                var eachVarientImage = document.querySelector('.sliding-varient-images span');
                 var gapInVarientImages = 10;    /* give in number, will consider in pixels */
                 // var gapInVarientImages = slidingVarientImages.style.columnGap;
                 var eachVarientImageWidth = eachVarientImage.offsetWidth;
@@ -2389,6 +2409,7 @@
 
                         // Find the nearest target from the array
                         var nearestTarget = findNearestValue(arrayOfVarientImages, scrolledDistance);
+                        console.log(arrayOfVarientImages, "scrolled distance = ",scrolledDistance);
 
                         // Scroll to the nearest target
                         slidingVarientImages.scrollLeft = nearestTarget;

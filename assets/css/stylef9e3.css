@@ -153,6 +153,10 @@ ons-page {
     display: none !important;
 }
 
+.justify-content-center{
+    justify-content: center !important;
+}
+
 .price-breakup {
     font-weight: 700;
     color: #000;
@@ -1241,6 +1245,10 @@ p.subheading {
 
 .varient-image-dot {
     position: relative;
+    /* to center inner img and setting gap to active border */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .carousel-container-for-main-image ons-carousel-item .fullscreen-btn,
@@ -1263,7 +1271,7 @@ p.subheading {
 
 .product-showcase .sliding-varient-images {
     position: relative;
-    width: 1020px;
+    width: 990px;
     overflow: hidden;
     overflow-x: auto;
     scroll-behavior: smooth;
@@ -1272,7 +1280,6 @@ p.subheading {
     flex-shrink: 0;
     gap: 8px;
     margin: auto;
-    /* margin: auto; */
 }
 
 /* scrollbar invisible */
@@ -1317,8 +1324,10 @@ p.subheading {
 
 .product-showcase .sliding-varient-images span.dot {
     display: flex;
-    width: 139.397px;
-    height: 139.573px;
+    /* width: 139.397px;
+    height: 139.573px; */
+    width: 131.397px;
+    height: 131.573px;
     flex-shrink: 0;
     /* flex-direction: column; */
     justify-content: center;
@@ -2319,6 +2328,7 @@ ons-back-button.remove-icon .back-button--material__label {
 .modal-wishlist .cart-visible-area .cart-product-wrapper{
     height: 800px;
 }
+
 
 
 
