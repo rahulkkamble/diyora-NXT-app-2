@@ -444,8 +444,8 @@ ons-page {
 
 /* ===== home-most-popular ===== */
 .home-page .home-most-popular {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 1.15rem;
+    padding-bottom: 1.15rem;
     background-color: #FFF;
 }
 
