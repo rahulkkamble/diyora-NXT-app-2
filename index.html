@@ -691,6 +691,23 @@
                     location.reload();
                     console.log('logoLink run');
                 }
+                // heart shape
+                // Select the heart-shape div
+                var heartShape = document.querySelector('.heart-shape');
+                // Add a click event listener to the heart-shape div
+                heartShape.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    // Change the inner HTML of the div to the new SVG
+                    heartShape.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                                                    viewBox="0 0 37 37" fill="none">
+                                                    <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                    <path
+                                                        d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                        fill="#f00" />
+                                                </svg>
+                    `;
+                });
             </script>
         </ons-page>
 
@@ -1313,17 +1330,17 @@
                         console.log('category page : shown');
                         intervalX = setInterval(function () {
                             var carouselCats = document.getElementById('carousel-cats');
-                            if (carouselCats.getActiveIndex() === carouselCats.itemCount - 2){
+                            if (carouselCats.getActiveIndex() === carouselCats.itemCount - 2) {
                                 carouselCats.querySelector('ons-carousel-item:last-child').classList.add('slideLeftOnce');
-                                console.log('current target',carouselCats.querySelector('ons-carousel-item:last-child'))
+                                console.log('current target', carouselCats.querySelector('ons-carousel-item:last-child'))
                             }
-                            if (carouselCats.getActiveIndex() === carouselCats.itemCount - 1){
+                            if (carouselCats.getActiveIndex() === carouselCats.itemCount - 1) {
                                 // carouselCats.setActiveIndex(0);
-                                carouselCats.setActiveIndex(0,{animation: 'none'});
+                                carouselCats.setActiveIndex(0, { animation: 'none' });
                                 carouselCats.querySelector('ons-carousel-item:first-child').classList.add('slideLeftFrom100');
                                 carouselCats.querySelector('ons-carousel-item:last-child').classList.remove('slideLeftOnce');
                             }
-                            else{
+                            else {
                                 carouselCats.querySelector('ons-carousel-item:first-child').classList.remove('slideLeftFrom100');
                                 carouselCats.next();
                             }
@@ -1947,7 +1964,7 @@
                 var qualityElementsCategory = qualityDivCategory.querySelectorAll('.quality-options div');
                 var forWhoSectionCards = document.querySelectorAll('.for-who-section ons-card');
                 var carouselInterval;
-                
+
                 // Add click event listeners to the elements
                 qualityElementsCategory.forEach(element => {
                     element.addEventListener('click', () => {

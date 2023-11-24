@@ -653,6 +653,7 @@ ons-card .img-group .badges {
 
 .badges .heart-shape {
     padding-right: .5rem;
+    cursor: pointer;
 }
 
 .home-most-popular-card .content {
