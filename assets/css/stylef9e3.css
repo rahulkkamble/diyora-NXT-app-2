@@ -989,6 +989,7 @@ p.subheading {
 }
 
 .filter-row .filter-badge,
+.filter-row .filter-badge-all,
 .filter-row .quality-options {
     color: #7D7D7D;
     display: flex;
@@ -1004,6 +1005,9 @@ p.subheading {
     border: 1.318px solid var(--border-color);
 }
 
+.filter-row .filter-badge-all:active,
+.filter-row .filter-badge-all:focus,
+.filter-row .filter-badge-all.active,
 .filter-row .filter-badge.active,
 .filter-row .filter-badge:active,
 .filter-row .filter-badge:focus {

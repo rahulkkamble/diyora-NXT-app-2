@@ -197,7 +197,7 @@
                                                     <path
                                                         d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
                                                         fill="#7D7D7D" />
-                                                    
+
                                                 </svg>
                                             </div>
                                         </div>
@@ -910,7 +910,7 @@
                     <!-- filters -->
                     <div class="filter-row">
                         <p>Filters:</p>
-                        <div class="filter-badge active">
+                        <div class="filter-badge-all active">
                             All Metals
                         </div>
                         <div class="filter-badge">
@@ -1271,18 +1271,29 @@
                     };
                 });
                 // filter-badge active on click
+                var allMetals = document.querySelector('.filter-badge-all');
                 var filterBadges = document.querySelectorAll('.filter-badge');
+
                 filterBadges.forEach(function (badge) {
                     badge.addEventListener('click', function () {
-                        // Remove the "active" class from all filter badges
-                        // filterBadges.forEach(function (item) {
-                        //     item.classList.remove('active');
-                        // });
-                        // Add the "active" class to the clicked filter badge
+                        // Toggle active class on the clicked badge
                         badge.classList.toggle('active');
-                        console.log('toggle hit');
+                        // Check if all filter badges have the active class
+                        var allActive = Array.from(filterBadges).every(b => b.classList.contains('active'));
+                        // Check if any filter badge has the active class
+                        var anyActive = Array.from(filterBadges).some(b => b.classList.contains('active'));
+                        // Set active class on filter-badge-all if no badges are active
+                        allMetals.classList.toggle('active', allActive || !anyActive);
                     });
                 });
+
+                // selection of all metal will remove active class from all options available
+                allMetals.addEventListener('click', () => {
+                    filterBadges.forEach((badge) => {
+                        badge.classList.remove('active');
+                    })
+                    allMetals.classList.add('active')
+                })
 
                 var qualityDivCategory = document.querySelector('.quality-options');
                 var qualityElementsCategory = qualityDivCategory.querySelectorAll('.quality-options div');
@@ -1535,7 +1546,7 @@
                     <!-- filters -->
                     <div class="filter-row">
                         <p>Filters:</p>
-                        <div class="filter-badge active">
+                        <div class="filter-badge-all active">
                             All Metals
                         </div>
                         <div class="filter-badge">
@@ -1900,36 +1911,36 @@
 
                 // filter-badge active on click
                 // ========== Repeated from category page
-                // var filterBadges = document.querySelectorAll('.filter-badge');
+                // filter-badge active on click
+                var allMetals = document.querySelector('.filter-badge-all');
+                var filterBadges = document.querySelectorAll('.filter-badge');
 
-                // filterBadges.forEach(function (badge) {
-                //     badge.addEventListener('click', function () {
-                //         // Remove the "active" class from all filter badges
-                //         // filterBadges.forEach(function (item) {
-                //         //     item.classList.remove('active');
-                //         // });
-                //         // Add the "active" class to the clicked filter badge
-                //         badge.classList.toggle('active');
-                //     });
-                // });
+                filterBadges.forEach(function (badge) {
+                    badge.addEventListener('click', function () {
+                        // Toggle active class on the clicked badge
+                        badge.classList.toggle('active');
+                        // Check if all filter badges have the active class
+                        var allActive = Array.from(filterBadges).every(b => b.classList.contains('active'));
+                        // Check if any filter badge has the active class
+                        var anyActive = Array.from(filterBadges).some(b => b.classList.contains('active'));
+                        // Set active class on filter-badge-all if no badges are active
+                        allMetals.classList.toggle('active', allActive || !anyActive);
+                    });
+                });
+                // selection of all metal will remove active class from all options available
+                allMetals.addEventListener('click', () => {
+                    filterBadges.forEach((badge) => {
+                        badge.classList.remove('active');
+                    })
+                    allMetals.classList.add('active')
+                })
 
 
                 var qualityDivCategory = document.querySelector('.quality-options');
                 var qualityElementsCategory = qualityDivCategory.querySelectorAll('.quality-options div');
                 var forWhoSectionCards = document.querySelectorAll('.for-who-section ons-card');
-                var filterBadges = document.querySelectorAll('.filter-badge');
                 var carouselInterval;
-                filterBadges.forEach(function (badge) {
-                    badge.addEventListener('click', function () {
-                        // Remove the "active" class from all filter badges
-                        // filterBadges.forEach(function (item) {
-                        //     item.classList.remove('active');
-                        // });
-                        // Add the "active" class to the clicked filter badge
-                        badge.classList.toggle('active');
-                        console.log('toggle hit');
-                    });
-                });
+                
                 // Add click event listeners to the elements
                 qualityElementsCategory.forEach(element => {
                     element.addEventListener('click', () => {
@@ -2286,16 +2297,16 @@
                     var carouselButtons = document.querySelector(".product-showcase .variation-carousel-buttons");
                     var carouselVarientImageWrapper = document.querySelector(".product-showcase .sliding-varient-images");
                     var carouselVarientImages = document.querySelectorAll(".product-showcase .sliding-varient-images span");
-                    if(carouselVarientImages.length <= 6) {
+                    if (carouselVarientImages.length <= 6) {
                         carouselVarientImageWrapper.classList.add('justify-content-center');
-                        carouselButtons.style.display="none";
+                        carouselButtons.style.display = "none";
                     }
-                    
+
                     // set active class to varient image to show which varient is selected.
-                    carouselVarientImages.forEach( varient => {
+                    carouselVarientImages.forEach(varient => {
                         varient.addEventListener("click", () => {
                             // remove active classes from all varient images
-                            carouselVarientImages.forEach( varient => {
+                            carouselVarientImages.forEach(varient => {
                                 varient.classList.remove('active');
                             })
                             // add active class on selected varient
@@ -2412,7 +2423,7 @@
 
                         // Find the nearest target from the array
                         var nearestTarget = findNearestValue(arrayOfVarientImages, scrolledDistance);
-                        console.log(arrayOfVarientImages, "scrolled distance = ",scrolledDistance);
+                        console.log(arrayOfVarientImages, "scrolled distance = ", scrolledDistance);
 
                         // Scroll to the nearest target
                         slidingVarientImages.scrollLeft = nearestTarget;
