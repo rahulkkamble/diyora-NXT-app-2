@@ -230,10 +230,29 @@ ons-page {
         transform: translateX(-100%);
     }
 }
+@keyframes slide-left-from-100 {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+}
 
 .slideLeftOnce {
     animation-name: slide-left-once;
-    animation-duration: 500ms;
+    animation-delay: 4800ms;
+    animation-duration: 400ms;
+    /* animation-timing-function: ease; */
+    /* animation-iteration-count: infinite; */
+}
+
+.slideLeftFrom100{
+    animation-name: slide-left-from-100;
+    animation-delay: -50ms;
+    animation-duration: 300ms;
+    /* animation-timing-function: ease; */
 }
 
 

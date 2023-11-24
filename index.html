@@ -687,8 +687,6 @@
                             swiperWrapper.addEventListener("scroll", handleScroll(), true);
                         }
                     }); */
-                    // Get a reference to the button element
-                    // Add a click event listener to the button
                     // Reload the page
                     location.reload();
                     console.log('logoLink run');
@@ -1259,7 +1257,6 @@
                     // if (page.id === 'earringCategory') {
                     //     forEach function moved down
                     // }
-
                     // else if (page.id === 'category-earring') {
                     //     page.querySelector('div class="ons-toolbar navbar" .center').innerHTML = page.data.title;
                     // }
@@ -1316,10 +1313,20 @@
                         console.log('category page : shown');
                         intervalX = setInterval(function () {
                             var carouselCats = document.getElementById('carousel-cats');
-                            if (carouselCats.getActiveIndex() === carouselCats.itemCount - 1)
-                                carouselCats.setActiveIndex(0);
-                            else
+                            if (carouselCats.getActiveIndex() === carouselCats.itemCount - 2){
+                                carouselCats.querySelector('ons-carousel-item:last-child').classList.add('slideLeftOnce');
+                                console.log('current target',carouselCats.querySelector('ons-carousel-item:last-child'))
+                            }
+                            if (carouselCats.getActiveIndex() === carouselCats.itemCount - 1){
+                                // carouselCats.setActiveIndex(0);
+                                carouselCats.setActiveIndex(0,{animation: 'none'});
+                                carouselCats.querySelector('ons-carousel-item:first-child').classList.add('slideLeftFrom100');
+                                carouselCats.querySelector('ons-carousel-item:last-child').classList.remove('slideLeftOnce');
+                            }
+                            else{
+                                carouselCats.querySelector('ons-carousel-item:first-child').classList.remove('slideLeftFrom100');
                                 carouselCats.next();
+                            }
                         }, 5000);
                     };
                     this.onHide = function () {
