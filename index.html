@@ -2120,7 +2120,10 @@
                         <p class="product-price">₹448,977</p>
                     </div>
                     <div class="right">
-                        <img src="assets/img/heart-blank.svg" alt="">
+                        <div class="heart-shape-container">
+                            <!-- <img src="assets/img/heart-blank.svg" alt=""> -->
+                            <div class="heart"></div>
+                        </div>
                     </div>
                 </div>
 
@@ -2425,6 +2428,11 @@
                     });
                 }
                 // scroll to left boundry after scroll end here
+                // heart like button
+                var heartBtn = document.querySelector(".heart-shape-container .heart");
+                heartBtn.addEventListener('click', () => {
+                    heartBtn.classList.toggle('active');
+                })
             </script>
 
             <!-- summary details // product details -->
