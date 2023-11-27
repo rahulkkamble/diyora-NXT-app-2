@@ -197,7 +197,6 @@
                                                     <path
                                                         d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
                                                         fill="#7D7D7D" />
-
                                                 </svg>
                                             </div>
                                         </div>
@@ -503,16 +502,42 @@
             </div>
 
             <script>
+
+                var idleTimeout = null;
+
+                var idleActivityTracker = function () {
+                    clearTimeout(idleTimeout);
+                    // Set a timeout to run the code after 1 minute of inactivity
+                    idleTimeout = setTimeout(function () {
+                        // Your JavaScript code to run after 1 minute of inactivity
+                        console.log('Page is idle for 1 minute. Running your code...');
+                        location.reload();
+                    }, 120000); // 60000 milliseconds = 1 minute
+                }
+
+                idleActivityTracker();
+
+                // Reset the idle timeout on page change (navigation)
+                // document.querySelector('ons-navigator').addEventListener('postchange', idleActivityTracker);
+                // Additional event listeners for other user interactions
+                document.addEventListener('click', idleActivityTracker);
+                document.addEventListener('touchstart', idleActivityTracker);
+                document.addEventListener('scroll', idleActivityTracker);
+                // Add more event listeners as needed
+
+
                 var carousel = document.getElementById('carouselMostPopular');
                 // var carouselVariation = document.getElementById('carouselVariation');
                 // var carouselItem = document.querySelector('#carouselMostPopular ons-carousel-item');
                 // var swiperWrapper;
                 var animationInterval;
+                var animationTimeout;
 
                 var handleScrollTimeout;
                 document.addEventListener('show', function (event) {
                     if (event.target.id === 'homePage') {
                         console.log('homepage shown');
+                        animationInterval = setInterval(startCarouselAnimation, 7000);
                         var swiperWrapper = document.querySelector('.swiper-wrapper-auto-scroll .swiper-wrapper');
                         // var userScrolling = true;
                         swiperWrapper.addEventListener("scroll", () => {
@@ -520,11 +545,15 @@
                             console.log("Div scrolled!");
                             clearTimeout(handleScrollTimeout);
                             clearInterval(animationInterval);
+                            clearTimeout(animationTimeout);
                             handleScrollTimeout = setTimeout(() => {
                                 handleScroll();
                                 console.log('timeout running, calling handlescroll');
                             }, 300);
-                            animationInterval = setInterval(startCarouselAnimation, 12000);
+                            animationTimeout = setTimeout(() => {
+                                console.log('after 12 seconds');
+                                animationInterval = setInterval(startCarouselAnimation, 7000);
+                            }, 12000);
                             // }
                             // userScrolling = true;
                         }, true);
@@ -534,6 +563,9 @@
                     if (event.target.id === 'homePage') {
                         // Detach scroll event listener before the page is hidden
                         console.log('homepage hiden');
+                        clearTimeout(handleScrollTimeout);
+                        clearInterval(animationInterval);
+                        clearTimeout(animationTimeout);
                         var swiperWrapper = document.querySelector('.swiper-wrapper-auto-scroll .swiper-wrapper');
                         swiperWrapper.removeEventListener('scroll', handleScroll);
                     }
@@ -546,6 +578,7 @@
                 //     }
                 // });
                 function startCarouselAnimation() {
+                    console.log('animation started')
                     var carouselItem = document.querySelectorAll('.swiper-wrapper-auto-scroll .swiper-wrapper .swiper-slide');
                     // console.log(carouselItem, "animation started");
                     // if (carouselItem) {
@@ -559,7 +592,7 @@
                 }
 
                 // Set an interval to start the animation every 7 seconds (adjust as needed)
-                animationInterval = setInterval(startCarouselAnimation, 7000);
+                // animationInterval = setInterval(startCarouselAnimation, 7000);
 
                 var prev = function () {
                     carousel.prev();
@@ -693,21 +726,38 @@
                 }
                 // heart shape
                 // Select the heart-shape div
-                var heartShape = document.querySelector('.heart-shape');
+                var heartShape = document.querySelectorAll('.heart-shape');
                 // Add a click event listener to the heart-shape div
-                heartShape.addEventListener('click', function (e) {
-                    e.stopPropagation();
-                    // Change the inner HTML of the div to the new SVG
-                    heartShape.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37"
-                                                    viewBox="0 0 37 37" fill="none">
+                heartShape.forEach(heart => {
+                    heart.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        heart.style.transform = 'scale(0.85)'; // Add a scaling effect
+                        heart.style.transition = 'all .2s ease'; // transition effect
+
+                        setTimeout(() => {
+                            heart.style.transform = 'scale(1)';
+                            heart.classList.toggle('active');
+                            // Change the inner HTML of the div to the new SVG
+                            if (heart.classList.contains('active')) {
+                                heart.innerHTML = `<div class="heart-shape-liked-svg">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 43 36" fill="none">
+                                                            <path d="M31.4837 0C27.9512 0 24.8547 1.53935 22.5288 4.45173C22.2185 4.84014 21.9419 5.22873 21.697 5.60507C21.4518 5.22865 21.1753 4.84014 20.8652 4.45173C18.5392 1.53935 15.4426 0 11.9103 0C5.23742 0 0.464844 5.46055 0.464844 12.0129C0.464844 19.5052 6.74797 26.5664 20.8375 34.9083C21.1017 35.0646 21.3992 35.1429 21.697 35.1429C21.9945 35.1429 22.2923 35.0648 22.5565 34.9084C36.646 26.5666 42.9291 19.5054 42.9291 12.013C42.9291 5.46404 38.1603 0 31.4837 0ZM35.2289 21.3422C32.2957 24.5409 27.8629 27.909 21.697 31.622C15.5309 27.909 11.0983 24.5409 8.16505 21.3422C5.21595 18.1263 3.78236 15.0746 3.78236 12.013C3.78236 7.29519 7.04464 3.24227 11.9103 3.24227C14.3881 3.24227 16.5009 4.2952 18.1899 6.37189C19.5405 8.03266 20.1095 9.74758 20.1136 9.75982C20.3295 10.437 20.9711 10.8983 21.697 10.8983C22.4228 10.8983 23.0645 10.4371 23.2806 9.75982C23.2859 9.74343 23.8378 8.08201 25.1439 6.44662C26.8421 4.32033 28.975 3.2422 31.4837 3.2422C36.3544 3.2422 39.6116 7.29901 39.6116 12.0129C39.6116 15.0746 38.178 18.1262 35.2289 21.3422Z" fill="#033432"/>
+                                                            <path d="M6.96491 2.5L3.96491 7C3.79825 8.16667 3.46491 10.6 3.46491 11C3.46491 11.4 2.79825 12.8333 2.46491 13.5C2.63158 14.1667 2.86491 15.7 2.46491 16.5C2.06491 17.3 2.96491 18.1667 3.46491 18.5C4.13158 19.6667 5.56491 22.1 5.96491 22.5C6.36491 22.9 8.46491 25.3333 9.46491 26.5L14.4649 30L18.4649 31.5C19.9649 31.8333 22.9649 32.4 22.9649 32C22.9649 31.5 24.4649 32 24.9649 31C25.4649 30 26.4649 30 27.4649 29L28.9649 27.5C29.4649 27 30.9649 27 31.9649 26C32.9649 25 33.4649 25.5 34.4649 24.5C35.4649 23.5 36.4649 23.5 37.4649 22C38.4649 20.5 38.9649 20 39.9649 18.5C40.9649 17 40.4649 15.5 40.4649 13C40.4649 10.5 40.9649 11 40.4649 10C39.9649 9 39.4649 7 38.4649 6L37.4649 5C37.2982 4.66667 36.8649 3.9 36.4649 3.5C35.9649 3 35.9649 3 34.9649 2.5C33.9649 2 32.4649 2 31.9649 2H29.4649C27.9649 2 28.4649 2.5 27.9649 3C27.4649 3.5 25.9649 4.5 25.4649 5C24.9649 5.5 23.9649 6.5 22.9649 7C21.9649 7.5 21.9649 8 21.4649 8.5C21.0649 8.9 20.6316 8.66667 20.4649 8.5C20.1316 7.83333 19.3649 6.4 18.9649 6L15.9649 3L10.9649 2L6.96491 2.5Z" fill="#033432"/>
+                                                        </svg>
+                                                    </div>`;
+                            }
+                            else {
+                                heart.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="37" height="37" viewBox="0 0 37 37" fill="none">
                                                     <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
                                                     <path
                                                         d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
-                                                        fill="#f00" />
-                                                </svg>
-                    `;
-                });
+                                                        fill="#7D7D7D" />
+                                                </svg>`;
+                            }
+                        }, 200); // Adjust the duration of the animation (in milliseconds)
+                    });
+                })
+
             </script>
         </ons-page>
 
@@ -1269,6 +1319,7 @@
             </div>
 
             <script>
+                idleActivityTracker();
                 document.addEventListener('init', function (event) {
                     var page = event.target;
                     // if (page.id === 'earringCategory') {
@@ -1336,7 +1387,7 @@
                             }
                             if (carouselCats.getActiveIndex() === carouselCats.itemCount - 1) {
                                 // carouselCats.setActiveIndex(0);
-                                carouselCats.setActiveIndex(0, { animation: 'none' });
+                                carouselCats.setActiveIndex(0, { animation: "none" });
                                 carouselCats.querySelector('ons-carousel-item:first-child').classList.add('slideLeftFrom100');
                                 carouselCats.querySelector('ons-carousel-item:last-child').classList.remove('slideLeftOnce');
                             }
@@ -1352,6 +1403,39 @@
                     };
                     // this.onDestroy = function () { ... };
                 };
+                // heart shape
+                // Select the heart-shape div
+                var heartShape = document.querySelectorAll('.heart-shape');
+                // Add a click event listener to the heart-shape div
+                heartShape.forEach(heart => {
+                    heart.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        heart.style.transform = 'scale(0.85)'; // Add a scaling effect
+                        heart.style.transition = 'all .2s ease'; // transition effect
+
+                        setTimeout(() => {
+                            heart.style.transform = 'scale(1)';
+                            heart.classList.toggle('active');
+                            // Change the inner HTML of the div to the new SVG
+                            if (heart.classList.contains('active')) {
+                                heart.innerHTML = `<div class="heart-shape-liked-svg">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 43 36" fill="none">
+                                                            <path d="M31.4837 0C27.9512 0 24.8547 1.53935 22.5288 4.45173C22.2185 4.84014 21.9419 5.22873 21.697 5.60507C21.4518 5.22865 21.1753 4.84014 20.8652 4.45173C18.5392 1.53935 15.4426 0 11.9103 0C5.23742 0 0.464844 5.46055 0.464844 12.0129C0.464844 19.5052 6.74797 26.5664 20.8375 34.9083C21.1017 35.0646 21.3992 35.1429 21.697 35.1429C21.9945 35.1429 22.2923 35.0648 22.5565 34.9084C36.646 26.5666 42.9291 19.5054 42.9291 12.013C42.9291 5.46404 38.1603 0 31.4837 0ZM35.2289 21.3422C32.2957 24.5409 27.8629 27.909 21.697 31.622C15.5309 27.909 11.0983 24.5409 8.16505 21.3422C5.21595 18.1263 3.78236 15.0746 3.78236 12.013C3.78236 7.29519 7.04464 3.24227 11.9103 3.24227C14.3881 3.24227 16.5009 4.2952 18.1899 6.37189C19.5405 8.03266 20.1095 9.74758 20.1136 9.75982C20.3295 10.437 20.9711 10.8983 21.697 10.8983C22.4228 10.8983 23.0645 10.4371 23.2806 9.75982C23.2859 9.74343 23.8378 8.08201 25.1439 6.44662C26.8421 4.32033 28.975 3.2422 31.4837 3.2422C36.3544 3.2422 39.6116 7.29901 39.6116 12.0129C39.6116 15.0746 38.178 18.1262 35.2289 21.3422Z" fill="#033432"/>
+                                                            <path d="M6.96491 2.5L3.96491 7C3.79825 8.16667 3.46491 10.6 3.46491 11C3.46491 11.4 2.79825 12.8333 2.46491 13.5C2.63158 14.1667 2.86491 15.7 2.46491 16.5C2.06491 17.3 2.96491 18.1667 3.46491 18.5C4.13158 19.6667 5.56491 22.1 5.96491 22.5C6.36491 22.9 8.46491 25.3333 9.46491 26.5L14.4649 30L18.4649 31.5C19.9649 31.8333 22.9649 32.4 22.9649 32C22.9649 31.5 24.4649 32 24.9649 31C25.4649 30 26.4649 30 27.4649 29L28.9649 27.5C29.4649 27 30.9649 27 31.9649 26C32.9649 25 33.4649 25.5 34.4649 24.5C35.4649 23.5 36.4649 23.5 37.4649 22C38.4649 20.5 38.9649 20 39.9649 18.5C40.9649 17 40.4649 15.5 40.4649 13C40.4649 10.5 40.9649 11 40.4649 10C39.9649 9 39.4649 7 38.4649 6L37.4649 5C37.2982 4.66667 36.8649 3.9 36.4649 3.5C35.9649 3 35.9649 3 34.9649 2.5C33.9649 2 32.4649 2 31.9649 2H29.4649C27.9649 2 28.4649 2.5 27.9649 3C27.4649 3.5 25.9649 4.5 25.4649 5C24.9649 5.5 23.9649 6.5 22.9649 7C21.9649 7.5 21.9649 8 21.4649 8.5C21.0649 8.9 20.6316 8.66667 20.4649 8.5C20.1316 7.83333 19.3649 6.4 18.9649 6L15.9649 3L10.9649 2L6.96491 2.5Z" fill="#033432"/>
+                                                        </svg>
+                                                    </div>`;
+                            }
+                            else {
+                                heart.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="37" height="37" viewBox="0 0 37 37" fill="none">
+                                                    <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                    <path
+                                                        d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                        fill="#7D7D7D" />
+                                                </svg>`;
+                            }
+                        }, 200); // Adjust the duration of the animation (in milliseconds)
+                    });
+                })
             </script>
         </ons-page>
     </template>
@@ -1917,6 +2001,7 @@
             </div>
 
             <script>
+                idleActivityTracker();
                 document.addEventListener('init', function (event) {
                     var page = event.target;
                     if (page.id === 'giftingCategory') {
@@ -2007,6 +2092,39 @@
                         console.log('gifting-page: destroyed');
                     };
                 };
+                // heart shape
+                // Select the heart-shape div
+                var heartShape = document.querySelectorAll('.heart-shape');
+                // Add a click event listener to the heart-shape div
+                heartShape.forEach(heart => {
+                    heart.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        heart.style.transform = 'scale(0.85)'; // Add a scaling effect
+                        heart.style.transition = 'all .2s ease'; // transition effect
+
+                        setTimeout(() => {
+                            heart.style.transform = 'scale(1)';
+                            heart.classList.toggle('active');
+                            // Change the inner HTML of the div to the new SVG
+                            if (heart.classList.contains('active')) {
+                                heart.innerHTML = `<div class="heart-shape-liked-svg">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 43 36" fill="none">
+                                                            <path d="M31.4837 0C27.9512 0 24.8547 1.53935 22.5288 4.45173C22.2185 4.84014 21.9419 5.22873 21.697 5.60507C21.4518 5.22865 21.1753 4.84014 20.8652 4.45173C18.5392 1.53935 15.4426 0 11.9103 0C5.23742 0 0.464844 5.46055 0.464844 12.0129C0.464844 19.5052 6.74797 26.5664 20.8375 34.9083C21.1017 35.0646 21.3992 35.1429 21.697 35.1429C21.9945 35.1429 22.2923 35.0648 22.5565 34.9084C36.646 26.5666 42.9291 19.5054 42.9291 12.013C42.9291 5.46404 38.1603 0 31.4837 0ZM35.2289 21.3422C32.2957 24.5409 27.8629 27.909 21.697 31.622C15.5309 27.909 11.0983 24.5409 8.16505 21.3422C5.21595 18.1263 3.78236 15.0746 3.78236 12.013C3.78236 7.29519 7.04464 3.24227 11.9103 3.24227C14.3881 3.24227 16.5009 4.2952 18.1899 6.37189C19.5405 8.03266 20.1095 9.74758 20.1136 9.75982C20.3295 10.437 20.9711 10.8983 21.697 10.8983C22.4228 10.8983 23.0645 10.4371 23.2806 9.75982C23.2859 9.74343 23.8378 8.08201 25.1439 6.44662C26.8421 4.32033 28.975 3.2422 31.4837 3.2422C36.3544 3.2422 39.6116 7.29901 39.6116 12.0129C39.6116 15.0746 38.178 18.1262 35.2289 21.3422Z" fill="#033432"/>
+                                                            <path d="M6.96491 2.5L3.96491 7C3.79825 8.16667 3.46491 10.6 3.46491 11C3.46491 11.4 2.79825 12.8333 2.46491 13.5C2.63158 14.1667 2.86491 15.7 2.46491 16.5C2.06491 17.3 2.96491 18.1667 3.46491 18.5C4.13158 19.6667 5.56491 22.1 5.96491 22.5C6.36491 22.9 8.46491 25.3333 9.46491 26.5L14.4649 30L18.4649 31.5C19.9649 31.8333 22.9649 32.4 22.9649 32C22.9649 31.5 24.4649 32 24.9649 31C25.4649 30 26.4649 30 27.4649 29L28.9649 27.5C29.4649 27 30.9649 27 31.9649 26C32.9649 25 33.4649 25.5 34.4649 24.5C35.4649 23.5 36.4649 23.5 37.4649 22C38.4649 20.5 38.9649 20 39.9649 18.5C40.9649 17 40.4649 15.5 40.4649 13C40.4649 10.5 40.9649 11 40.4649 10C39.9649 9 39.4649 7 38.4649 6L37.4649 5C37.2982 4.66667 36.8649 3.9 36.4649 3.5C35.9649 3 35.9649 3 34.9649 2.5C33.9649 2 32.4649 2 31.9649 2H29.4649C27.9649 2 28.4649 2.5 27.9649 3C27.4649 3.5 25.9649 4.5 25.4649 5C24.9649 5.5 23.9649 6.5 22.9649 7C21.9649 7.5 21.9649 8 21.4649 8.5C21.0649 8.9 20.6316 8.66667 20.4649 8.5C20.1316 7.83333 19.3649 6.4 18.9649 6L15.9649 3L10.9649 2L6.96491 2.5Z" fill="#033432"/>
+                                                        </svg>
+                                                    </div>`;
+                            }
+                            else {
+                                heart.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="37" height="37" viewBox="0 0 37 37" fill="none">
+                                                    <circle cx="18.5" cy="18.5" r="18.5" fill="white" />
+                                                    <path
+                                                        d="M18.1 26.55L18 26.65L17.89 26.55C13.14 22.24 10 19.39 10 16.5C10 14.5 11.5 13 13.5 13C15.04 13 16.54 14 17.07 15.36H18.93C19.46 14 20.96 13 22.5 13C24.5 13 26 14.5 26 16.5C26 19.39 22.86 22.24 18.1 26.55ZM22.5 11C20.76 11 19.09 11.81 18 13.08C16.91 11.81 15.24 11 13.5 11C10.42 11 8 13.41 8 16.5C8 20.27 11.4 23.36 16.55 28.03L18 29.35L19.45 28.03C24.6 23.36 28 20.27 28 16.5C28 13.41 25.58 11 22.5 11Z"
+                                                        fill="#7D7D7D" />
+                                                </svg>`;
+                            }
+                        }, 200); // Adjust the duration of the animation (in milliseconds)
+                    });
+                })
             </script>
         </ons-page>
     </template>
@@ -2227,6 +2345,7 @@
             </div>
 
             <script>
+                idleActivityTracker();
 
                 var carouselTest;
                 var btnFullscreen;
