@@ -504,15 +504,17 @@
             <script>
 
                 var idleTimeout = null;
+                var idleActivityTime = 120; // set value in seconds for how many seconds to track idle activity
 
                 var idleActivityTracker = function () {
+                    console.log('idle activity tracker on for ', idleActivityTime, 'seconds, The page will refresh after', idleActivityTime, 'seconds - if you do nothing.')
                     clearTimeout(idleTimeout);
                     // Set a timeout to run the code after 1 minute of inactivity
                     idleTimeout = setTimeout(function () {
                         // Your JavaScript code to run after 1 minute of inactivity
-                        console.log('Page is idle for 1 minute. Running your code...');
+                        console.log('Page is idle for ', idleActivityTime, '  minute. Running your code...');
                         location.reload();
-                    }, 120000); // 60000 milliseconds = 1 minute
+                    }, idleActivityTime * 1000); // 60000 milliseconds = 1 minute
                 }
 
                 idleActivityTracker();
@@ -532,11 +534,27 @@
                 // var swiperWrapper;
                 var animationInterval;
                 var animationTimeout;
+                var countInitHome = 0;
+                var backToHomeLightenCards;
 
                 var handleScrollTimeout;
                 document.addEventListener('show', function (event) {
                     if (event.target.id === 'homePage') {
                         console.log('homepage shown');
+                        function howManyTimeHome() {
+                            countInitHome++;
+                            console.log('Home page initiated = ', countInitHome);
+                        }
+                        howManyTimeHome();
+                        if (countInitHome > 1) {
+                            clearInterval(backToHomeLightenCards);
+                            console.log('glow effect will run after 1-min because you returned on homepage morethan once...')
+                            backToHomeLightenCards = setTimeout(() => {
+                                lightenCardsInterval = setInterval(addAnimationClassRandomly, 7000);
+                            }, 6000);
+                        } else {
+                            lightenCardsInterval = setInterval(addAnimationClassRandomly, 7000);
+                        }
                         animationInterval = setInterval(startCarouselAnimation, 7000);
                         var swiperWrapper = document.querySelector('.swiper-wrapper-auto-scroll .swiper-wrapper');
                         // var userScrolling = true;
@@ -551,7 +569,7 @@
                                 console.log('timeout running, calling handlescroll');
                             }, 300);
                             animationTimeout = setTimeout(() => {
-                                console.log('60 seconds over, carousel animation started');
+                                console.log('60 seconds over, carousel carousel sliding to left');
                                 animationInterval = setInterval(startCarouselAnimation, 7000);
                             }, 60000);
                             // }
@@ -566,6 +584,10 @@
                         clearTimeout(handleScrollTimeout);
                         clearInterval(animationInterval);
                         clearTimeout(animationTimeout);
+                        clearInterval(lightenCardsInterval);
+                        heartShape.forEach(heart => {
+                            heart.removeEventListener('click', () => { })
+                        });
                         var swiperWrapper = document.querySelector('.swiper-wrapper-auto-scroll .swiper-wrapper');
                         swiperWrapper.removeEventListener('scroll', handleScroll);
                     }
@@ -578,9 +600,9 @@
                 //     }
                 // });
                 function startCarouselAnimation() {
-                    console.log('animation started')
+                    console.log('carousel sliding to left')
                     var carouselItem = document.querySelectorAll('.swiper-wrapper-auto-scroll .swiper-wrapper .swiper-slide');
-                    // console.log(carouselItem, "animation started");
+                    // console.log(carouselItem, "carousel sliding to left");
                     // if (carouselItem) {
                     carouselItem.forEach((item) => {
                         item.classList.add('slide-to-left');
@@ -611,10 +633,13 @@
 
                 function navProd() {
                     document.querySelector('#myNavigator').pushPage('product-page.html', { data: { title: 'Product' } });
+                    clearInterval(lightenCardsInterval);
                 }
 
                 // active class on homecategorycards
+                var lightenCardsInterval;
                 function addAnimationClassRandomly() {
+                    console.log('glowing category cards');
                     var cards = document.querySelectorAll('.home-category-cards');
 
                     // Remove "active" class from all cards
@@ -636,7 +661,7 @@
                 }
 
                 // Call the function to add and remove "active" class randomly
-                setInterval(addAnimationClassRandomly, 7000); // You can adjust the interval as needed
+                // lightenCardsInterval = setInterval(addAnimationClassRandomly, 7000); // You can adjust the interval as needed
 
                 // Get a reference to the element you want to scroll
                 var scrollableSwiper = document.querySelector(".swiper-wrapper");
@@ -1373,13 +1398,15 @@
                         element.classList.add('active');
                     });
                 });
-
+                // carousel new animation
                 var intervalX;
                 var lastCarouselItem;
                 ons.getScriptPage().onInit = function () {
                     // Set up page's content or anything else
                     this.onShow = function () {
                         console.log('category page : shown');
+                        lightenCardsInterval = setInterval(addAnimationClassRandomly, 7000);
+
                         intervalX = setInterval(function () {
                             var carouselCats = document.getElementById('carousel-cats');
                             if (carouselCats.getActiveIndex() === carouselCats.itemCount - 2) {
@@ -1388,7 +1415,7 @@
                                 carouselCats.querySelector('ons-carousel-item:last-child').classList.add('opacity-0');
                                 console.log(lastCarouselItem.style.backgroundImage);
                                 carouselCats.style.backgroundImage = lastCarouselItem.style.backgroundImage;
-                                carouselCats.style.backgroundSize ="cover" ;
+                                carouselCats.style.backgroundSize = "cover";
                                 carouselCats.style.backgroundPosition = "center";
                                 carouselCats.classList.add("slideLeftOnce");
                                 console.log(carouselCats.style.backgroundImage);
@@ -1410,8 +1437,11 @@
                     this.onHide = function () {
                         console.log('category page : hide');
                         clearInterval(intervalX);
+                        clearInterval(lightenCardsInterval);
+                        heartShape.forEach(heart => {
+                            heart.removeEventListener('click', () => { })
+                        });
                     };
-                    
                     // this.onDestroy = function () { ... };
                 };
                 // heart shape
@@ -2089,6 +2119,7 @@
 
                     this.onShow = function () {
                         console.log('gifting-page: shown');
+                        lightenCardsInterval = setInterval(addAnimationClassRandomly, 7000);
                         intervalX = setInterval(function () {
                             var carouselCats = document.getElementById('carousel-cats');
                             if (carouselCats.getActiveIndex() === carouselCats.itemCount - 2) {
@@ -2097,7 +2128,7 @@
                                 carouselCats.querySelector('ons-carousel-item:last-child').classList.add('opacity-0');
                                 console.log(lastCarouselItem.style.backgroundImage);
                                 carouselCats.style.backgroundImage = lastCarouselItem.style.backgroundImage;
-                                carouselCats.style.backgroundSize ="cover" ;
+                                carouselCats.style.backgroundSize = "cover";
                                 carouselCats.style.backgroundPosition = "center";
                                 carouselCats.classList.add("slideLeftOnce");
                                 console.log(carouselCats.style.backgroundImage);
@@ -2119,6 +2150,7 @@
                     this.onHide = function () {
                         console.log('gifting-page: hide');
                         clearInterval(intervalX);
+                        clearInterval(lightenCardsInterval)
                     };
                     this.onDestroy = function () {
                         console.log('gifting-page: destroyed');
@@ -2387,109 +2419,110 @@
 
                 document.addEventListener('init', function (event) {
 
-                    carouselTest = document.getElementById('carousel-test');
-                    // select Diamond active on click
-                    var diamondOptions = document.querySelector('.select-diamond .customization-data').querySelectorAll('div');
-                    diamondOptions.forEach(function (option) {
-                        option.addEventListener('click', function () {
-                            // Remove the "active" class from all options
-                            diamondOptions.forEach(function (item) {
-                                item.classList.remove('active');
-                            });
-
-                            // Add the "active" class to the clicked option
-                            option.classList.add('active');
-                        });
-                    });
-
-                    // color options active on click
-                    var colorDivs = document.querySelectorAll('.color-options .color');
-                    colorDivs.forEach(function (div) {
-                        div.addEventListener('click', function () {
-                            // Remove "active" class from all color divs
-                            colorDivs.forEach(function (color) {
-                                color.classList.remove('active');
-                            });
-                            // Add "active" class to the clicked color div
-                            div.classList.add('active');
-                        });
-                    });
-
-                    // select Diamond active on click
-                    var selectSize = document.querySelector('.select-size .customization-data').querySelectorAll('div');
-                    selectSize.forEach(function (option) {
-                        option.addEventListener('click', function () {
-                            // Remove the "active" class from all options
-                            selectSize.forEach(function (item) {
-                                item.classList.remove('active');
-                            });
-
-                            // Add the "active" class to the clicked option
-                            option.classList.add('active');
-                        });
-                    });
-
-                    /* setInterval(function(){ 
-                        if(carouselTest.getActiveIndex() === carouselTest.itemCount-1)
-                            carouselTest.first();
-                        else
-                            carouselTest.next(); 
-                    }, 3000); */
-
-                    // for view in full screen
-                    function enterFullScreen(element) {
-                        if (element.requestFullscreen) {
-                            element.requestFullscreen();
-                        } else if (element.mozRequestFullScreen) {
-                            element.mozRequestFullScreen();     // Firefox
-                        } else if (element.webkitRequestFullscreen) {
-                            element.webkitRequestFullscreen();  // Safari
-                        } else if (element.msRequestFullscreen) {
-                            element.msRequestFullscreen();      // IE/Edge
-                        }
-                    };
-
-                    // btnFullscreen = document.querySelector(".fullscreen-btn");
-                    // // reqUrl = 'https://metaverse.tech2edge.co/diyora-kiosk-sim/assets/video/sample-ring-1.mp4';
-
-                    // btnFullscreen.addEventListener("click", function () {
-                    //     videoEle = document.querySelector('.video-main');
-                    //     videoEle.style.display = "block";
-                    //     enterFullScreen(videoEle);
-                    //     // changeVideoUrl(reqUrl);
-                    // });
-
-                    document.addEventListener('fullscreenchange', (event) => {
-                        if (document.fullscreenElement) {
-                            console.log('Entered fullscreen:', document.fullscreenElement);
-                        } else {
-                            videoEle.style.display = "none";
-                            console.log('Exited fullscreen.');
-                        }
-                    });
-
-                    // hide next and previous buttons when varient images are equal to 7 and less than 7
-                    var carouselButtons = document.querySelector(".product-showcase .variation-carousel-buttons");
-                    var carouselVarientImageWrapper = document.querySelector(".product-showcase .sliding-varient-images");
-                    var carouselVarientImages = document.querySelectorAll(".product-showcase .sliding-varient-images span");
-                    if (carouselVarientImages.length <= 6) {
-                        carouselVarientImageWrapper.classList.add('justify-content-center');
-                        carouselButtons.style.display = "none";
-                    }
-
-                    // set active class to varient image to show which varient is selected.
-                    carouselVarientImages.forEach(varient => {
-                        varient.addEventListener("click", () => {
-                            // remove active classes from all varient images
-                            carouselVarientImages.forEach(varient => {
-                                varient.classList.remove('active');
-                            })
-                            // add active class on selected varient
-                            varient.classList.add('active');
-                        })
-                    })
-
                 });
+
+                carouselTest = document.getElementById('carousel-test');
+                // select Diamond active on click
+                var diamondOptions = document.querySelector('.select-diamond .customization-data').querySelectorAll('div');
+                diamondOptions.forEach(function (option) {
+                    option.addEventListener('click', function () {
+                        // Remove the "active" class from all options
+                        diamondOptions.forEach(function (item) {
+                            item.classList.remove('active');
+                        });
+
+                        // Add the "active" class to the clicked option
+                        option.classList.add('active');
+                    });
+                });
+
+                // color options active on click
+                var colorDivs = document.querySelectorAll('.color-options .color');
+                colorDivs.forEach(function (div) {
+                    div.addEventListener('click', function () {
+                        // Remove "active" class from all color divs
+                        colorDivs.forEach(function (color) {
+                            color.classList.remove('active');
+                        });
+                        // Add "active" class to the clicked color div
+                        div.classList.add('active');
+                    });
+                });
+
+                // select Diamond active on click
+                var selectSize = document.querySelector('.select-size .customization-data').querySelectorAll('div');
+                selectSize.forEach(function (option) {
+                    option.addEventListener('click', function () {
+                        // Remove the "active" class from all options
+                        selectSize.forEach(function (item) {
+                            item.classList.remove('active');
+                        });
+
+                        // Add the "active" class to the clicked option
+                        option.classList.add('active');
+                    });
+                });
+
+                /* setInterval(function(){ 
+                    if(carouselTest.getActiveIndex() === carouselTest.itemCount-1)
+                        carouselTest.first();
+                    else
+                        carouselTest.next(); 
+                }, 3000); */
+
+                // for view in full screen
+                function enterFullScreen(element) {
+                    if (element.requestFullscreen) {
+                        element.requestFullscreen();
+                    } else if (element.mozRequestFullScreen) {
+                        element.mozRequestFullScreen();     // Firefox
+                    } else if (element.webkitRequestFullscreen) {
+                        element.webkitRequestFullscreen();  // Safari
+                    } else if (element.msRequestFullscreen) {
+                        element.msRequestFullscreen();      // IE/Edge
+                    }
+                };
+
+                // btnFullscreen = document.querySelector(".fullscreen-btn");
+                // // reqUrl = 'https://metaverse.tech2edge.co/diyora-kiosk-sim/assets/video/sample-ring-1.mp4';
+
+                // btnFullscreen.addEventListener("click", function () {
+                //     videoEle = document.querySelector('.video-main');
+                //     videoEle.style.display = "block";
+                //     enterFullScreen(videoEle);
+                //     // changeVideoUrl(reqUrl);
+                // });
+
+                document.addEventListener('fullscreenchange', (event) => {
+                    if (document.fullscreenElement) {
+                        console.log('Entered fullscreen:', document.fullscreenElement);
+                    } else {
+                        videoEle.style.display = "none";
+                        console.log('Exited fullscreen.');
+                    }
+                });
+
+                // hide next and previous buttons when varient images are equal to 7 and less than 7
+                var carouselButtons = document.querySelector(".product-showcase .variation-carousel-buttons");
+                var carouselVarientImageWrapper = document.querySelector(".product-showcase .sliding-varient-images");
+                var carouselVarientImages = document.querySelectorAll(".product-showcase .sliding-varient-images span");
+                if (carouselVarientImages.length <= 6) {
+                    carouselVarientImageWrapper.classList.add('justify-content-center');
+                    carouselButtons.style.display = "none";
+                }
+
+                // set active class to varient image to show which varient is selected.
+                carouselVarientImages.forEach(varient => {
+                    varient.addEventListener("click", () => {
+                        // remove active classes from all varient images
+                        carouselVarientImages.forEach(varient => {
+                            varient.classList.remove('active');
+                        })
+                        // add active class on selected varient
+                        varient.classList.add('active');
+                    })
+                })
+
 
                 reqUrl = 'https://metaverse.tech2edge.co/diyora-kiosk-sim/assets/video/sample-ring-1.mp4';
                 // OR
