@@ -551,9 +551,9 @@
                                 console.log('timeout running, calling handlescroll');
                             }, 300);
                             animationTimeout = setTimeout(() => {
-                                console.log('after 12 seconds');
+                                console.log('60 seconds over, carousel animation started');
                                 animationInterval = setInterval(startCarouselAnimation, 7000);
-                            }, 12000);
+                            }, 60000);
                             // }
                             // userScrolling = true;
                         }, true);
@@ -1375,6 +1375,7 @@
                 });
 
                 var intervalX;
+                var lastCarouselItem;
                 ons.getScriptPage().onInit = function () {
                     // Set up page's content or anything else
                     this.onShow = function () {
@@ -1382,14 +1383,23 @@
                         intervalX = setInterval(function () {
                             var carouselCats = document.getElementById('carousel-cats');
                             if (carouselCats.getActiveIndex() === carouselCats.itemCount - 2) {
-                                carouselCats.querySelector('ons-carousel-item:last-child').classList.add('slideLeftOnce');
-                                console.log('current target', carouselCats.querySelector('ons-carousel-item:last-child'))
+                                lastCarouselItem = carouselCats.querySelector('ons-carousel-item:last-child');
+                                // carouselCats.querySelector('ons-carousel-item:last-child').classList.add('slideLeftOnce');
+                                carouselCats.querySelector('ons-carousel-item:last-child').classList.add('opacity-0');
+                                console.log(lastCarouselItem.style.backgroundImage);
+                                carouselCats.style.backgroundImage = lastCarouselItem.style.backgroundImage;
+                                carouselCats.style.backgroundSize ="cover" ;
+                                carouselCats.style.backgroundPosition = "center";
+                                carouselCats.classList.add("slideLeftOnce");
+                                console.log(carouselCats.style.backgroundImage);
                             }
                             if (carouselCats.getActiveIndex() === carouselCats.itemCount - 1) {
+                                carouselCats.classList.remove("slideLeftOnce");
                                 // carouselCats.setActiveIndex(0);
                                 carouselCats.setActiveIndex(0, { animation: "none" });
                                 carouselCats.querySelector('ons-carousel-item:first-child').classList.add('slideLeftFrom100');
-                                carouselCats.querySelector('ons-carousel-item:last-child').classList.remove('slideLeftOnce');
+                                // carouselCats.querySelector('ons-carousel-item:last-child').classList.remove('slideLeftOnce');
+                                carouselCats.querySelector('ons-carousel-item:last-child').classList.remove('opacity-0');
                             }
                             else {
                                 carouselCats.querySelector('ons-carousel-item:first-child').classList.remove('slideLeftFrom100');

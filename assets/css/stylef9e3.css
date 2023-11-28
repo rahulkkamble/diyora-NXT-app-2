@@ -239,18 +239,33 @@ ons-page {
         transform: translateX(0%);
     }
 }
+@keyframes opacity-to-0 {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.opacity-0{
+    animation-name: opacity-to-0;
+    animation-delay: 4700ms;
+    animation-duration: 0ms;
+}
 
 .slideLeftOnce {
     animation-name: slide-left-once;
-    animation-delay: 4800ms;
-    animation-duration: 250ms;
+    animation-delay: 4840ms;    /* 4850 */
+    animation-duration: 360ms;  /* 350 */
     /* animation-timing-function: ease; */
     /* animation-iteration-count: infinite; */
 }
 
 .slideLeftFrom100{
     animation-name: slide-left-from-100;
-    animation-delay: 0ms;
+    animation-delay: -100ms;
     animation-duration: 250ms;
     /* animation-timing-function: ease; */
 }
@@ -2397,7 +2412,10 @@ ons-back-button.remove-icon .back-button--material__label {
     height: 100%;
     width: 100%;
 }
-
+/* carousel item cta btn */
+ons-carousel-item .cta-button{
+    cursor: pointer;
+}
 
 
 /* ============================================== Media Queries ============================================ */
