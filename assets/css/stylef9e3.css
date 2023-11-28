@@ -257,8 +257,8 @@ ons-page {
 
 .slideLeftOnce {
     animation-name: slide-left-once;
-    animation-delay: 4840ms;    /* 4850 */
-    animation-duration: 360ms;  /* 350 */
+    animation-delay: 4950ms;    /* 4850 */
+    animation-duration: 350ms;  /* 350 */
     /* animation-timing-function: ease; */
     /* animation-iteration-count: infinite; */
 }

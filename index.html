@@ -1411,6 +1411,7 @@
                         console.log('category page : hide');
                         clearInterval(intervalX);
                     };
+                    
                     // this.onDestroy = function () { ... };
                 };
                 // heart shape
@@ -2081,22 +2082,43 @@
                     });
                 });
 
+                var lastCarouselItem;
+
                 ons.getScriptPage().onInit = function () {
                     // Set up page's content or anything else
 
                     this.onShow = function () {
                         console.log('gifting-page: shown');
-                        carouselInterval = setInterval(function () {
+                        intervalX = setInterval(function () {
                             var carouselCats = document.getElementById('carousel-cats');
-                            if (carouselCats.getActiveIndex() === carouselCats.itemCount - 1)
-                                carouselCats.setActiveIndex(0);
-                            else
+                            if (carouselCats.getActiveIndex() === carouselCats.itemCount - 2) {
+                                lastCarouselItem = carouselCats.querySelector('ons-carousel-item:last-child');
+                                // carouselCats.querySelector('ons-carousel-item:last-child').classList.add('slideLeftOnce');
+                                carouselCats.querySelector('ons-carousel-item:last-child').classList.add('opacity-0');
+                                console.log(lastCarouselItem.style.backgroundImage);
+                                carouselCats.style.backgroundImage = lastCarouselItem.style.backgroundImage;
+                                carouselCats.style.backgroundSize ="cover" ;
+                                carouselCats.style.backgroundPosition = "center";
+                                carouselCats.classList.add("slideLeftOnce");
+                                console.log(carouselCats.style.backgroundImage);
+                            }
+                            if (carouselCats.getActiveIndex() === carouselCats.itemCount - 1) {
+                                carouselCats.classList.remove("slideLeftOnce");
+                                // carouselCats.setActiveIndex(0);
+                                carouselCats.setActiveIndex(0, { animation: "none" });
+                                carouselCats.querySelector('ons-carousel-item:first-child').classList.add('slideLeftFrom100');
+                                // carouselCats.querySelector('ons-carousel-item:last-child').classList.remove('slideLeftOnce');
+                                carouselCats.querySelector('ons-carousel-item:last-child').classList.remove('opacity-0');
+                            }
+                            else {
+                                carouselCats.querySelector('ons-carousel-item:first-child').classList.remove('slideLeftFrom100');
                                 carouselCats.next();
+                            }
                         }, 5000);
                     };
                     this.onHide = function () {
                         console.log('gifting-page: hide');
-                        clearInterval(carouselInterval);
+                        clearInterval(intervalX);
                     };
                     this.onDestroy = function () {
                         console.log('gifting-page: destroyed');
