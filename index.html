@@ -737,15 +737,6 @@
                 // scroll to left boundry after scroll ends here
 
                 function logoLink() {
-                    /* document.querySelector('#myNavigator').pushPage('homepage.html', {
-                        data: { title: 'Homepage' },
-                        callback: function () {
-                            // Reattach scroll event listener after pushing the homepage
-                            var swiperWrapper = document.querySelector('.swiper-wrapper-auto-scroll .swiper-wrapper');
-                            swiperWrapper.addEventListener("scroll", handleScroll(), true);
-                        }
-                    }); */
-                    // Reload the page
                     location.reload();
                     console.log('logoLink run');
                 }
@@ -1440,9 +1431,6 @@
                         console.log('category page : hide');
                         clearInterval(intervalX);
                         clearInterval(lightenCardsInterval);
-                        heartShape2.forEach(heart2 => {
-                            heart2.classList.remove('active');
-                        });
                     };
                     // this.onDestroy = function () { ... };
                 };
@@ -1491,7 +1479,7 @@
         <!-- next page code -->
         <!-- navbar / toolbar / tabbar -->
 
-        <ons-page id="giftingCategory">
+        <ons-page class="gifting-category-page" id="giftingCategory">
             <div class="ons-toolbar navbar">
                 <div class="left">
                     <ons-back-button class="remove-icon">
@@ -2163,7 +2151,7 @@
                 };
                 // heart shape
                 // Select the heart-shape div
-                var heartShape = document.querySelectorAll('.heart-shape');
+                var heartShape = document.querySelectorAll('.gifting-category-page .heart-shape');
                 // Add a click event listener to the heart-shape div
                 heartShape.forEach(heart => {
                     heart.addEventListener('click', function (e) {
