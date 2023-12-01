@@ -793,7 +793,7 @@
     <template id="category-earring.html">
         <!-- next page code -->
         <!-- navbar / toolbar / tabbar -->
-        <ons-page id="earringCategory">
+        <ons-page class="earring-category-page" id="earringCategory">
             <div class="ons-toolbar navbar">
                 <div class="left">
                     <ons-back-button class="remove-icon">
@@ -1448,7 +1448,7 @@
                 };
                 // heart shape
                 // Select the heart-shape div
-                var heartShape2 = document.querySelectorAll('.heart-shape');
+                var heartShape2 = document.querySelectorAll('.earring-category-page .heart-shape');
                 var heartLikeTimeout2 = null;
                 // Add a click event listener to the heart-shape div
                 heartShape2.forEach(heart2 => {
