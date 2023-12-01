@@ -548,27 +548,36 @@
                         howManyTimeHome();
                         if (countInitHome > 1) {
                             clearInterval(backToHomeLightenCards);
-                            console.log('glow effect will run after 1-min because you returned on homepage morethan once...')
+                            console.log('glow effect will apply after 1 min, because you returned on homepage morethan once...')
+                            console.log('carousel sliding effect will apply after 1 min, because you returned on homepage morethan once...');
                             backToHomeLightenCards = setTimeout(() => {
+                                clearTimeout(backToHomeLightenCards)
                                 lightenCardsInterval = setInterval(addAnimationClassRandomly, 7000);
-                            }, 6000);
+                            }, 60000);
+                            animationTimeout = setTimeout(() => {
+                                clearTimeout(animationTimeout);
+                                animationInterval = setInterval(startCarouselAnimation, 7000);
+                            }, 60000);
                         } else {
                             lightenCardsInterval = setInterval(addAnimationClassRandomly, 7000);
+                            animationInterval = setInterval(startCarouselAnimation, 7000);
                         }
-                        animationInterval = setInterval(startCarouselAnimation, 7000);
                         var swiperWrapper = document.querySelector('.swiper-wrapper-auto-scroll .swiper-wrapper');
                         // var userScrolling = true;
                         swiperWrapper.addEventListener("scroll", () => {
                             // if (userScrolling) {
-                            console.log("Div scrolled!");
+                            console.log("Div scrolled by user!");
                             clearTimeout(handleScrollTimeout);
                             clearInterval(animationInterval);
                             clearTimeout(animationTimeout);
                             handleScrollTimeout = setTimeout(() => {
+                                clearTimeout(handleScrollTimeout)
                                 handleScroll();
                                 console.log('timeout running, calling handlescroll');
                             }, 300);
+                            // console.log('user scroll detected, calling carousel animation, will run after 1 min');
                             animationTimeout = setTimeout(() => {
+                                clearTimeout(animationTimeout);
                                 console.log('60 seconds over, carousel carousel sliding to left');
                                 animationInterval = setInterval(startCarouselAnimation, 7000);
                             }, 60000);
@@ -711,7 +720,7 @@
                     clearTimeout(scrollTimeout);
 
                     scrollTimeout = setTimeout(function () {
-
+                        clearTimeout(scrollTimeout);
                         var scrollPosition = swiperWrapper2.scrollLeft;
                         var clientLeft = swiperWrapper2.getBoundingClientRect().left;
 
@@ -2594,6 +2603,7 @@
                     console.log(" varient images Div scrolled!");
                     clearTimeout(handleScrollTimeout2);
                     handleScrollTimeout2 = setTimeout(() => {
+                        clearTimeout(handleScrollTimeout2);
                         handleScroll2();
                     }, 600)
                     // handleScroll();
